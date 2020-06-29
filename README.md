@@ -1,2 +1,3 @@
 # airflow-diagrams
-Auto-generated Diagrams of Airflow DAGs.
+
+Auto-generated Diagrams from Airflow DAGs.
