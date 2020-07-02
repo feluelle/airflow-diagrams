@@ -1,0 +1,12 @@
+{
+  "DummyOperator": {
+    "provider": "generic",
+    "resource_type": "blank",
+    "name": "Blank"
+  },
+  "AWSAthenaOperator": {
+    "provider": "aws",
+    "resource_type": "analytics",
+    "name": "Athena"
+  }
+}

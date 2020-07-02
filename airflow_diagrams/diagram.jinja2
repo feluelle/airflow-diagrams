@@ -1,0 +1,11 @@
+from diagrams import Diagram
+{% for diagram_import in diagram_imports -%}
+from diagrams.{{ diagram_import["provider"] }}.{{ diagram_import["resource_type"] }} import {{ diagram_import["name"] }}
+{% endfor %}
+with Diagram("{{ diagram_name }}", show=False):
+    {% for diagram_node in diagram_nodes -%}
+    {{ diagram_node["id"] }} = {{ diagram_node["type"] }}("{{ diagram_node["id"] }}")
+    {% endfor %}
+    {% for diagram_edge in diagram_edges -%}
+    {{ diagram_edge["source"]["id"] }} >> {{ diagram_edge["target"]["id"] }}
+    {% endfor %}
