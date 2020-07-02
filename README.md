@@ -8,7 +8,7 @@ from providers like AWS, GCP, Azure, etc. via [diagrams](https://github.com/ming
 ## How-to-Use
 
 To use this auto-generator just add the following two lines to your Airflow DAG (and run it):
-```
+```python
 from airflow_diagrams import generate_diagram_from_dag
 generate_diagram_from_dag(dag=dag, diagram_file="diagram.py")
 ```
