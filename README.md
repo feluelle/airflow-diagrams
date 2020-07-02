@@ -2,8 +2,8 @@
 
 > Auto-generated Diagrams from Airflow DAGs.
 
-This project aims to easily visualise you Airflow DAGs on service level 
-from providers like AWS, GCP, Azure, etc.
+This project aims to easily visualise you [Airflow](https://github.com/apache/airflow) DAGs on service level 
+from providers like AWS, GCP, Azure, etc. via [diagrams](https://github.com/mingrammer/diagrams).
 
 ## How-to-Use
 
