@@ -24,6 +24,12 @@ This project is in a very early stage. And contributions are welcome <3.
 The [mapping.json](airflow_diagrams/mapping.json) needs a lot more entries 
 so the Diagram can be proper created for all kinds of Airflow DAGs.
 
+## TODOs
+
+- [ ] Make installable via pip
+- [ ] Add more examples to README
+- [ ] Add more entries to mapping.json
+
 ## License
 
 [MIT](LICENSE)
