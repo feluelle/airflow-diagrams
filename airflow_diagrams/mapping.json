@@ -1,12 +1,1572 @@
 {
+  "AWSAthenaOperator": {
+    "provider": "aws",
+    "resource_type": "analytics",
+    "name": "Athena"
+  },
+  "AWSBatchOperator": {
+    "provider": "",
+    "resource_type": "",
+    "name": ""
+  },
+  "AdlsToGoogleCloudStorageOperator": {
+    "provider": "",
+    "resource_type": "",
+    "name": ""
+  },
+  "AthenaSensor": {
+    "provider": "",
+    "resource_type": "",
+    "name": ""
+  },
+  "AwsGlueCatalogPartitionSensor": {
+    "provider": "",
+    "resource_type": "",
+    "name": ""
+  },
+  "AwsRedshiftClusterSensor": {
+    "provider": "",
+    "resource_type": "",
+    "name": ""
+  },
+  "AzureContainerInstancesOperator": {
+    "provider": "",
+    "resource_type": "",
+    "name": ""
+  },
+  "AzureCosmosDocumentSensor": {
+    "provider": "",
+    "resource_type": "",
+    "name": ""
+  },
+  "AzureCosmosInsertDocumentOperator": {
+    "provider": "",
+    "resource_type": "",
+    "name": ""
+  },
+  "AzureDataLakeStorageListOperator": {
+    "provider": "",
+    "resource_type": "",
+    "name": ""
+  },
+  "BaseBranchOperator": {
+    "provider": "",
+    "resource_type": "",
+    "name": ""
+  },
+  "BaseOperator": {
+    "provider": "",
+    "resource_type": "",
+    "name": ""
+  },
+  "BaseSQLToGoogleCloudStorageOperator": {
+    "provider": "",
+    "resource_type": "",
+    "name": ""
+  },
+  "BaseSensorOperator": {
+    "provider": "",
+    "resource_type": "",
+    "name": ""
+  },
+  "BashOperator": {
+    "provider": "",
+    "resource_type": "",
+    "name": ""
+  },
+  "BashSensor": {
+    "provider": "",
+    "resource_type": "",
+    "name": ""
+  },
+  "BigQueryCheckOperator": {
+    "provider": "",
+    "resource_type": "",
+    "name": ""
+  },
+  "BigQueryCreateEmptyDatasetOperator": {
+    "provider": "",
+    "resource_type": "",
+    "name": ""
+  },
+  "BigQueryCreateEmptyTableOperator": {
+    "provider": "",
+    "resource_type": "",
+    "name": ""
+  },
+  "BigQueryCreateExternalTableOperator": {
+    "provider": "",
+    "resource_type": "",
+    "name": ""
+  },
+  "BigQueryDeleteDatasetOperator": {
+    "provider": "",
+    "resource_type": "",
+    "name": ""
+  },
+  "BigQueryGetDataOperator": {
+    "provider": "",
+    "resource_type": "",
+    "name": ""
+  },
+  "BigQueryGetDatasetOperator": {
+    "provider": "",
+    "resource_type": "",
+    "name": ""
+  },
+  "BigQueryIntervalCheckOperator": {
+    "provider": "",
+    "resource_type": "",
+    "name": ""
+  },
+  "BigQueryOperator": {
+    "provider": "",
+    "resource_type": "",
+    "name": ""
+  },
+  "BigQueryPatchDatasetOperator": {
+    "provider": "",
+    "resource_type": "",
+    "name": ""
+  },
+  "BigQueryTableDeleteOperator": {
+    "provider": "",
+    "resource_type": "",
+    "name": ""
+  },
+  "BigQueryTableSensor": {
+    "provider": "",
+    "resource_type": "",
+    "name": ""
+  },
+  "BigQueryToBigQueryOperator": {
+    "provider": "",
+    "resource_type": "",
+    "name": ""
+  },
+  "BigQueryToCloudStorageOperator": {
+    "provider": "",
+    "resource_type": "",
+    "name": ""
+  },
+  "BigQueryToMySqlOperator": {
+    "provider": "",
+    "resource_type": "",
+    "name": ""
+  },
+  "BigQueryUpdateDatasetOperator": {
+    "provider": "",
+    "resource_type": "",
+    "name": ""
+  },
+  "BigQueryValueCheckOperator": {
+    "provider": "",
+    "resource_type": "",
+    "name": ""
+  },
+  "BigtableClusterUpdateOperator": {
+    "provider": "",
+    "resource_type": "",
+    "name": ""
+  },
+  "BigtableInstanceCreateOperator": {
+    "provider": "",
+    "resource_type": "",
+    "name": ""
+  },
+  "BigtableInstanceDeleteOperator": {
+    "provider": "",
+    "resource_type": "",
+    "name": ""
+  },
+  "BigtableTableCreateOperator": {
+    "provider": "",
+    "resource_type": "",
+    "name": ""
+  },
+  "BigtableTableDeleteOperator": {
+    "provider": "",
+    "resource_type": "",
+    "name": ""
+  },
+  "BigtableTableWaitForReplicationSensor": {
+    "provider": "",
+    "resource_type": "",
+    "name": ""
+  },
+  "BranchPythonOperator": {
+    "provider": "",
+    "resource_type": "",
+    "name": ""
+  },
+  "CassandraRecordSensor": {
+    "provider": "",
+    "resource_type": "",
+    "name": ""
+  },
+  "CassandraTableSensor": {
+    "provider": "",
+    "resource_type": "",
+    "name": ""
+  },
+  "CassandraToGoogleCloudStorageOperator": {
+    "provider": "",
+    "resource_type": "",
+    "name": ""
+  },
+  "CheckOperator": {
+    "provider": "",
+    "resource_type": "",
+    "name": ""
+  },
+  "CloudBuildCreateBuildOperator": {
+    "provider": "",
+    "resource_type": "",
+    "name": ""
+  },
+  "CloudDLPCancelDLPJobOperator": {
+    "provider": "",
+    "resource_type": "",
+    "name": ""
+  },
+  "CloudDLPCreateDLPJobOperator": {
+    "provider": "",
+    "resource_type": "",
+    "name": ""
+  },
+  "CloudDLPCreateDeidentifyTemplateOperator": {
+    "provider": "",
+    "resource_type": "",
+    "name": ""
+  },
+  "CloudDLPCreateInspectTemplateOperator": {
+    "provider": "",
+    "resource_type": "",
+    "name": ""
+  },
+  "CloudDLPCreateJobTriggerOperator": {
+    "provider": "",
+    "resource_type": "",
+    "name": ""
+  },
+  "CloudDLPCreateStoredInfoTypeOperator": {
+    "provider": "",
+    "resource_type": "",
+    "name": ""
+  },
+  "CloudDLPDeidentifyContentOperator": {
+    "provider": "",
+    "resource_type": "",
+    "name": ""
+  },
+  "CloudDLPDeleteDeidentifyTemplateOperator": {
+    "provider": "",
+    "resource_type": "",
+    "name": ""
+  },
+  "CloudDLPDeleteDlpJobOperator": {
+    "provider": "",
+    "resource_type": "",
+    "name": ""
+  },
+  "CloudDLPDeleteInspectTemplateOperator": {
+    "provider": "",
+    "resource_type": "",
+    "name": ""
+  },
+  "CloudDLPDeleteJobTriggerOperator": {
+    "provider": "",
+    "resource_type": "",
+    "name": ""
+  },
+  "CloudDLPDeleteStoredInfoTypeOperator": {
+    "provider": "",
+    "resource_type": "",
+    "name": ""
+  },
+  "CloudDLPGetDeidentifyTemplateOperator": {
+    "provider": "",
+    "resource_type": "",
+    "name": ""
+  },
+  "CloudDLPGetDlpJobOperator": {
+    "provider": "",
+    "resource_type": "",
+    "name": ""
+  },
+  "CloudDLPGetInspectTemplateOperator": {
+    "provider": "",
+    "resource_type": "",
+    "name": ""
+  },
+  "CloudDLPGetJobTripperOperator": {
+    "provider": "",
+    "resource_type": "",
+    "name": ""
+  },
+  "CloudDLPGetStoredInfoTypeOperator": {
+    "provider": "",
+    "resource_type": "",
+    "name": ""
+  },
+  "CloudDLPInspectContentOperator": {
+    "provider": "",
+    "resource_type": "",
+    "name": ""
+  },
+  "CloudDLPListDeidentifyTemplatesOperator": {
+    "provider": "",
+    "resource_type": "",
+    "name": ""
+  },
+  "CloudDLPListDlpJobsOperator": {
+    "provider": "",
+    "resource_type": "",
+    "name": ""
+  },
+  "CloudDLPListInfoTypesOperator": {
+    "provider": "",
+    "resource_type": "",
+    "name": ""
+  },
+  "CloudDLPListInspectTemplatesOperator": {
+    "provider": "",
+    "resource_type": "",
+    "name": ""
+  },
+  "CloudDLPListJobTriggersOperator": {
+    "provider": "",
+    "resource_type": "",
+    "name": ""
+  },
+  "CloudDLPListStoredInfoTypesOperator": {
+    "provider": "",
+    "resource_type": "",
+    "name": ""
+  },
+  "CloudDLPRedactImageOperator": {
+    "provider": "",
+    "resource_type": "",
+    "name": ""
+  },
+  "CloudDLPReidentifyContentOperator": {
+    "provider": "",
+    "resource_type": "",
+    "name": ""
+  },
+  "CloudDLPUpdateDeidentifyTemplateOperator": {
+    "provider": "",
+    "resource_type": "",
+    "name": ""
+  },
+  "CloudDLPUpdateInspectTemplateOperator": {
+    "provider": "",
+    "resource_type": "",
+    "name": ""
+  },
+  "CloudDLPUpdateJobTriggerOperator": {
+    "provider": "",
+    "resource_type": "",
+    "name": ""
+  },
+  "CloudDLPUpdateStoredInfoTypeOperator": {
+    "provider": "",
+    "resource_type": "",
+    "name": ""
+  },
+  "CloudLanguageAnalyzeEntitiesOperator": {
+    "provider": "",
+    "resource_type": "",
+    "name": ""
+  },
+  "CloudLanguageAnalyzeEntitySentimentOperator": {
+    "provider": "",
+    "resource_type": "",
+    "name": ""
+  },
+  "CloudLanguageAnalyzeSentimentOperator": {
+    "provider": "",
+    "resource_type": "",
+    "name": ""
+  },
+  "CloudLanguageClassifyTextOperator": {
+    "provider": "",
+    "resource_type": "",
+    "name": ""
+  },
+  "CloudSpannerInstanceDatabaseDeleteOperator": {
+    "provider": "",
+    "resource_type": "",
+    "name": ""
+  },
+  "CloudSpannerInstanceDatabaseDeployOperator": {
+    "provider": "",
+    "resource_type": "",
+    "name": ""
+  },
+  "CloudSpannerInstanceDatabaseQueryOperator": {
+    "provider": "",
+    "resource_type": "",
+    "name": ""
+  },
+  "CloudSpannerInstanceDatabaseUpdateOperator": {
+    "provider": "",
+    "resource_type": "",
+    "name": ""
+  },
+  "CloudSpannerInstanceDeleteOperator": {
+    "provider": "",
+    "resource_type": "",
+    "name": ""
+  },
+  "CloudSpannerInstanceDeployOperator": {
+    "provider": "",
+    "resource_type": "",
+    "name": ""
+  },
+  "CloudSqlBaseOperator": {
+    "provider": "",
+    "resource_type": "",
+    "name": ""
+  },
+  "CloudSqlInstanceCreateOperator": {
+    "provider": "",
+    "resource_type": "",
+    "name": ""
+  },
+  "CloudSqlInstanceDatabaseCreateOperator": {
+    "provider": "",
+    "resource_type": "",
+    "name": ""
+  },
+  "CloudSqlInstanceDatabaseDeleteOperator": {
+    "provider": "",
+    "resource_type": "",
+    "name": ""
+  },
+  "CloudSqlInstanceDatabasePatchOperator": {
+    "provider": "",
+    "resource_type": "",
+    "name": ""
+  },
+  "CloudSqlInstanceDeleteOperator": {
+    "provider": "",
+    "resource_type": "",
+    "name": ""
+  },
+  "CloudSqlInstanceExportOperator": {
+    "provider": "",
+    "resource_type": "",
+    "name": ""
+  },
+  "CloudSqlInstanceImportOperator": {
+    "provider": "",
+    "resource_type": "",
+    "name": ""
+  },
+  "CloudSqlInstancePatchOperator": {
+    "provider": "",
+    "resource_type": "",
+    "name": ""
+  },
+  "CloudSqlQueryOperator": {
+    "provider": "",
+    "resource_type": "",
+    "name": ""
+  },
+  "CloudTranslateTextOperator": {
+    "provider": "",
+    "resource_type": "",
+    "name": ""
+  },
+  "CloudVideoIntelligenceDetectVideoExplicitContentOperator": {
+    "provider": "",
+    "resource_type": "",
+    "name": ""
+  },
+  "CloudVideoIntelligenceDetectVideoLabelsOperator": {
+    "provider": "",
+    "resource_type": "",
+    "name": ""
+  },
+  "CloudVideoIntelligenceDetectVideoShotsOperator": {
+    "provider": "",
+    "resource_type": "",
+    "name": ""
+  },
+  "CloudVisionAddProductToProductSetOperator": {
+    "provider": "",
+    "resource_type": "",
+    "name": ""
+  },
+  "CloudVisionAnnotateImageOperator": {
+    "provider": "",
+    "resource_type": "",
+    "name": ""
+  },
+  "CloudVisionDetectDocumentTextOperator": {
+    "provider": "",
+    "resource_type": "",
+    "name": ""
+  },
+  "CloudVisionDetectImageLabelsOperator": {
+    "provider": "",
+    "resource_type": "",
+    "name": ""
+  },
+  "CloudVisionDetectImageSafeSearchOperator": {
+    "provider": "",
+    "resource_type": "",
+    "name": ""
+  },
+  "CloudVisionDetectTextOperator": {
+    "provider": "",
+    "resource_type": "",
+    "name": ""
+  },
+  "CloudVisionProductCreateOperator": {
+    "provider": "",
+    "resource_type": "",
+    "name": ""
+  },
+  "CloudVisionProductDeleteOperator": {
+    "provider": "",
+    "resource_type": "",
+    "name": ""
+  },
+  "CloudVisionProductGetOperator": {
+    "provider": "",
+    "resource_type": "",
+    "name": ""
+  },
+  "CloudVisionProductSetCreateOperator": {
+    "provider": "",
+    "resource_type": "",
+    "name": ""
+  },
+  "CloudVisionProductSetDeleteOperator": {
+    "provider": "",
+    "resource_type": "",
+    "name": ""
+  },
+  "CloudVisionProductSetGetOperator": {
+    "provider": "",
+    "resource_type": "",
+    "name": ""
+  },
+  "CloudVisionProductSetUpdateOperator": {
+    "provider": "",
+    "resource_type": "",
+    "name": ""
+  },
+  "CloudVisionProductUpdateOperator": {
+    "provider": "",
+    "resource_type": "",
+    "name": ""
+  },
+  "CloudVisionReferenceImageCreateOperator": {
+    "provider": "",
+    "resource_type": "",
+    "name": ""
+  },
+  "CloudVisionRemoveProductFromProductSetOperator": {
+    "provider": "",
+    "resource_type": "",
+    "name": ""
+  },
+  "CustomOperator": {
+    "provider": "",
+    "resource_type": "",
+    "name": ""
+  },
+  "DataFlowJavaOperator": {
+    "provider": "",
+    "resource_type": "",
+    "name": ""
+  },
+  "DataFlowPythonOperator": {
+    "provider": "",
+    "resource_type": "",
+    "name": ""
+  },
+  "DataProcHadoopOperator": {
+    "provider": "",
+    "resource_type": "",
+    "name": ""
+  },
+  "DataProcHiveOperator": {
+    "provider": "",
+    "resource_type": "",
+    "name": ""
+  },
+  "DataProcJobBaseOperator": {
+    "provider": "",
+    "resource_type": "",
+    "name": ""
+  },
+  "DataProcPigOperator": {
+    "provider": "",
+    "resource_type": "",
+    "name": ""
+  },
+  "DataProcPySparkOperator": {
+    "provider": "",
+    "resource_type": "",
+    "name": ""
+  },
+  "DataProcSparkOperator": {
+    "provider": "",
+    "resource_type": "",
+    "name": ""
+  },
+  "DataProcSparkSqlOperator": {
+    "provider": "",
+    "resource_type": "",
+    "name": ""
+  },
+  "DatabricksRunNowOperator": {
+    "provider": "",
+    "resource_type": "",
+    "name": ""
+  },
+  "DatabricksSubmitRunOperator": {
+    "provider": "",
+    "resource_type": "",
+    "name": ""
+  },
+  "DatadogSensor": {
+    "provider": "",
+    "resource_type": "",
+    "name": ""
+  },
+  "DataflowTemplateOperator": {
+    "provider": "",
+    "resource_type": "",
+    "name": ""
+  },
+  "DataprocClusterCreateOperator": {
+    "provider": "",
+    "resource_type": "",
+    "name": ""
+  },
+  "DataprocClusterDeleteOperator": {
+    "provider": "",
+    "resource_type": "",
+    "name": ""
+  },
+  "DataprocClusterScaleOperator": {
+    "provider": "",
+    "resource_type": "",
+    "name": ""
+  },
+  "DataprocOperationBaseOperator": {
+    "provider": "",
+    "resource_type": "",
+    "name": ""
+  },
+  "DataprocWorkflowTemplateInstantiateInlineOperator": {
+    "provider": "",
+    "resource_type": "",
+    "name": ""
+  },
+  "DataprocWorkflowTemplateInstantiateOperator": {
+    "provider": "",
+    "resource_type": "",
+    "name": ""
+  },
+  "DatastoreExportOperator": {
+    "provider": "",
+    "resource_type": "",
+    "name": ""
+  },
+  "DatastoreImportOperator": {
+    "provider": "",
+    "resource_type": "",
+    "name": ""
+  },
+  "DayOfWeekSensor": {
+    "provider": "",
+    "resource_type": "",
+    "name": ""
+  },
+  "DingdingOperator": {
+    "provider": "",
+    "resource_type": "",
+    "name": ""
+  },
+  "DiscordWebhookOperator": {
+    "provider": "",
+    "resource_type": "",
+    "name": ""
+  },
+  "DockerOperator": {
+    "provider": "",
+    "resource_type": "",
+    "name": ""
+  },
+  "DockerSwarmOperator": {
+    "provider": "",
+    "resource_type": "",
+    "name": ""
+  },
+  "DruidCheckOperator": {
+    "provider": "",
+    "resource_type": "",
+    "name": ""
+  },
+  "DruidOperator": {
+    "provider": "",
+    "resource_type": "",
+    "name": ""
+  },
+  "Dummy2TestOperator": {
+    "provider": "",
+    "resource_type": "",
+    "name": ""
+  },
+  "Dummy3TestOperator": {
+    "provider": "",
+    "resource_type": "",
+    "name": ""
+  },
   "DummyOperator": {
     "provider": "generic",
     "resource_type": "blank",
     "name": "Blank"
   },
-  "AWSAthenaOperator": {
-    "provider": "aws",
-    "resource_type": "analytics",
-    "name": "Athena"
+  "DummySkipOperator": {
+    "provider": "",
+    "resource_type": "",
+    "name": ""
+  },
+  "DynamoDBToS3Operator": {
+    "provider": "",
+    "resource_type": "",
+    "name": ""
+  },
+  "ECSOperator": {
+    "provider": "",
+    "resource_type": "",
+    "name": ""
+  },
+  "EmailOperator": {
+    "provider": "",
+    "resource_type": "",
+    "name": ""
+  },
+  "EmrAddStepsOperator": {
+    "provider": "",
+    "resource_type": "",
+    "name": ""
+  },
+  "EmrBaseSensor": {
+    "provider": "",
+    "resource_type": "",
+    "name": ""
+  },
+  "EmrCreateJobFlowOperator": {
+    "provider": "",
+    "resource_type": "",
+    "name": ""
+  },
+  "EmrJobFlowSensor": {
+    "provider": "",
+    "resource_type": "",
+    "name": ""
+  },
+  "EmrStepSensor": {
+    "provider": "",
+    "resource_type": "",
+    "name": ""
+  },
+  "EmrTerminateJobFlowOperator": {
+    "provider": "",
+    "resource_type": "",
+    "name": ""
+  },
+  "ExternalTaskSensor": {
+    "provider": "",
+    "resource_type": "",
+    "name": ""
+  },
+  "FTPSSensor": {
+    "provider": "",
+    "resource_type": "",
+    "name": ""
+  },
+  "FTPSensor": {
+    "provider": "",
+    "resource_type": "",
+    "name": ""
+  },
+  "FileSensor": {
+    "provider": "",
+    "resource_type": "",
+    "name": ""
+  },
+  "FileToGoogleCloudStorageOperator": {
+    "provider": "",
+    "resource_type": "",
+    "name": ""
+  },
+  "FileToWasbOperator": {
+    "provider": "",
+    "resource_type": "",
+    "name": ""
+  },
+  "GCPTransferServiceWaitForJobStatusSensor": {
+    "provider": "",
+    "resource_type": "",
+    "name": ""
+  },
+  "GKEClusterCreateOperator": {
+    "provider": "",
+    "resource_type": "",
+    "name": ""
+  },
+  "GKEClusterDeleteOperator": {
+    "provider": "",
+    "resource_type": "",
+    "name": ""
+  },
+  "GKEPodOperator": {
+    "provider": "",
+    "resource_type": "",
+    "name": ""
+  },
+  "GceBaseOperator": {
+    "provider": "",
+    "resource_type": "",
+    "name": ""
+  },
+  "GceInstanceGroupManagerUpdateTemplateOperator": {
+    "provider": "",
+    "resource_type": "",
+    "name": ""
+  },
+  "GceInstanceStartOperator": {
+    "provider": "",
+    "resource_type": "",
+    "name": ""
+  },
+  "GceInstanceStopOperator": {
+    "provider": "",
+    "resource_type": "",
+    "name": ""
+  },
+  "GceInstanceTemplateCopyOperator": {
+    "provider": "",
+    "resource_type": "",
+    "name": ""
+  },
+  "GceSetMachineTypeOperator": {
+    "provider": "",
+    "resource_type": "",
+    "name": ""
+  },
+  "GcfFunctionDeleteOperator": {
+    "provider": "",
+    "resource_type": "",
+    "name": ""
+  },
+  "GcfFunctionDeployOperator": {
+    "provider": "",
+    "resource_type": "",
+    "name": ""
+  },
+  "GcpSpeechToTextRecognizeSpeechOperator": {
+    "provider": "",
+    "resource_type": "",
+    "name": ""
+  },
+  "GcpTextToSpeechSynthesizeOperator": {
+    "provider": "",
+    "resource_type": "",
+    "name": ""
+  },
+  "GcpTransferServiceJobCreateOperator": {
+    "provider": "",
+    "resource_type": "",
+    "name": ""
+  },
+  "GcpTransferServiceJobDeleteOperator": {
+    "provider": "",
+    "resource_type": "",
+    "name": ""
+  },
+  "GcpTransferServiceJobUpdateOperator": {
+    "provider": "",
+    "resource_type": "",
+    "name": ""
+  },
+  "GcpTransferServiceOperationCancelOperator": {
+    "provider": "",
+    "resource_type": "",
+    "name": ""
+  },
+  "GcpTransferServiceOperationGetOperator": {
+    "provider": "",
+    "resource_type": "",
+    "name": ""
+  },
+  "GcpTransferServiceOperationPauseOperator": {
+    "provider": "",
+    "resource_type": "",
+    "name": ""
+  },
+  "GcpTransferServiceOperationResumeOperator": {
+    "provider": "",
+    "resource_type": "",
+    "name": ""
+  },
+  "GcpTransferServiceOperationsListOperator": {
+    "provider": "",
+    "resource_type": "",
+    "name": ""
+  },
+  "GcpTranslateSpeechOperator": {
+    "provider": "",
+    "resource_type": "",
+    "name": ""
+  },
+  "GcsToGDriveOperator": {
+    "provider": "",
+    "resource_type": "",
+    "name": ""
+  },
+  "GoogleCloudStorageBucketCreateAclEntryOperator": {
+    "provider": "",
+    "resource_type": "",
+    "name": ""
+  },
+  "GoogleCloudStorageCreateBucketOperator": {
+    "provider": "",
+    "resource_type": "",
+    "name": ""
+  },
+  "GoogleCloudStorageDeleteOperator": {
+    "provider": "",
+    "resource_type": "",
+    "name": ""
+  },
+  "GoogleCloudStorageDownloadOperator": {
+    "provider": "",
+    "resource_type": "",
+    "name": ""
+  },
+  "GoogleCloudStorageListOperator": {
+    "provider": "",
+    "resource_type": "",
+    "name": ""
+  },
+  "GoogleCloudStorageObjectCreateAclEntryOperator": {
+    "provider": "",
+    "resource_type": "",
+    "name": ""
+  },
+  "GoogleCloudStorageObjectSensor": {
+    "provider": "",
+    "resource_type": "",
+    "name": ""
+  },
+  "GoogleCloudStorageObjectUpdatedSensor": {
+    "provider": "",
+    "resource_type": "",
+    "name": ""
+  },
+  "GoogleCloudStoragePrefixSensor": {
+    "provider": "",
+    "resource_type": "",
+    "name": ""
+  },
+  "GoogleCloudStorageToBigQueryOperator": {
+    "provider": "",
+    "resource_type": "",
+    "name": ""
+  },
+  "GoogleCloudStorageToGoogleCloudStorageOperator": {
+    "provider": "",
+    "resource_type": "",
+    "name": ""
+  },
+  "GoogleCloudStorageToGoogleCloudStorageTransferOperator": {
+    "provider": "",
+    "resource_type": "",
+    "name": ""
+  },
+  "GoogleCloudStorageToS3Operator": {
+    "provider": "",
+    "resource_type": "",
+    "name": ""
+  },
+  "GoogleCloudStorageUploadSessionCompleteSensor": {
+    "provider": "",
+    "resource_type": "",
+    "name": ""
+  },
+  "HdfsSensor": {
+    "provider": "",
+    "resource_type": "",
+    "name": ""
+  },
+  "HipChatAPIOperator": {
+    "provider": "",
+    "resource_type": "",
+    "name": ""
+  },
+  "HipChatAPISendRoomNotificationOperator": {
+    "provider": "",
+    "resource_type": "",
+    "name": ""
+  },
+  "Hive2SambaOperator": {
+    "provider": "",
+    "resource_type": "",
+    "name": ""
+  },
+  "HiveOperator": {
+    "provider": "",
+    "resource_type": "",
+    "name": ""
+  },
+  "HivePartitionSensor": {
+    "provider": "",
+    "resource_type": "",
+    "name": ""
+  },
+  "HiveStatsCollectionOperator": {
+    "provider": "",
+    "resource_type": "",
+    "name": ""
+  },
+  "HiveToDynamoDBTransferOperator": {
+    "provider": "",
+    "resource_type": "",
+    "name": ""
+  },
+  "HttpSensor": {
+    "provider": "",
+    "resource_type": "",
+    "name": ""
+  },
+  "ImapAttachmentSensor": {
+    "provider": "",
+    "resource_type": "",
+    "name": ""
+  },
+  "ImapAttachmentToS3Operator": {
+    "provider": "",
+    "resource_type": "",
+    "name": ""
+  },
+  "IntervalCheckOperator": {
+    "provider": "",
+    "resource_type": "",
+    "name": ""
+  },
+  "JdbcOperator": {
+    "provider": "",
+    "resource_type": "",
+    "name": ""
+  },
+  "JenkinsJobTriggerOperator": {
+    "provider": "",
+    "resource_type": "",
+    "name": ""
+  },
+  "JiraOperator": {
+    "provider": "",
+    "resource_type": "",
+    "name": ""
+  },
+  "JiraSensor": {
+    "provider": "",
+    "resource_type": "",
+    "name": ""
+  },
+  "JiraTicketSensor": {
+    "provider": "",
+    "resource_type": "",
+    "name": ""
+  },
+  "KubernetesPodOperator": {
+    "provider": "",
+    "resource_type": "",
+    "name": ""
+  },
+  "LatestOnlyOperator": {
+    "provider": "",
+    "resource_type": "",
+    "name": ""
+  },
+  "MLEngineBatchPredictionOperator": {
+    "provider": "",
+    "resource_type": "",
+    "name": ""
+  },
+  "MLEngineModelOperator": {
+    "provider": "",
+    "resource_type": "",
+    "name": ""
+  },
+  "MLEngineTrainingOperator": {
+    "provider": "",
+    "resource_type": "",
+    "name": ""
+  },
+  "MLEngineVersionOperator": {
+    "provider": "",
+    "resource_type": "",
+    "name": ""
+  },
+  "MetastorePartitionSensor": {
+    "provider": "",
+    "resource_type": "",
+    "name": ""
+  },
+  "MongoSensor": {
+    "provider": "",
+    "resource_type": "",
+    "name": ""
+  },
+  "MongoToS3Operator": {
+    "provider": "",
+    "resource_type": "",
+    "name": ""
+  },
+  "MsSqlOperator": {
+    "provider": "",
+    "resource_type": "",
+    "name": ""
+  },
+  "MsSqlToGoogleCloudStorageOperator": {
+    "provider": "",
+    "resource_type": "",
+    "name": ""
+  },
+  "MySqlOperator": {
+    "provider": "",
+    "resource_type": "",
+    "name": ""
+  },
+  "MySqlToGoogleCloudStorageOperator": {
+    "provider": "",
+    "resource_type": "",
+    "name": ""
+  },
+  "NamedHivePartitionSensor": {
+    "provider": "",
+    "resource_type": "",
+    "name": ""
+  },
+  "Operator": {
+    "provider": "",
+    "resource_type": "",
+    "name": ""
+  },
+  "OpsgenieAlertOperator": {
+    "provider": "",
+    "resource_type": "",
+    "name": ""
+  },
+  "OracleOperator": {
+    "provider": "",
+    "resource_type": "",
+    "name": ""
+  },
+  "PapermillOperator": {
+    "provider": "",
+    "resource_type": "",
+    "name": ""
+  },
+  "PigOperator": {
+    "provider": "",
+    "resource_type": "",
+    "name": ""
+  },
+  "PostgresOperator": {
+    "provider": "",
+    "resource_type": "",
+    "name": ""
+  },
+  "PostgresToGoogleCloudStorageOperator": {
+    "provider": "",
+    "resource_type": "",
+    "name": ""
+  },
+  "PrestoCheckOperator": {
+    "provider": "",
+    "resource_type": "",
+    "name": ""
+  },
+  "PrestoIntervalCheckOperator": {
+    "provider": "",
+    "resource_type": "",
+    "name": ""
+  },
+  "PrestoValueCheckOperator": {
+    "provider": "",
+    "resource_type": "",
+    "name": ""
+  },
+  "PubSubPublishOperator": {
+    "provider": "",
+    "resource_type": "",
+    "name": ""
+  },
+  "PubSubPullSensor": {
+    "provider": "",
+    "resource_type": "",
+    "name": ""
+  },
+  "PubSubSubscriptionCreateOperator": {
+    "provider": "",
+    "resource_type": "",
+    "name": ""
+  },
+  "PubSubSubscriptionDeleteOperator": {
+    "provider": "",
+    "resource_type": "",
+    "name": ""
+  },
+  "PubSubTopicCreateOperator": {
+    "provider": "",
+    "resource_type": "",
+    "name": ""
+  },
+  "PubSubTopicDeleteOperator": {
+    "provider": "",
+    "resource_type": "",
+    "name": ""
+  },
+  "PythonOperator": {
+    "provider": "",
+    "resource_type": "",
+    "name": ""
+  },
+  "PythonSensor": {
+    "provider": "",
+    "resource_type": "",
+    "name": ""
+  },
+  "PythonVirtualenvOperator": {
+    "provider": "",
+    "resource_type": "",
+    "name": ""
+  },
+  "QuboleCheckOperator": {
+    "provider": "",
+    "resource_type": "",
+    "name": ""
+  },
+  "QuboleFileSensor": {
+    "provider": "",
+    "resource_type": "",
+    "name": ""
+  },
+  "QuboleOperator": {
+    "provider": "",
+    "resource_type": "",
+    "name": ""
+  },
+  "QubolePartitionSensor": {
+    "provider": "",
+    "resource_type": "",
+    "name": ""
+  },
+  "QuboleSensor": {
+    "provider": "",
+    "resource_type": "",
+    "name": ""
+  },
+  "QuboleValueCheckOperator": {
+    "provider": "",
+    "resource_type": "",
+    "name": ""
+  },
+  "RedisKeySensor": {
+    "provider": "",
+    "resource_type": "",
+    "name": ""
+  },
+  "RedisPubSubSensor": {
+    "provider": "",
+    "resource_type": "",
+    "name": ""
+  },
+  "RedisPublishOperator": {
+    "provider": "",
+    "resource_type": "",
+    "name": ""
+  },
+  "S3CopyObjectOperator": {
+    "provider": "",
+    "resource_type": "",
+    "name": ""
+  },
+  "S3DeleteObjectsOperator": {
+    "provider": "",
+    "resource_type": "",
+    "name": ""
+  },
+  "S3FileTransformOperator": {
+    "provider": "",
+    "resource_type": "",
+    "name": ""
+  },
+  "S3KeySensor": {
+    "provider": "",
+    "resource_type": "",
+    "name": ""
+  },
+  "S3ListOperator": {
+    "provider": "",
+    "resource_type": "",
+    "name": ""
+  },
+  "S3PrefixSensor": {
+    "provider": "",
+    "resource_type": "",
+    "name": ""
+  },
+  "S3ToGoogleCloudStorageOperator": {
+    "provider": "",
+    "resource_type": "",
+    "name": ""
+  },
+  "S3ToGoogleCloudStorageTransferOperator": {
+    "provider": "",
+    "resource_type": "",
+    "name": ""
+  },
+  "S3ToSFTPOperator": {
+    "provider": "",
+    "resource_type": "",
+    "name": ""
+  },
+  "SFTPOperator": {
+    "provider": "",
+    "resource_type": "",
+    "name": ""
+  },
+  "SFTPSensor": {
+    "provider": "",
+    "resource_type": "",
+    "name": ""
+  },
+  "SFTPToS3Operator": {
+    "provider": "",
+    "resource_type": "",
+    "name": ""
+  },
+  "SQSPublishOperator": {
+    "provider": "",
+    "resource_type": "",
+    "name": ""
+  },
+  "SQSSensor": {
+    "provider": "",
+    "resource_type": "",
+    "name": ""
+  },
+  "SSHOperator": {
+    "provider": "",
+    "resource_type": "",
+    "name": ""
+  },
+  "SageMakerBaseOperator": {
+    "provider": "",
+    "resource_type": "",
+    "name": ""
+  },
+  "SageMakerBaseSensor": {
+    "provider": "",
+    "resource_type": "",
+    "name": ""
+  },
+  "SageMakerEndpointConfigOperator": {
+    "provider": "",
+    "resource_type": "",
+    "name": ""
+  },
+  "SageMakerEndpointOperator": {
+    "provider": "",
+    "resource_type": "",
+    "name": ""
+  },
+  "SageMakerEndpointSensor": {
+    "provider": "",
+    "resource_type": "",
+    "name": ""
+  },
+  "SageMakerModelOperator": {
+    "provider": "",
+    "resource_type": "",
+    "name": ""
+  },
+  "SageMakerTrainingOperator": {
+    "provider": "",
+    "resource_type": "",
+    "name": ""
+  },
+  "SageMakerTrainingSensor": {
+    "provider": "",
+    "resource_type": "",
+    "name": ""
+  },
+  "SageMakerTransformOperator": {
+    "provider": "",
+    "resource_type": "",
+    "name": ""
+  },
+  "SageMakerTransformSensor": {
+    "provider": "",
+    "resource_type": "",
+    "name": ""
+  },
+  "SageMakerTuningOperator": {
+    "provider": "",
+    "resource_type": "",
+    "name": ""
+  },
+  "SageMakerTuningSensor": {
+    "provider": "",
+    "resource_type": "",
+    "name": ""
+  },
+  "SegmentTrackEventOperator": {
+    "provider": "",
+    "resource_type": "",
+    "name": ""
+  },
+  "SerializedBaseOperator": {
+    "provider": "",
+    "resource_type": "",
+    "name": ""
+  },
+  "ShortCircuitOperator": {
+    "provider": "",
+    "resource_type": "",
+    "name": ""
+  },
+  "SimpleHttpOperator": {
+    "provider": "",
+    "resource_type": "",
+    "name": ""
+  },
+  "SlackAPIOperator": {
+    "provider": "",
+    "resource_type": "",
+    "name": ""
+  },
+  "SlackAPIPostOperator": {
+    "provider": "",
+    "resource_type": "",
+    "name": ""
+  },
+  "SlackWebhookOperator": {
+    "provider": "",
+    "resource_type": "",
+    "name": ""
+  },
+  "SnowflakeOperator": {
+    "provider": "",
+    "resource_type": "",
+    "name": ""
+  },
+  "SnsPublishOperator": {
+    "provider": "",
+    "resource_type": "",
+    "name": ""
+  },
+  "SparkJDBCOperator": {
+    "provider": "",
+    "resource_type": "",
+    "name": ""
+  },
+  "SparkSqlOperator": {
+    "provider": "",
+    "resource_type": "",
+    "name": ""
+  },
+  "SparkSubmitOperator": {
+    "provider": "",
+    "resource_type": "",
+    "name": ""
+  },
+  "SqlSensor": {
+    "provider": "",
+    "resource_type": "",
+    "name": ""
+  },
+  "SqliteOperator": {
+    "provider": "",
+    "resource_type": "",
+    "name": ""
+  },
+  "SqoopOperator": {
+    "provider": "",
+    "resource_type": "",
+    "name": ""
+  },
+  "SubDagOperator": {
+    "provider": "",
+    "resource_type": "",
+    "name": ""
+  },
+  "ThresholdCheckOperator": {
+    "provider": "",
+    "resource_type": "",
+    "name": ""
+  },
+  "TimeDeltaSensor": {
+    "provider": "",
+    "resource_type": "",
+    "name": ""
+  },
+  "TimeSensor": {
+    "provider": "",
+    "resource_type": "",
+    "name": ""
+  },
+  "TriggerDagRunOperator": {
+    "provider": "",
+    "resource_type": "",
+    "name": ""
+  },
+  "ValueCheckOperator": {
+    "provider": "",
+    "resource_type": "",
+    "name": ""
+  },
+  "VerticaOperator": {
+    "provider": "",
+    "resource_type": "",
+    "name": ""
+  },
+  "WasbBlobSensor": {
+    "provider": "",
+    "resource_type": "",
+    "name": ""
+  },
+  "WasbDeleteBlobOperator": {
+    "provider": "",
+    "resource_type": "",
+    "name": ""
+  },
+  "WasbPrefixSensor": {
+    "provider": "",
+    "resource_type": "",
+    "name": ""
+  },
+  "WebHdfsSensor": {
+    "provider": "",
+    "resource_type": "",
+    "name": ""
+  },
+  "WinRMOperator": {
+    "provider": "",
+    "resource_type": "",
+    "name": ""
   }
 }
