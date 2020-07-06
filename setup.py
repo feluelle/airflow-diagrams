@@ -5,7 +5,7 @@ with open("README.md", "r") as fh:
 
 setuptools.setup(
     name="airflow-diagrams",
-    version="0.0.1",
+    version="0.0.2",
     author="Felix Uellendall",
     author_email="feluelle@pm.me",
     description="Auto-generated Diagrams from Airflow DAGs.",
