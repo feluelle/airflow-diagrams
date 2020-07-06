@@ -47,6 +47,8 @@ def _get_diagram_node(task_type):
     mapping = _load_mapping()
     for airflow_operator_type, diagrams_node in mapping.items():
         if airflow_operator_type == task_type:
+            if not diagrams_node['provider'] or not diagrams_node['resource_type'] or not diagrams_node['name']:
+                continue  # Not a valid mapping
             return diagrams_node
     raise Exception(
         f"Missing Mapping for {task_type}. "
