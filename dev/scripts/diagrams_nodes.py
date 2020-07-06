@@ -4,6 +4,7 @@ Helper script to output available diagram nodes.
 import ast
 import json
 import os
+from operator import itemgetter
 
 import diagrams
 
@@ -29,4 +30,4 @@ all_nodes = (
 )
 
 with open('diagrams_nodes.json', 'w') as json_file:
-    json.dump(all_nodes, json_file)
+    json.dump(sorted(all_nodes, key=itemgetter('provider', 'resource_type', 'name')), json_file)

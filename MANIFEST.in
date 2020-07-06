@@ -1,0 +1,2 @@
+include airflow_diagrams/diagram.jinja2
+include airflow_diagrams/mapping.json

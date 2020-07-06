@@ -1,2 +1,5 @@
-airflow_diagrams/scripts/airflow_operators.json
-airflow_diagrams/scripts/diagrams_nodes.json
+dev/scripts/airflow_operators.json
+dev/scripts/diagrams_nodes.json
+
+dist
+airflow_diagrams.egg-info

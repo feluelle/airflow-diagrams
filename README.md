@@ -5,6 +5,13 @@
 This project aims to easily visualise you [Airflow](https://github.com/apache/airflow) DAGs on service level 
 from providers like AWS, GCP, Azure, etc. via [diagrams](https://github.com/mingrammer/diagrams).
 
+## Installation
+
+To install it from pypi run:
+```
+pip install airflow-diagrams
+```
+
 ## How-to-Use
 
 To use this auto-generator just add the following two lines to your Airflow DAG (and run it):

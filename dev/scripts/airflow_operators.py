@@ -34,4 +34,4 @@ all_operators = (
 )
 
 with open('airflow_operators.json', 'w') as json_file:
-    json.dump(all_operators, json_file)
+    json.dump(sorted(all_operators), json_file)
