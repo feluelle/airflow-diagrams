@@ -3,3 +3,6 @@ dev/scripts/diagrams_nodes.json
 
 dist
 airflow_diagrams.egg-info
+
+.idea
+build

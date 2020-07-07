@@ -27,8 +27,8 @@ This will create a file called `diagram.py` which contains the definition to cre
 
 Run this file and you will get a rendered diagram.
 
-A working example can be found in [examples](examples) with the [test_dag](examples/dags/test_dag.py) generating the 
-[diagram](examples/diagrams/test_dag.py) ([rendered](examples/diagrams/test_dag.png) version).
+A working example can be found in [examples](examples) with the [example_dag](examples/dags/example_dag.py) generating 
+the [diagram](examples/diagrams/example_dag.py) ([rendered](examples/diagrams/example_dag.png) version).
 
 ## Contributing
 
