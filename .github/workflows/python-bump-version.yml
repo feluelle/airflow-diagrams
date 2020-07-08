@@ -14,5 +14,6 @@ jobs:
     - name: Test Bump version
       run: |
         echo ${GITHUB_REF#refs/*/} > test_version.txt
-        git add test_version.txt
-        git commit -m "Test Bump version"
+    - uses: stefanzweifel/git-auto-commit-action@v4
+      with:
+        commit_message: Test Bump version
