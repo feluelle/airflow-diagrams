@@ -1,0 +1,18 @@
+name: Test Bump version
+
+on:
+  release:
+    types: [created]
+
+jobs:
+  test:
+
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v2
+    - name: Test Bump version
+      run: |
+        echo ${GITHUB_REF#refs/*/} > test_version.txt
+        git add test_version.txt
+        git commit -m "Test Bump version"
