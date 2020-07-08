@@ -11,12 +11,20 @@ jobs:
 
     steps:
     - uses: actions/checkout@v2
-      with:
-        ref: ${{ github.head_ref }}
-    - name: Test Bump version
+    - name: Bump version
       run: |
-        echo ${GITHUB_REF#refs/*/} > test_version.txt
-    - uses: stefanzweifel/git-auto-commit-action@v4
-      with:
-        branch: master
-        commit_message: Test Bump version
+        echo ${GITHUB_REF#refs/*/} > version.txt
+    - name: Git commit, rebase onto master
+      env:
+        PUSH_BRANCH: master
+        TMP_BRANCH: ${{ github.repository }}${{ github.run_id}}
+      run: |
+        git config --local user.email "$GITHUB_ACTOR@users.noreply.github.com"
+        git config --local user.name "$GITHUB_ACTOR"
+        git checkout -b $TMP_BRANCH
+        git add version.txt
+        git commit -m 'Bump version'
+        git fetch
+        git checkout -b $PUSH_BRANCH --track origin/${PUSH_BRANCH}
+        git rebase $TMP_BRANCH $PUSH_BRANCH
+        git push
