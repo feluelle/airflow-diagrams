@@ -11,6 +11,8 @@ jobs:
 
     steps:
     - uses: actions/checkout@v2
+      with:
+        ref: ${{ github.head_ref }}
     - name: Test Bump version
       run: |
         echo ${GITHUB_REF#refs/*/} > test_version.txt
