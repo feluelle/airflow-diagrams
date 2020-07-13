@@ -5,1568 +5,1533 @@
     "name": "Athena"
   },
   "AWSBatchOperator": {
-    "provider": "",
-    "resource_type": "",
-    "name": ""
+    "provider": "aws",
+    "resource_type": "compute",
+    "name": "Batch"
   },
   "AdlsToGoogleCloudStorageOperator": {
-    "provider": "",
-    "resource_type": "",
-    "name": ""
+    "provider": "azure",
+    "resource_type": "storage",
+    "name": "DataLakeStorage"
   },
   "AthenaSensor": {
-    "provider": "",
-    "resource_type": "",
-    "name": ""
+    "provider": "aws",
+    "resource_type": "analytics",
+    "name": "Athena"
   },
   "AwsGlueCatalogPartitionSensor": {
-    "provider": "",
-    "resource_type": "",
-    "name": ""
+    "provider": "aws",
+    "resource_type": "analytics",
+    "name": "GlueDataCatalog"
   },
   "AwsRedshiftClusterSensor": {
-    "provider": "",
-    "resource_type": "",
-    "name": ""
+    "provider": "aws",
+    "resource_type": "analytics",
+    "name": "Redshift"
   },
   "AzureContainerInstancesOperator": {
-    "provider": "",
-    "resource_type": "",
-    "name": ""
+    "provider": "azure",
+    "resource_type": "compute",
+    "name": "ContainerInstances"
   },
   "AzureCosmosDocumentSensor": {
-    "provider": "",
-    "resource_type": "",
-    "name": ""
+    "provider": "azure",
+    "resource_type": "database",
+    "name": "CosmosDb"
   },
   "AzureCosmosInsertDocumentOperator": {
-    "provider": "",
-    "resource_type": "",
-    "name": ""
+    "provider": "azure",
+    "resource_type": "database",
+    "name": "CosmosDb"
   },
   "AzureDataLakeStorageListOperator": {
-    "provider": "",
-    "resource_type": "",
-    "name": ""
+    "provider": "azure",
+    "resource_type": "storage",
+    "name": "DataLakeStorage"
   },
   "BaseBranchOperator": {
-    "provider": "",
-    "resource_type": "",
-    "name": ""
-  },
-  "BaseOperator": {
-    "provider": "",
-    "resource_type": "",
-    "name": ""
+    "provider": "generic",
+    "resource_type": "blank",
+    "name": "Blank"
   },
   "BaseSQLToGoogleCloudStorageOperator": {
-    "provider": "",
-    "resource_type": "",
-    "name": ""
+    "provider": "gcp",
+    "resource_type": "storage",
+    "name": "Storage"
   },
   "BaseSensorOperator": {
-    "provider": "",
-    "resource_type": "",
-    "name": ""
+    "provider": "generic",
+    "resource_type": "blank",
+    "name": "Blank"
   },
   "BashOperator": {
-    "provider": "",
-    "resource_type": "",
-    "name": ""
+    "provider": "programming",
+    "resource_type": "language",
+    "name": "Bash"
   },
   "BashSensor": {
-    "provider": "",
-    "resource_type": "",
-    "name": ""
+    "provider": "programming",
+    "resource_type": "language",
+    "name": "Bash"
   },
   "BigQueryCheckOperator": {
-    "provider": "",
-    "resource_type": "",
-    "name": ""
+    "provider": "gcp",
+    "resource_type": "analytics",
+    "name": "Bigquery"
   },
   "BigQueryCreateEmptyDatasetOperator": {
-    "provider": "",
-    "resource_type": "",
-    "name": ""
+    "provider": "gcp",
+    "resource_type": "analytics",
+    "name": "Bigquery"
   },
   "BigQueryCreateEmptyTableOperator": {
-    "provider": "",
-    "resource_type": "",
-    "name": ""
+    "provider": "gcp",
+    "resource_type": "analytics",
+    "name": "Bigquery"
   },
   "BigQueryCreateExternalTableOperator": {
-    "provider": "",
-    "resource_type": "",
-    "name": ""
+    "provider": "gcp",
+    "resource_type": "analytics",
+    "name": "Bigquery"
   },
   "BigQueryDeleteDatasetOperator": {
-    "provider": "",
-    "resource_type": "",
-    "name": ""
+    "provider": "gcp",
+    "resource_type": "analytics",
+    "name": "Bigquery"
   },
   "BigQueryGetDataOperator": {
-    "provider": "",
-    "resource_type": "",
-    "name": ""
+    "provider": "gcp",
+    "resource_type": "analytics",
+    "name": "Bigquery"
   },
   "BigQueryGetDatasetOperator": {
-    "provider": "",
-    "resource_type": "",
-    "name": ""
+    "provider": "gcp",
+    "resource_type": "analytics",
+    "name": "Bigquery"
   },
   "BigQueryIntervalCheckOperator": {
-    "provider": "",
-    "resource_type": "",
-    "name": ""
+    "provider": "gcp",
+    "resource_type": "analytics",
+    "name": "Bigquery"
   },
   "BigQueryOperator": {
-    "provider": "",
-    "resource_type": "",
-    "name": ""
+    "provider": "gcp",
+    "resource_type": "analytics",
+    "name": "Bigquery"
   },
   "BigQueryPatchDatasetOperator": {
-    "provider": "",
-    "resource_type": "",
-    "name": ""
+    "provider": "gcp",
+    "resource_type": "analytics",
+    "name": "Bigquery"
   },
   "BigQueryTableDeleteOperator": {
-    "provider": "",
-    "resource_type": "",
-    "name": ""
+    "provider": "gcp",
+    "resource_type": "analytics",
+    "name": "Bigquery"
   },
   "BigQueryTableSensor": {
-    "provider": "",
-    "resource_type": "",
-    "name": ""
+    "provider": "gcp",
+    "resource_type": "analytics",
+    "name": "Bigquery"
   },
   "BigQueryToBigQueryOperator": {
-    "provider": "",
-    "resource_type": "",
-    "name": ""
+    "provider": "gcp",
+    "resource_type": "analytics",
+    "name": "Bigquery"
   },
   "BigQueryToCloudStorageOperator": {
-    "provider": "",
-    "resource_type": "",
-    "name": ""
+    "provider": "gcp",
+    "resource_type": "analytics",
+    "name": "Bigquery"
   },
   "BigQueryToMySqlOperator": {
-    "provider": "",
-    "resource_type": "",
-    "name": ""
+    "provider": "gcp",
+    "resource_type": "analytics",
+    "name": "Bigquery"
   },
   "BigQueryUpdateDatasetOperator": {
-    "provider": "",
-    "resource_type": "",
-    "name": ""
+    "provider": "gcp",
+    "resource_type": "analytics",
+    "name": "Bigquery"
   },
   "BigQueryValueCheckOperator": {
-    "provider": "",
-    "resource_type": "",
-    "name": ""
+    "provider": "gcp",
+    "resource_type": "analytics",
+    "name": "Bigquery"
   },
   "BigtableClusterUpdateOperator": {
-    "provider": "",
-    "resource_type": "",
-    "name": ""
+    "provider": "gcp",
+    "resource_type": "database",
+    "name": "Bigtable"
   },
   "BigtableInstanceCreateOperator": {
-    "provider": "",
-    "resource_type": "",
-    "name": ""
+    "provider": "gcp",
+    "resource_type": "database",
+    "name": "Bigtable"
   },
   "BigtableInstanceDeleteOperator": {
-    "provider": "",
-    "resource_type": "",
-    "name": ""
+    "provider": "gcp",
+    "resource_type": "database",
+    "name": "Bigtable"
   },
   "BigtableTableCreateOperator": {
-    "provider": "",
-    "resource_type": "",
-    "name": ""
+    "provider": "gcp",
+    "resource_type": "database",
+    "name": "Bigtable"
   },
   "BigtableTableDeleteOperator": {
-    "provider": "",
-    "resource_type": "",
-    "name": ""
+    "provider": "gcp",
+    "resource_type": "database",
+    "name": "Bigtable"
   },
   "BigtableTableWaitForReplicationSensor": {
-    "provider": "",
-    "resource_type": "",
-    "name": ""
+    "provider": "gcp",
+    "resource_type": "database",
+    "name": "Bigtable"
   },
   "BranchPythonOperator": {
-    "provider": "",
-    "resource_type": "",
-    "name": ""
+    "provider": "programming",
+    "resource_type": "language",
+    "name": "Python"
   },
   "CassandraRecordSensor": {
-    "provider": "",
-    "resource_type": "",
-    "name": ""
+    "provider": "onprem",
+    "resource_type": "database",
+    "name": "Cassandra"
   },
   "CassandraTableSensor": {
-    "provider": "",
-    "resource_type": "",
-    "name": ""
+    "provider": "onprem",
+    "resource_type": "database",
+    "name": "Cassandra"
   },
   "CassandraToGoogleCloudStorageOperator": {
-    "provider": "",
-    "resource_type": "",
-    "name": ""
+    "provider": "onprem",
+    "resource_type": "database",
+    "name": "Cassandra"
   },
   "CheckOperator": {
-    "provider": "",
-    "resource_type": "",
-    "name": ""
+    "provider": "generic",
+    "resource_type": "blank",
+    "name": "Blank"
   },
   "CloudBuildCreateBuildOperator": {
-    "provider": "",
-    "resource_type": "",
-    "name": ""
+    "provider": "gcp",
+    "resource_type": "devtools",
+    "name": "Build"
   },
   "CloudDLPCancelDLPJobOperator": {
-    "provider": "",
-    "resource_type": "",
-    "name": ""
+    "provider": "generic",
+    "resource_type": "blank",
+    "name": "Blank"
   },
   "CloudDLPCreateDLPJobOperator": {
-    "provider": "",
-    "resource_type": "",
-    "name": ""
+    "provider": "generic",
+    "resource_type": "blank",
+    "name": "Blank"
   },
   "CloudDLPCreateDeidentifyTemplateOperator": {
-    "provider": "",
-    "resource_type": "",
-    "name": ""
+    "provider": "generic",
+    "resource_type": "blank",
+    "name": "Blank"
   },
   "CloudDLPCreateInspectTemplateOperator": {
-    "provider": "",
-    "resource_type": "",
-    "name": ""
+    "provider": "generic",
+    "resource_type": "blank",
+    "name": "Blank"
   },
   "CloudDLPCreateJobTriggerOperator": {
-    "provider": "",
-    "resource_type": "",
-    "name": ""
+    "provider": "generic",
+    "resource_type": "blank",
+    "name": "Blank"
   },
   "CloudDLPCreateStoredInfoTypeOperator": {
-    "provider": "",
-    "resource_type": "",
-    "name": ""
+    "provider": "generic",
+    "resource_type": "blank",
+    "name": "Blank"
   },
   "CloudDLPDeidentifyContentOperator": {
-    "provider": "",
-    "resource_type": "",
-    "name": ""
+    "provider": "generic",
+    "resource_type": "blank",
+    "name": "Blank"
   },
   "CloudDLPDeleteDeidentifyTemplateOperator": {
-    "provider": "",
-    "resource_type": "",
-    "name": ""
+    "provider": "generic",
+    "resource_type": "blank",
+    "name": "Blank"
   },
   "CloudDLPDeleteDlpJobOperator": {
-    "provider": "",
-    "resource_type": "",
-    "name": ""
+    "provider": "generic",
+    "resource_type": "blank",
+    "name": "Blank"
   },
   "CloudDLPDeleteInspectTemplateOperator": {
-    "provider": "",
-    "resource_type": "",
-    "name": ""
+    "provider": "generic",
+    "resource_type": "blank",
+    "name": "Blank"
   },
   "CloudDLPDeleteJobTriggerOperator": {
-    "provider": "",
-    "resource_type": "",
-    "name": ""
+    "provider": "generic",
+    "resource_type": "blank",
+    "name": "Blank"
   },
   "CloudDLPDeleteStoredInfoTypeOperator": {
-    "provider": "",
-    "resource_type": "",
-    "name": ""
+    "provider": "generic",
+    "resource_type": "blank",
+    "name": "Blank"
   },
   "CloudDLPGetDeidentifyTemplateOperator": {
-    "provider": "",
-    "resource_type": "",
-    "name": ""
+    "provider": "generic",
+    "resource_type": "blank",
+    "name": "Blank"
   },
   "CloudDLPGetDlpJobOperator": {
-    "provider": "",
-    "resource_type": "",
-    "name": ""
+    "provider": "generic",
+    "resource_type": "blank",
+    "name": "Blank"
   },
   "CloudDLPGetInspectTemplateOperator": {
-    "provider": "",
-    "resource_type": "",
-    "name": ""
+    "provider": "generic",
+    "resource_type": "blank",
+    "name": "Blank"
   },
   "CloudDLPGetJobTripperOperator": {
-    "provider": "",
-    "resource_type": "",
-    "name": ""
+    "provider": "generic",
+    "resource_type": "blank",
+    "name": "Blank"
   },
   "CloudDLPGetStoredInfoTypeOperator": {
-    "provider": "",
-    "resource_type": "",
-    "name": ""
+    "provider": "generic",
+    "resource_type": "blank",
+    "name": "Blank"
   },
   "CloudDLPInspectContentOperator": {
-    "provider": "",
-    "resource_type": "",
-    "name": ""
+    "provider": "generic",
+    "resource_type": "blank",
+    "name": "Blank"
   },
   "CloudDLPListDeidentifyTemplatesOperator": {
-    "provider": "",
-    "resource_type": "",
-    "name": ""
+    "provider": "generic",
+    "resource_type": "blank",
+    "name": "Blank"
   },
   "CloudDLPListDlpJobsOperator": {
-    "provider": "",
-    "resource_type": "",
-    "name": ""
+    "provider": "generic",
+    "resource_type": "blank",
+    "name": "Blank"
   },
   "CloudDLPListInfoTypesOperator": {
-    "provider": "",
-    "resource_type": "",
-    "name": ""
+    "provider": "generic",
+    "resource_type": "blank",
+    "name": "Blank"
   },
   "CloudDLPListInspectTemplatesOperator": {
-    "provider": "",
-    "resource_type": "",
-    "name": ""
+    "provider": "generic",
+    "resource_type": "blank",
+    "name": "Blank"
   },
   "CloudDLPListJobTriggersOperator": {
-    "provider": "",
-    "resource_type": "",
-    "name": ""
+    "provider": "generic",
+    "resource_type": "blank",
+    "name": "Blank"
   },
   "CloudDLPListStoredInfoTypesOperator": {
-    "provider": "",
-    "resource_type": "",
-    "name": ""
+    "provider": "generic",
+    "resource_type": "blank",
+    "name": "Blank"
   },
   "CloudDLPRedactImageOperator": {
-    "provider": "",
-    "resource_type": "",
-    "name": ""
+    "provider": "generic",
+    "resource_type": "blank",
+    "name": "Blank"
   },
   "CloudDLPReidentifyContentOperator": {
-    "provider": "",
-    "resource_type": "",
-    "name": ""
+    "provider": "generic",
+    "resource_type": "blank",
+    "name": "Blank"
   },
   "CloudDLPUpdateDeidentifyTemplateOperator": {
-    "provider": "",
-    "resource_type": "",
-    "name": ""
+    "provider": "generic",
+    "resource_type": "blank",
+    "name": "Blank"
   },
   "CloudDLPUpdateInspectTemplateOperator": {
-    "provider": "",
-    "resource_type": "",
-    "name": ""
+    "provider": "generic",
+    "resource_type": "blank",
+    "name": "Blank"
   },
   "CloudDLPUpdateJobTriggerOperator": {
-    "provider": "",
-    "resource_type": "",
-    "name": ""
+    "provider": "generic",
+    "resource_type": "blank",
+    "name": "Blank"
   },
   "CloudDLPUpdateStoredInfoTypeOperator": {
-    "provider": "",
-    "resource_type": "",
-    "name": ""
+    "provider": "generic",
+    "resource_type": "blank",
+    "name": "Blank"
   },
   "CloudLanguageAnalyzeEntitiesOperator": {
-    "provider": "",
-    "resource_type": "",
-    "name": ""
+    "provider": "gcp",
+    "resource_type": "ml",
+    "name": "NaturalLanguageAPI"
   },
   "CloudLanguageAnalyzeEntitySentimentOperator": {
-    "provider": "",
-    "resource_type": "",
-    "name": ""
+    "provider": "gcp",
+    "resource_type": "ml",
+    "name": "NaturalLanguageAPI"
   },
   "CloudLanguageAnalyzeSentimentOperator": {
-    "provider": "",
-    "resource_type": "",
-    "name": ""
+    "provider": "gcp",
+    "resource_type": "ml",
+    "name": "NaturalLanguageAPI"
   },
   "CloudLanguageClassifyTextOperator": {
-    "provider": "",
-    "resource_type": "",
-    "name": ""
+    "provider": "gcp",
+    "resource_type": "ml",
+    "name": "NaturalLanguageAPI"
   },
   "CloudSpannerInstanceDatabaseDeleteOperator": {
-    "provider": "",
-    "resource_type": "",
-    "name": ""
+    "provider": "gcp",
+    "resource_type": "database",
+    "name": "Spanner"
   },
   "CloudSpannerInstanceDatabaseDeployOperator": {
-    "provider": "",
-    "resource_type": "",
-    "name": ""
+    "provider": "gcp",
+    "resource_type": "database",
+    "name": "Spanner"
   },
   "CloudSpannerInstanceDatabaseQueryOperator": {
-    "provider": "",
-    "resource_type": "",
-    "name": ""
+    "provider": "gcp",
+    "resource_type": "database",
+    "name": "Spanner"
   },
   "CloudSpannerInstanceDatabaseUpdateOperator": {
-    "provider": "",
-    "resource_type": "",
-    "name": ""
+    "provider": "gcp",
+    "resource_type": "database",
+    "name": "Spanner"
   },
   "CloudSpannerInstanceDeleteOperator": {
-    "provider": "",
-    "resource_type": "",
-    "name": ""
+    "provider": "gcp",
+    "resource_type": "database",
+    "name": "Spanner"
   },
   "CloudSpannerInstanceDeployOperator": {
-    "provider": "",
-    "resource_type": "",
-    "name": ""
+    "provider": "gcp",
+    "resource_type": "database",
+    "name": "Spanner"
   },
   "CloudSqlBaseOperator": {
-    "provider": "",
-    "resource_type": "",
-    "name": ""
+    "provider": "gcp",
+    "resource_type": "database",
+    "name": "SQL"
   },
   "CloudSqlInstanceCreateOperator": {
-    "provider": "",
-    "resource_type": "",
-    "name": ""
+    "provider": "gcp",
+    "resource_type": "database",
+    "name": "SQL"
   },
   "CloudSqlInstanceDatabaseCreateOperator": {
-    "provider": "",
-    "resource_type": "",
-    "name": ""
+    "provider": "gcp",
+    "resource_type": "database",
+    "name": "SQL"
   },
   "CloudSqlInstanceDatabaseDeleteOperator": {
-    "provider": "",
-    "resource_type": "",
-    "name": ""
+    "provider": "gcp",
+    "resource_type": "database",
+    "name": "SQL"
   },
   "CloudSqlInstanceDatabasePatchOperator": {
-    "provider": "",
-    "resource_type": "",
-    "name": ""
+    "provider": "gcp",
+    "resource_type": "database",
+    "name": "SQL"
   },
   "CloudSqlInstanceDeleteOperator": {
-    "provider": "",
-    "resource_type": "",
-    "name": ""
+    "provider": "gcp",
+    "resource_type": "database",
+    "name": "SQL"
   },
   "CloudSqlInstanceExportOperator": {
-    "provider": "",
-    "resource_type": "",
-    "name": ""
+    "provider": "gcp",
+    "resource_type": "database",
+    "name": "SQL"
   },
   "CloudSqlInstanceImportOperator": {
-    "provider": "",
-    "resource_type": "",
-    "name": ""
+    "provider": "gcp",
+    "resource_type": "database",
+    "name": "SQL"
   },
   "CloudSqlInstancePatchOperator": {
-    "provider": "",
-    "resource_type": "",
-    "name": ""
+    "provider": "gcp",
+    "resource_type": "database",
+    "name": "SQL"
   },
   "CloudSqlQueryOperator": {
-    "provider": "",
-    "resource_type": "",
-    "name": ""
+    "provider": "gcp",
+    "resource_type": "database",
+    "name": "SQL"
   },
   "CloudTranslateTextOperator": {
-    "provider": "",
-    "resource_type": "",
-    "name": ""
+    "provider": "gcp",
+    "resource_type": "ml",
+    "name": "TranslationAPI"
   },
   "CloudVideoIntelligenceDetectVideoExplicitContentOperator": {
-    "provider": "",
-    "resource_type": "",
-    "name": ""
+    "provider": "gcp",
+    "resource_type": "ml",
+    "name": "VideoIntelligenceAPI"
   },
   "CloudVideoIntelligenceDetectVideoLabelsOperator": {
-    "provider": "",
-    "resource_type": "",
-    "name": ""
+    "provider": "gcp",
+    "resource_type": "ml",
+    "name": "VideoIntelligenceAPI"
   },
   "CloudVideoIntelligenceDetectVideoShotsOperator": {
-    "provider": "",
-    "resource_type": "",
-    "name": ""
+    "provider": "gcp",
+    "resource_type": "ml",
+    "name": "VideoIntelligenceAPI"
   },
   "CloudVisionAddProductToProductSetOperator": {
-    "provider": "",
-    "resource_type": "",
-    "name": ""
+    "provider": "gcp",
+    "resource_type": "ml",
+    "name": "VisionAPI"
   },
   "CloudVisionAnnotateImageOperator": {
-    "provider": "",
-    "resource_type": "",
-    "name": ""
+    "provider": "gcp",
+    "resource_type": "ml",
+    "name": "VisionAPI"
   },
   "CloudVisionDetectDocumentTextOperator": {
-    "provider": "",
-    "resource_type": "",
-    "name": ""
+    "provider": "gcp",
+    "resource_type": "ml",
+    "name": "VisionAPI"
   },
   "CloudVisionDetectImageLabelsOperator": {
-    "provider": "",
-    "resource_type": "",
-    "name": ""
+    "provider": "gcp",
+    "resource_type": "ml",
+    "name": "VisionAPI"
   },
   "CloudVisionDetectImageSafeSearchOperator": {
-    "provider": "",
-    "resource_type": "",
-    "name": ""
+    "provider": "gcp",
+    "resource_type": "ml",
+    "name": "VisionAPI"
   },
   "CloudVisionDetectTextOperator": {
-    "provider": "",
-    "resource_type": "",
-    "name": ""
+    "provider": "gcp",
+    "resource_type": "ml",
+    "name": "VisionAPI"
   },
   "CloudVisionProductCreateOperator": {
-    "provider": "",
-    "resource_type": "",
-    "name": ""
+    "provider": "gcp",
+    "resource_type": "ml",
+    "name": "VisionAPI"
   },
   "CloudVisionProductDeleteOperator": {
-    "provider": "",
-    "resource_type": "",
-    "name": ""
+    "provider": "gcp",
+    "resource_type": "ml",
+    "name": "VisionAPI"
   },
   "CloudVisionProductGetOperator": {
-    "provider": "",
-    "resource_type": "",
-    "name": ""
+    "provider": "gcp",
+    "resource_type": "ml",
+    "name": "VisionAPI"
   },
   "CloudVisionProductSetCreateOperator": {
-    "provider": "",
-    "resource_type": "",
-    "name": ""
+    "provider": "gcp",
+    "resource_type": "ml",
+    "name": "VisionAPI"
   },
   "CloudVisionProductSetDeleteOperator": {
-    "provider": "",
-    "resource_type": "",
-    "name": ""
+    "provider": "gcp",
+    "resource_type": "ml",
+    "name": "VisionAPI"
   },
   "CloudVisionProductSetGetOperator": {
-    "provider": "",
-    "resource_type": "",
-    "name": ""
+    "provider": "gcp",
+    "resource_type": "ml",
+    "name": "VisionAPI"
   },
   "CloudVisionProductSetUpdateOperator": {
-    "provider": "",
-    "resource_type": "",
-    "name": ""
+    "provider": "gcp",
+    "resource_type": "ml",
+    "name": "VisionAPI"
   },
   "CloudVisionProductUpdateOperator": {
-    "provider": "",
-    "resource_type": "",
-    "name": ""
+    "provider": "gcp",
+    "resource_type": "ml",
+    "name": "VisionAPI"
   },
   "CloudVisionReferenceImageCreateOperator": {
-    "provider": "",
-    "resource_type": "",
-    "name": ""
+    "provider": "gcp",
+    "resource_type": "ml",
+    "name": "VisionAPI"
   },
   "CloudVisionRemoveProductFromProductSetOperator": {
-    "provider": "",
-    "resource_type": "",
-    "name": ""
-  },
-  "CustomOperator": {
-    "provider": "",
-    "resource_type": "",
-    "name": ""
+    "provider": "gcp",
+    "resource_type": "ml",
+    "name": "VisionAPI"
   },
   "DataFlowJavaOperator": {
-    "provider": "",
-    "resource_type": "",
-    "name": ""
+    "provider": "gcp",
+    "resource_type": "analytics",
+    "name": "Dataflow"
   },
   "DataFlowPythonOperator": {
-    "provider": "",
-    "resource_type": "",
-    "name": ""
+    "provider": "gcp",
+    "resource_type": "analytics",
+    "name": "Dataflow"
   },
   "DataProcHadoopOperator": {
-    "provider": "",
-    "resource_type": "",
-    "name": ""
+    "provider": "gcp",
+    "resource_type": "analytics",
+    "name": "Dataproc"
   },
   "DataProcHiveOperator": {
-    "provider": "",
-    "resource_type": "",
-    "name": ""
+    "provider": "gcp",
+    "resource_type": "analytics",
+    "name": "Dataproc"
   },
   "DataProcJobBaseOperator": {
-    "provider": "",
-    "resource_type": "",
-    "name": ""
+    "provider": "gcp",
+    "resource_type": "analytics",
+    "name": "Dataproc"
   },
   "DataProcPigOperator": {
-    "provider": "",
-    "resource_type": "",
-    "name": ""
+    "provider": "gcp",
+    "resource_type": "analytics",
+    "name": "Dataproc"
   },
   "DataProcPySparkOperator": {
-    "provider": "",
-    "resource_type": "",
-    "name": ""
+    "provider": "gcp",
+    "resource_type": "analytics",
+    "name": "Dataproc"
   },
   "DataProcSparkOperator": {
-    "provider": "",
-    "resource_type": "",
-    "name": ""
+    "provider": "gcp",
+    "resource_type": "analytics",
+    "name": "Dataproc"
   },
   "DataProcSparkSqlOperator": {
-    "provider": "",
-    "resource_type": "",
-    "name": ""
+    "provider": "gcp",
+    "resource_type": "analytics",
+    "name": "Dataproc"
   },
   "DatabricksRunNowOperator": {
-    "provider": "",
-    "resource_type": "",
-    "name": ""
+    "provider": "generic",
+    "resource_type": "blank",
+    "name": "Blank"
   },
   "DatabricksSubmitRunOperator": {
-    "provider": "",
-    "resource_type": "",
-    "name": ""
+    "provider": "generic",
+    "resource_type": "blank",
+    "name": "Blank"
   },
   "DatadogSensor": {
-    "provider": "",
-    "resource_type": "",
-    "name": ""
+    "provider": "onprem",
+    "resource_type": "monitoring",
+    "name": "Datadog"
   },
   "DataflowTemplateOperator": {
-    "provider": "",
-    "resource_type": "",
-    "name": ""
+    "provider": "gcp",
+    "resource_type": "analytics",
+    "name": "Dataflow"
   },
   "DataprocClusterCreateOperator": {
-    "provider": "",
-    "resource_type": "",
-    "name": ""
+    "provider": "gcp",
+    "resource_type": "analytics",
+    "name": "Dataproc"
   },
   "DataprocClusterDeleteOperator": {
-    "provider": "",
-    "resource_type": "",
-    "name": ""
+    "provider": "gcp",
+    "resource_type": "analytics",
+    "name": "Dataproc"
   },
   "DataprocClusterScaleOperator": {
-    "provider": "",
-    "resource_type": "",
-    "name": ""
+    "provider": "gcp",
+    "resource_type": "analytics",
+    "name": "Dataproc"
   },
   "DataprocOperationBaseOperator": {
-    "provider": "",
-    "resource_type": "",
-    "name": ""
+    "provider": "gcp",
+    "resource_type": "analytics",
+    "name": "Dataproc"
   },
   "DataprocWorkflowTemplateInstantiateInlineOperator": {
-    "provider": "",
-    "resource_type": "",
-    "name": ""
+    "provider": "gcp",
+    "resource_type": "analytics",
+    "name": "Dataproc"
   },
   "DataprocWorkflowTemplateInstantiateOperator": {
-    "provider": "",
-    "resource_type": "",
-    "name": ""
+    "provider": "gcp",
+    "resource_type": "analytics",
+    "name": "Dataproc"
   },
   "DatastoreExportOperator": {
-    "provider": "",
-    "resource_type": "",
-    "name": ""
+    "provider": "gcp",
+    "resource_type": "database",
+    "name": "Datastore"
   },
   "DatastoreImportOperator": {
-    "provider": "",
-    "resource_type": "",
-    "name": ""
+    "provider": "gcp",
+    "resource_type": "database",
+    "name": "Datastore"
   },
   "DayOfWeekSensor": {
-    "provider": "",
-    "resource_type": "",
-    "name": ""
+    "provider": "generic",
+    "resource_type": "blank",
+    "name": "Blank"
   },
   "DingdingOperator": {
-    "provider": "",
-    "resource_type": "",
-    "name": ""
+    "provider": "generic",
+    "resource_type": "blank",
+    "name": "Blank"
   },
   "DiscordWebhookOperator": {
-    "provider": "",
-    "resource_type": "",
-    "name": ""
+    "provider": "generic",
+    "resource_type": "blank",
+    "name": "Blank"
   },
   "DockerOperator": {
-    "provider": "",
-    "resource_type": "",
-    "name": ""
+    "provider": "onprem",
+    "resource_type": "container",
+    "name": "Docker"
   },
   "DockerSwarmOperator": {
-    "provider": "",
-    "resource_type": "",
-    "name": ""
+    "provider": "onprem",
+    "resource_type": "container",
+    "name": "Docker"
   },
   "DruidCheckOperator": {
-    "provider": "",
-    "resource_type": "",
-    "name": ""
+    "provider": "generic",
+    "resource_type": "blank",
+    "name": "Blank"
   },
   "DruidOperator": {
-    "provider": "",
-    "resource_type": "",
-    "name": ""
-  },
-  "Dummy2TestOperator": {
-    "provider": "",
-    "resource_type": "",
-    "name": ""
-  },
-  "Dummy3TestOperator": {
-    "provider": "",
-    "resource_type": "",
-    "name": ""
+    "provider": "generic",
+    "resource_type": "blank",
+    "name": "Blank"
   },
   "DummyOperator": {
     "provider": "generic",
     "resource_type": "blank",
     "name": "Blank"
   },
-  "DummySkipOperator": {
-    "provider": "",
-    "resource_type": "",
-    "name": ""
-  },
   "DynamoDBToS3Operator": {
-    "provider": "",
-    "resource_type": "",
-    "name": ""
+    "provider": "aws",
+    "resource_type": "database",
+    "name": "Dynamodb"
   },
   "ECSOperator": {
-    "provider": "",
-    "resource_type": "",
-    "name": ""
+    "provider": "aws",
+    "resource_type": "compute",
+    "name": "ElasticContainerService"
   },
   "EmailOperator": {
-    "provider": "",
-    "resource_type": "",
-    "name": ""
+    "provider": "generic",
+    "resource_type": "blank",
+    "name": "Blank"
   },
   "EmrAddStepsOperator": {
-    "provider": "",
-    "resource_type": "",
-    "name": ""
+    "provider": "generic",
+    "resource_type": "blank",
+    "name": "Blank"
   },
   "EmrBaseSensor": {
-    "provider": "",
-    "resource_type": "",
-    "name": ""
+    "provider": "aws",
+    "resource_type": "analytics",
+    "name": "EMR"
   },
   "EmrCreateJobFlowOperator": {
-    "provider": "",
-    "resource_type": "",
-    "name": ""
+    "provider": "aws",
+    "resource_type": "analytics",
+    "name": "EMR"
   },
   "EmrJobFlowSensor": {
-    "provider": "",
-    "resource_type": "",
-    "name": ""
+    "provider": "aws",
+    "resource_type": "analytics",
+    "name": "EMR"
   },
   "EmrStepSensor": {
-    "provider": "",
-    "resource_type": "",
-    "name": ""
+    "provider": "aws",
+    "resource_type": "analytics",
+    "name": "EMR"
   },
   "EmrTerminateJobFlowOperator": {
-    "provider": "",
-    "resource_type": "",
-    "name": ""
+    "provider": "aws",
+    "resource_type": "analytics",
+    "name": "EMR"
   },
   "ExternalTaskSensor": {
-    "provider": "",
-    "resource_type": "",
-    "name": ""
+    "provider": "generic",
+    "resource_type": "blank",
+    "name": "Blank"
   },
   "FTPSSensor": {
-    "provider": "",
-    "resource_type": "",
-    "name": ""
+    "provider": "generic",
+    "resource_type": "blank",
+    "name": "Blank"
   },
   "FTPSensor": {
-    "provider": "",
-    "resource_type": "",
-    "name": ""
+    "provider": "generic",
+    "resource_type": "blank",
+    "name": "Blank"
   },
   "FileSensor": {
-    "provider": "",
-    "resource_type": "",
-    "name": ""
+    "provider": "generic",
+    "resource_type": "blank",
+    "name": "Blank"
   },
   "FileToGoogleCloudStorageOperator": {
-    "provider": "",
-    "resource_type": "",
-    "name": ""
+    "provider": "generic",
+    "resource_type": "blank",
+    "name": "Blank"
   },
   "FileToWasbOperator": {
-    "provider": "",
-    "resource_type": "",
-    "name": ""
+    "provider": "generic",
+    "resource_type": "blank",
+    "name": "Blank"
   },
   "GCPTransferServiceWaitForJobStatusSensor": {
-    "provider": "",
-    "resource_type": "",
-    "name": ""
+    "provider": "generic",
+    "resource_type": "blank",
+    "name": "Blank"
   },
   "GKEClusterCreateOperator": {
-    "provider": "",
-    "resource_type": "",
-    "name": ""
+    "provider": "gcp",
+    "resource_type": "compute",
+    "name": "GKEOnPrem"
   },
   "GKEClusterDeleteOperator": {
-    "provider": "",
-    "resource_type": "",
-    "name": ""
+    "provider": "gcp",
+    "resource_type": "compute",
+    "name": "GKEOnPrem"
   },
   "GKEPodOperator": {
-    "provider": "",
-    "resource_type": "",
-    "name": ""
+    "provider": "gcp",
+    "resource_type": "compute",
+    "name": "GKEOnPrem"
   },
   "GceBaseOperator": {
-    "provider": "",
-    "resource_type": "",
-    "name": ""
+    "provider": "gcp",
+    "resource_type": "compute",
+    "name": "ComputeEngine"
   },
   "GceInstanceGroupManagerUpdateTemplateOperator": {
-    "provider": "",
-    "resource_type": "",
-    "name": ""
+    "provider": "gcp",
+    "resource_type": "compute",
+    "name": "ComputeEngine"
   },
   "GceInstanceStartOperator": {
-    "provider": "",
-    "resource_type": "",
-    "name": ""
+    "provider": "gcp",
+    "resource_type": "compute",
+    "name": "ComputeEngine"
   },
   "GceInstanceStopOperator": {
-    "provider": "",
-    "resource_type": "",
-    "name": ""
+    "provider": "gcp",
+    "resource_type": "compute",
+    "name": "ComputeEngine"
   },
   "GceInstanceTemplateCopyOperator": {
-    "provider": "",
-    "resource_type": "",
-    "name": ""
+    "provider": "gcp",
+    "resource_type": "compute",
+    "name": "ComputeEngine"
   },
   "GceSetMachineTypeOperator": {
-    "provider": "",
-    "resource_type": "",
-    "name": ""
+    "provider": "gcp",
+    "resource_type": "compute",
+    "name": "ComputeEngine"
   },
   "GcfFunctionDeleteOperator": {
-    "provider": "",
-    "resource_type": "",
-    "name": ""
+    "provider": "gcp",
+    "resource_type": "compute",
+    "name": "Functions"
   },
   "GcfFunctionDeployOperator": {
-    "provider": "",
-    "resource_type": "",
-    "name": ""
+    "provider": "gcp",
+    "resource_type": "compute",
+    "name": "Functions"
   },
   "GcpSpeechToTextRecognizeSpeechOperator": {
-    "provider": "",
-    "resource_type": "",
-    "name": ""
+    "provider": "gcp",
+    "resource_type": "ml",
+    "name": "SpeechToText"
   },
   "GcpTextToSpeechSynthesizeOperator": {
-    "provider": "",
-    "resource_type": "",
-    "name": ""
+    "provider": "gcp",
+    "resource_type": "ml",
+    "name": "TextToSpeech"
   },
   "GcpTransferServiceJobCreateOperator": {
-    "provider": "",
-    "resource_type": "",
-    "name": ""
+    "provider": "generic",
+    "resource_type": "blank",
+    "name": "Blank"
   },
   "GcpTransferServiceJobDeleteOperator": {
-    "provider": "",
-    "resource_type": "",
-    "name": ""
+    "provider": "generic",
+    "resource_type": "blank",
+    "name": "Blank"
   },
   "GcpTransferServiceJobUpdateOperator": {
-    "provider": "",
-    "resource_type": "",
-    "name": ""
+    "provider": "generic",
+    "resource_type": "blank",
+    "name": "Blank"
   },
   "GcpTransferServiceOperationCancelOperator": {
-    "provider": "",
-    "resource_type": "",
-    "name": ""
+    "provider": "generic",
+    "resource_type": "blank",
+    "name": "Blank"
   },
   "GcpTransferServiceOperationGetOperator": {
-    "provider": "",
-    "resource_type": "",
-    "name": ""
+    "provider": "generic",
+    "resource_type": "blank",
+    "name": "Blank"
   },
   "GcpTransferServiceOperationPauseOperator": {
-    "provider": "",
-    "resource_type": "",
-    "name": ""
+    "provider": "generic",
+    "resource_type": "blank",
+    "name": "Blank"
   },
   "GcpTransferServiceOperationResumeOperator": {
-    "provider": "",
-    "resource_type": "",
-    "name": ""
+    "provider": "generic",
+    "resource_type": "blank",
+    "name": "Blank"
   },
   "GcpTransferServiceOperationsListOperator": {
-    "provider": "",
-    "resource_type": "",
-    "name": ""
+    "provider": "generic",
+    "resource_type": "blank",
+    "name": "Blank"
   },
   "GcpTranslateSpeechOperator": {
-    "provider": "",
-    "resource_type": "",
-    "name": ""
+    "provider": "gcp",
+    "resource_type": "ml",
+    "name": "TranslationAPI"
   },
   "GcsToGDriveOperator": {
-    "provider": "",
-    "resource_type": "",
-    "name": ""
+    "provider": "gcp",
+    "resource_type": "storage",
+    "name": "Storage"
   },
   "GoogleCloudStorageBucketCreateAclEntryOperator": {
-    "provider": "",
-    "resource_type": "",
-    "name": ""
+    "provider": "gcp",
+    "resource_type": "storage",
+    "name": "Storage"
   },
   "GoogleCloudStorageCreateBucketOperator": {
-    "provider": "",
-    "resource_type": "",
-    "name": ""
+    "provider": "gcp",
+    "resource_type": "storage",
+    "name": "Storage"
   },
   "GoogleCloudStorageDeleteOperator": {
-    "provider": "",
-    "resource_type": "",
-    "name": ""
+    "provider": "gcp",
+    "resource_type": "storage",
+    "name": "Storage"
   },
   "GoogleCloudStorageDownloadOperator": {
-    "provider": "",
-    "resource_type": "",
-    "name": ""
+    "provider": "gcp",
+    "resource_type": "storage",
+    "name": "Storage"
   },
   "GoogleCloudStorageListOperator": {
-    "provider": "",
-    "resource_type": "",
-    "name": ""
+    "provider": "gcp",
+    "resource_type": "storage",
+    "name": "Storage"
   },
   "GoogleCloudStorageObjectCreateAclEntryOperator": {
-    "provider": "",
-    "resource_type": "",
-    "name": ""
+    "provider": "gcp",
+    "resource_type": "storage",
+    "name": "Storage"
   },
   "GoogleCloudStorageObjectSensor": {
-    "provider": "",
-    "resource_type": "",
-    "name": ""
+    "provider": "gcp",
+    "resource_type": "storage",
+    "name": "Storage"
   },
   "GoogleCloudStorageObjectUpdatedSensor": {
-    "provider": "",
-    "resource_type": "",
-    "name": ""
+    "provider": "gcp",
+    "resource_type": "storage",
+    "name": "Storage"
   },
   "GoogleCloudStoragePrefixSensor": {
-    "provider": "",
-    "resource_type": "",
-    "name": ""
+    "provider": "gcp",
+    "resource_type": "storage",
+    "name": "Storage"
   },
   "GoogleCloudStorageToBigQueryOperator": {
-    "provider": "",
-    "resource_type": "",
-    "name": ""
+    "provider": "gcp",
+    "resource_type": "storage",
+    "name": "Storage"
   },
   "GoogleCloudStorageToGoogleCloudStorageOperator": {
-    "provider": "",
-    "resource_type": "",
-    "name": ""
+    "provider": "gcp",
+    "resource_type": "storage",
+    "name": "Storage"
   },
   "GoogleCloudStorageToGoogleCloudStorageTransferOperator": {
-    "provider": "",
-    "resource_type": "",
-    "name": ""
+    "provider": "gcp",
+    "resource_type": "storage",
+    "name": "Storage"
   },
   "GoogleCloudStorageToS3Operator": {
-    "provider": "",
-    "resource_type": "",
-    "name": ""
+    "provider": "gcp",
+    "resource_type": "storage",
+    "name": "Storage"
   },
   "GoogleCloudStorageUploadSessionCompleteSensor": {
-    "provider": "",
-    "resource_type": "",
-    "name": ""
+    "provider": "gcp",
+    "resource_type": "storage",
+    "name": "Storage"
   },
   "HdfsSensor": {
-    "provider": "",
-    "resource_type": "",
-    "name": ""
+    "provider": "generic",
+    "resource_type": "blank",
+    "name": "Blank"
   },
   "HipChatAPIOperator": {
-    "provider": "",
-    "resource_type": "",
-    "name": ""
+    "provider": "generic",
+    "resource_type": "blank",
+    "name": "Blank"
   },
   "HipChatAPISendRoomNotificationOperator": {
-    "provider": "",
-    "resource_type": "",
-    "name": ""
+    "provider": "generic",
+    "resource_type": "blank",
+    "name": "Blank"
   },
   "Hive2SambaOperator": {
-    "provider": "",
-    "resource_type": "",
-    "name": ""
+    "provider": "onprem",
+    "resource_type": "analytics",
+    "name": "Hive"
   },
   "HiveOperator": {
-    "provider": "",
-    "resource_type": "",
-    "name": ""
+    "provider": "onprem",
+    "resource_type": "analytics",
+    "name": "Hive"
   },
   "HivePartitionSensor": {
-    "provider": "",
-    "resource_type": "",
-    "name": ""
+    "provider": "onprem",
+    "resource_type": "analytics",
+    "name": "Hive"
   },
   "HiveStatsCollectionOperator": {
-    "provider": "",
-    "resource_type": "",
-    "name": ""
+    "provider": "onprem",
+    "resource_type": "analytics",
+    "name": "Hive"
   },
   "HiveToDynamoDBTransferOperator": {
-    "provider": "",
-    "resource_type": "",
-    "name": ""
+    "provider": "onprem",
+    "resource_type": "analytics",
+    "name": "Hive"
   },
   "HttpSensor": {
-    "provider": "",
-    "resource_type": "",
-    "name": ""
+    "provider": "generic",
+    "resource_type": "blank",
+    "name": "Blank"
   },
   "ImapAttachmentSensor": {
-    "provider": "",
-    "resource_type": "",
-    "name": ""
+    "provider": "generic",
+    "resource_type": "blank",
+    "name": "Blank"
   },
   "ImapAttachmentToS3Operator": {
-    "provider": "",
-    "resource_type": "",
-    "name": ""
+    "provider": "generic",
+    "resource_type": "blank",
+    "name": "Blank"
   },
   "IntervalCheckOperator": {
-    "provider": "",
-    "resource_type": "",
-    "name": ""
+    "provider": "generic",
+    "resource_type": "blank",
+    "name": "Blank"
   },
   "JdbcOperator": {
-    "provider": "",
-    "resource_type": "",
-    "name": ""
+    "provider": "generic",
+    "resource_type": "blank",
+    "name": "Blank"
   },
   "JenkinsJobTriggerOperator": {
-    "provider": "",
-    "resource_type": "",
-    "name": ""
+    "provider": "onprem",
+    "resource_type": "ci",
+    "name": "Jenkins"
   },
   "JiraOperator": {
-    "provider": "",
-    "resource_type": "",
-    "name": ""
+    "provider": "generic",
+    "resource_type": "blank",
+    "name": "Blank"
   },
   "JiraSensor": {
-    "provider": "",
-    "resource_type": "",
-    "name": ""
+    "provider": "generic",
+    "resource_type": "blank",
+    "name": "Blank"
   },
   "JiraTicketSensor": {
-    "provider": "",
-    "resource_type": "",
-    "name": ""
+    "provider": "generic",
+    "resource_type": "blank",
+    "name": "Blank"
   },
   "KubernetesPodOperator": {
-    "provider": "",
-    "resource_type": "",
-    "name": ""
+    "provider": "generic",
+    "resource_type": "blank",
+    "name": "Blank"
   },
   "LatestOnlyOperator": {
-    "provider": "",
-    "resource_type": "",
-    "name": ""
+    "provider": "generic",
+    "resource_type": "blank",
+    "name": "Blank"
   },
   "MLEngineBatchPredictionOperator": {
-    "provider": "",
-    "resource_type": "",
-    "name": ""
+    "provider": "gcp",
+    "resource_type": "ml",
+    "name": "Automl"
   },
   "MLEngineModelOperator": {
-    "provider": "",
-    "resource_type": "",
-    "name": ""
+    "provider": "gcp",
+    "resource_type": "ml",
+    "name": "Automl"
   },
   "MLEngineTrainingOperator": {
-    "provider": "",
-    "resource_type": "",
-    "name": ""
+    "provider": "gcp",
+    "resource_type": "ml",
+    "name": "Automl"
   },
   "MLEngineVersionOperator": {
-    "provider": "",
-    "resource_type": "",
-    "name": ""
+    "provider": "gcp",
+    "resource_type": "ml",
+    "name": "Automl"
   },
   "MetastorePartitionSensor": {
-    "provider": "",
-    "resource_type": "",
-    "name": ""
+    "provider": "generic",
+    "resource_type": "blank",
+    "name": "Blank"
   },
   "MongoSensor": {
-    "provider": "",
-    "resource_type": "",
-    "name": ""
+    "provider": "onprem",
+    "resource_type": "database",
+    "name": "Mongodb"
   },
   "MongoToS3Operator": {
-    "provider": "",
-    "resource_type": "",
-    "name": ""
+    "provider": "onprem",
+    "resource_type": "database",
+    "name": "Mongodb"
   },
   "MsSqlOperator": {
-    "provider": "",
-    "resource_type": "",
-    "name": ""
+    "provider": "onprem",
+    "resource_type": "database",
+    "name": "Mssql"
   },
   "MsSqlToGoogleCloudStorageOperator": {
-    "provider": "",
-    "resource_type": "",
-    "name": ""
+    "provider": "onprem",
+    "resource_type": "database",
+    "name": "Mssql"
   },
   "MySqlOperator": {
-    "provider": "",
-    "resource_type": "",
-    "name": ""
+    "provider": "onprem",
+    "resource_type": "database",
+    "name": "Mysql"
   },
   "MySqlToGoogleCloudStorageOperator": {
-    "provider": "",
-    "resource_type": "",
-    "name": ""
+    "provider": "onprem",
+    "resource_type": "database",
+    "name": "Mysql"
   },
   "NamedHivePartitionSensor": {
-    "provider": "",
-    "resource_type": "",
-    "name": ""
-  },
-  "Operator": {
-    "provider": "",
-    "resource_type": "",
-    "name": ""
+    "provider": "onprem",
+    "resource_type": "analytics",
+    "name": "Hive"
   },
   "OpsgenieAlertOperator": {
-    "provider": "",
-    "resource_type": "",
-    "name": ""
+    "provider": "saas",
+    "resource_type": "alerting",
+    "name": "Opsgenie"
   },
   "OracleOperator": {
-    "provider": "",
-    "resource_type": "",
-    "name": ""
+    "provider": "onprem",
+    "resource_type": "database",
+    "name": "Oracle"
   },
   "PapermillOperator": {
-    "provider": "",
-    "resource_type": "",
-    "name": ""
+    "provider": "generic",
+    "resource_type": "blank",
+    "name": "Blank"
   },
   "PigOperator": {
-    "provider": "",
-    "resource_type": "",
-    "name": ""
+    "provider": "generic",
+    "resource_type": "blank",
+    "name": "Blank"
   },
   "PostgresOperator": {
-    "provider": "",
-    "resource_type": "",
-    "name": ""
+    "provider": "generic",
+    "resource_type": "blank",
+    "name": "Blank"
   },
   "PostgresToGoogleCloudStorageOperator": {
-    "provider": "",
-    "resource_type": "",
-    "name": ""
+    "provider": "onprem",
+    "resource_type": "database",
+    "name": "Postgresql"
   },
   "PrestoCheckOperator": {
-    "provider": "",
-    "resource_type": "",
-    "name": ""
+    "provider": "generic",
+    "resource_type": "blank",
+    "name": "Blank"
   },
   "PrestoIntervalCheckOperator": {
-    "provider": "",
-    "resource_type": "",
-    "name": ""
+    "provider": "generic",
+    "resource_type": "blank",
+    "name": "Blank"
   },
   "PrestoValueCheckOperator": {
-    "provider": "",
-    "resource_type": "",
-    "name": ""
+    "provider": "generic",
+    "resource_type": "blank",
+    "name": "Blank"
   },
   "PubSubPublishOperator": {
-    "provider": "",
-    "resource_type": "",
-    "name": ""
+    "provider": "gcp",
+    "resource_type": "analytics",
+    "name": "Pubsub"
   },
   "PubSubPullSensor": {
-    "provider": "",
-    "resource_type": "",
-    "name": ""
+    "provider": "gcp",
+    "resource_type": "analytics",
+    "name": "Pubsub"
   },
   "PubSubSubscriptionCreateOperator": {
-    "provider": "",
-    "resource_type": "",
-    "name": ""
+    "provider": "gcp",
+    "resource_type": "analytics",
+    "name": "Pubsub"
   },
   "PubSubSubscriptionDeleteOperator": {
-    "provider": "",
-    "resource_type": "",
-    "name": ""
+    "provider": "gcp",
+    "resource_type": "analytics",
+    "name": "Pubsub"
   },
   "PubSubTopicCreateOperator": {
-    "provider": "",
-    "resource_type": "",
-    "name": ""
+    "provider": "gcp",
+    "resource_type": "analytics",
+    "name": "Pubsub"
   },
   "PubSubTopicDeleteOperator": {
-    "provider": "",
-    "resource_type": "",
-    "name": ""
+    "provider": "gcp",
+    "resource_type": "analytics",
+    "name": "Pubsub"
   },
   "PythonOperator": {
-    "provider": "",
-    "resource_type": "",
-    "name": ""
+    "provider": "programming",
+    "resource_type": "language",
+    "name": "Python"
   },
   "PythonSensor": {
-    "provider": "",
-    "resource_type": "",
-    "name": ""
+    "provider": "programming",
+    "resource_type": "language",
+    "name": "Python"
   },
   "PythonVirtualenvOperator": {
-    "provider": "",
-    "resource_type": "",
-    "name": ""
+    "provider": "programming",
+    "resource_type": "language",
+    "name": "Python"
   },
   "QuboleCheckOperator": {
-    "provider": "",
-    "resource_type": "",
-    "name": ""
+    "provider": "generic",
+    "resource_type": "blank",
+    "name": "Blank"
   },
   "QuboleFileSensor": {
-    "provider": "",
-    "resource_type": "",
-    "name": ""
+    "provider": "generic",
+    "resource_type": "blank",
+    "name": "Blank"
   },
   "QuboleOperator": {
-    "provider": "",
-    "resource_type": "",
-    "name": ""
+    "provider": "generic",
+    "resource_type": "blank",
+    "name": "Blank"
   },
   "QubolePartitionSensor": {
-    "provider": "",
-    "resource_type": "",
-    "name": ""
+    "provider": "generic",
+    "resource_type": "blank",
+    "name": "Blank"
   },
   "QuboleSensor": {
-    "provider": "",
-    "resource_type": "",
-    "name": ""
+    "provider": "generic",
+    "resource_type": "blank",
+    "name": "Blank"
   },
   "QuboleValueCheckOperator": {
-    "provider": "",
-    "resource_type": "",
-    "name": ""
+    "provider": "generic",
+    "resource_type": "blank",
+    "name": "Blank"
   },
   "RedisKeySensor": {
-    "provider": "",
-    "resource_type": "",
-    "name": ""
+    "provider": "onprem",
+    "resource_type": "inmemory",
+    "name": "Redis"
   },
   "RedisPubSubSensor": {
-    "provider": "",
-    "resource_type": "",
-    "name": ""
+    "provider": "onprem",
+    "resource_type": "inmemory",
+    "name": "Redis"
   },
   "RedisPublishOperator": {
-    "provider": "",
-    "resource_type": "",
-    "name": ""
+    "provider": "onprem",
+    "resource_type": "inmemory",
+    "name": "Redis"
   },
   "S3CopyObjectOperator": {
-    "provider": "",
-    "resource_type": "",
-    "name": ""
+    "provider": "aws",
+    "resource_type": "storage",
+    "name": "SimpleStorageServiceS3"
   },
   "S3DeleteObjectsOperator": {
-    "provider": "",
-    "resource_type": "",
-    "name": ""
+    "provider": "aws",
+    "resource_type": "storage",
+    "name": "SimpleStorageServiceS3"
   },
   "S3FileTransformOperator": {
-    "provider": "",
-    "resource_type": "",
-    "name": ""
+    "provider": "aws",
+    "resource_type": "storage",
+    "name": "SimpleStorageServiceS3"
   },
   "S3KeySensor": {
-    "provider": "",
-    "resource_type": "",
-    "name": ""
+    "provider": "aws",
+    "resource_type": "storage",
+    "name": "SimpleStorageServiceS3"
   },
   "S3ListOperator": {
-    "provider": "",
-    "resource_type": "",
-    "name": ""
+    "provider": "aws",
+    "resource_type": "storage",
+    "name": "SimpleStorageServiceS3"
   },
   "S3PrefixSensor": {
-    "provider": "",
-    "resource_type": "",
-    "name": ""
+    "provider": "aws",
+    "resource_type": "storage",
+    "name": "SimpleStorageServiceS3"
   },
   "S3ToGoogleCloudStorageOperator": {
-    "provider": "",
-    "resource_type": "",
-    "name": ""
+    "provider": "aws",
+    "resource_type": "storage",
+    "name": "SimpleStorageServiceS3"
   },
   "S3ToGoogleCloudStorageTransferOperator": {
-    "provider": "",
-    "resource_type": "",
-    "name": ""
+    "provider": "aws",
+    "resource_type": "storage",
+    "name": "SimpleStorageServiceS3"
   },
   "S3ToSFTPOperator": {
-    "provider": "",
-    "resource_type": "",
-    "name": ""
+    "provider": "aws",
+    "resource_type": "storage",
+    "name": "SimpleStorageServiceS3"
   },
   "SFTPOperator": {
-    "provider": "",
-    "resource_type": "",
-    "name": ""
+    "provider": "generic",
+    "resource_type": "blank",
+    "name": "Blank"
   },
   "SFTPSensor": {
-    "provider": "",
-    "resource_type": "",
-    "name": ""
+    "provider": "generic",
+    "resource_type": "blank",
+    "name": "Blank"
   },
   "SFTPToS3Operator": {
-    "provider": "",
-    "resource_type": "",
-    "name": ""
+    "provider": "generic",
+    "resource_type": "blank",
+    "name": "Blank"
   },
   "SQSPublishOperator": {
-    "provider": "",
-    "resource_type": "",
-    "name": ""
+    "provider": "aws",
+    "resource_type": "integration",
+    "name": "SimpleQueueServiceSqs"
   },
   "SQSSensor": {
-    "provider": "",
-    "resource_type": "",
-    "name": ""
+    "provider": "aws",
+    "resource_type": "integration",
+    "name": "SimpleQueueServiceSqs"
   },
   "SSHOperator": {
-    "provider": "",
-    "resource_type": "",
-    "name": ""
+    "provider": "generic",
+    "resource_type": "blank",
+    "name": "Blank"
   },
   "SageMakerBaseOperator": {
-    "provider": "",
-    "resource_type": "",
-    "name": ""
+    "provider": "generic",
+    "resource_type": "blank",
+    "name": "Blank"
   },
   "SageMakerBaseSensor": {
-    "provider": "",
-    "resource_type": "",
-    "name": ""
+    "provider": "aws",
+    "resource_type": "ml",
+    "name": "Sagemaker"
   },
   "SageMakerEndpointConfigOperator": {
-    "provider": "",
-    "resource_type": "",
-    "name": ""
+    "provider": "aws",
+    "resource_type": "ml",
+    "name": "Sagemaker"
   },
   "SageMakerEndpointOperator": {
-    "provider": "",
-    "resource_type": "",
-    "name": ""
+    "provider": "aws",
+    "resource_type": "ml",
+    "name": "Sagemaker"
   },
   "SageMakerEndpointSensor": {
-    "provider": "",
-    "resource_type": "",
-    "name": ""
+    "provider": "aws",
+    "resource_type": "ml",
+    "name": "Sagemaker"
   },
   "SageMakerModelOperator": {
-    "provider": "",
-    "resource_type": "",
-    "name": ""
+    "provider": "aws",
+    "resource_type": "ml",
+    "name": "SagemakerModel"
   },
   "SageMakerTrainingOperator": {
-    "provider": "",
-    "resource_type": "",
-    "name": ""
+    "provider": "aws",
+    "resource_type": "ml",
+    "name": "SagemakerTrainingJob"
   },
   "SageMakerTrainingSensor": {
-    "provider": "",
-    "resource_type": "",
-    "name": ""
+    "provider": "aws",
+    "resource_type": "ml",
+    "name": "SagemakerTrainingJob"
   },
   "SageMakerTransformOperator": {
-    "provider": "",
-    "resource_type": "",
-    "name": ""
+    "provider": "aws",
+    "resource_type": "ml",
+    "name": "Sagemaker"
   },
   "SageMakerTransformSensor": {
-    "provider": "",
-    "resource_type": "",
-    "name": ""
+    "provider": "aws",
+    "resource_type": "ml",
+    "name": "Sagemaker"
   },
   "SageMakerTuningOperator": {
-    "provider": "",
-    "resource_type": "",
-    "name": ""
+    "provider": "aws",
+    "resource_type": "ml",
+    "name": "Sagemaker"
   },
   "SageMakerTuningSensor": {
-    "provider": "",
-    "resource_type": "",
-    "name": ""
+    "provider": "aws",
+    "resource_type": "ml",
+    "name": "Sagemaker"
   },
   "SegmentTrackEventOperator": {
-    "provider": "",
-    "resource_type": "",
-    "name": ""
-  },
-  "SerializedBaseOperator": {
-    "provider": "",
-    "resource_type": "",
-    "name": ""
+    "provider": "generic",
+    "resource_type": "blank",
+    "name": "Blank"
   },
   "ShortCircuitOperator": {
-    "provider": "",
-    "resource_type": "",
-    "name": ""
+    "provider": "generic",
+    "resource_type": "blank",
+    "name": "Blank"
   },
   "SimpleHttpOperator": {
-    "provider": "",
-    "resource_type": "",
-    "name": ""
+    "provider": "generic",
+    "resource_type": "blank",
+    "name": "Blank"
   },
   "SlackAPIOperator": {
-    "provider": "",
-    "resource_type": "",
-    "name": ""
+    "provider": "saas",
+    "resource_type": "chat",
+    "name": "Slack"
   },
   "SlackAPIPostOperator": {
-    "provider": "",
-    "resource_type": "",
-    "name": ""
+    "provider": "saas",
+    "resource_type": "chat",
+    "name": "Slack"
   },
   "SlackWebhookOperator": {
-    "provider": "",
-    "resource_type": "",
-    "name": ""
+    "provider": "saas",
+    "resource_type": "chat",
+    "name": "Slack"
   },
   "SnowflakeOperator": {
-    "provider": "",
-    "resource_type": "",
-    "name": ""
+    "provider": "generic",
+    "resource_type": "blank",
+    "name": "Blank"
   },
   "SnsPublishOperator": {
-    "provider": "",
-    "resource_type": "",
-    "name": ""
+    "provider": "aws",
+    "resource_type": "integration",
+    "name": "SimpleNotificationServiceSns"
   },
   "SparkJDBCOperator": {
-    "provider": "",
-    "resource_type": "",
-    "name": ""
+    "provider": "onprem",
+    "resource_type": "analytics",
+    "name": "Spark"
   },
   "SparkSqlOperator": {
-    "provider": "",
-    "resource_type": "",
-    "name": ""
+    "provider": "onprem",
+    "resource_type": "analytics",
+    "name": "Spark"
   },
   "SparkSubmitOperator": {
-    "provider": "",
-    "resource_type": "",
-    "name": ""
+    "provider": "onprem",
+    "resource_type": "analytics",
+    "name": "Spark"
   },
   "SqlSensor": {
-    "provider": "",
-    "resource_type": "",
-    "name": ""
+    "provider": "generic",
+    "resource_type": "blank",
+    "name": "Blank"
   },
   "SqliteOperator": {
-    "provider": "",
-    "resource_type": "",
-    "name": ""
+    "provider": "generic",
+    "resource_type": "blank",
+    "name": "Blank"
   },
   "SqoopOperator": {
-    "provider": "",
-    "resource_type": "",
-    "name": ""
+    "provider": "generic",
+    "resource_type": "blank",
+    "name": "Blank"
   },
   "SubDagOperator": {
-    "provider": "",
-    "resource_type": "",
-    "name": ""
+    "provider": "generic",
+    "resource_type": "blank",
+    "name": "Blank"
   },
   "ThresholdCheckOperator": {
-    "provider": "",
-    "resource_type": "",
-    "name": ""
+    "provider": "generic",
+    "resource_type": "blank",
+    "name": "Blank"
   },
   "TimeDeltaSensor": {
-    "provider": "",
-    "resource_type": "",
-    "name": ""
+    "provider": "generic",
+    "resource_type": "blank",
+    "name": "Blank"
   },
   "TimeSensor": {
-    "provider": "",
-    "resource_type": "",
-    "name": ""
+    "provider": "generic",
+    "resource_type": "blank",
+    "name": "Blank"
   },
   "TriggerDagRunOperator": {
-    "provider": "",
-    "resource_type": "",
-    "name": ""
+    "provider": "generic",
+    "resource_type": "blank",
+    "name": "Blank"
   },
   "ValueCheckOperator": {
-    "provider": "",
-    "resource_type": "",
-    "name": ""
+    "provider": "generic",
+    "resource_type": "blank",
+    "name": "Blank"
   },
   "VerticaOperator": {
-    "provider": "",
-    "resource_type": "",
-    "name": ""
+    "provider": "generic",
+    "resource_type": "blank",
+    "name": "Blank"
   },
   "WasbBlobSensor": {
-    "provider": "",
-    "resource_type": "",
-    "name": ""
+    "provider": "generic",
+    "resource_type": "blank",
+    "name": "Blank"
   },
   "WasbDeleteBlobOperator": {
-    "provider": "",
-    "resource_type": "",
-    "name": ""
+    "provider": "azure",
+    "resource_type": "storage",
+    "name": "BlobStorage"
   },
   "WasbPrefixSensor": {
-    "provider": "",
-    "resource_type": "",
-    "name": ""
+    "provider": "azure",
+    "resource_type": "storage",
+    "name": "BlobStorage"
   },
   "WebHdfsSensor": {
-    "provider": "",
-    "resource_type": "",
-    "name": ""
+    "provider": "generic",
+    "resource_type": "blank",
+    "name": "Blank"
   },
   "WinRMOperator": {
-    "provider": "",
-    "resource_type": "",
-    "name": ""
+    "provider": "generic",
+    "resource_type": "blank",
+    "name": "Blank"
   }
 }
