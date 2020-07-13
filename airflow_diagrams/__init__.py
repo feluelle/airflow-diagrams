@@ -21,7 +21,7 @@ def generate_diagram_from_dag(dag: DAG, diagram_file: Union[str, bytes, int]):
         jinja_context=dict(
             diagram_imports=_get_diagram_imports(dag.tasks),
             diagram_name=dag.dag_id,
-            diagram_nodes=_get_diagram_nodes(dag.roots),
+            diagram_nodes=_get_diagram_nodes(dag.tasks),
             diagram_edges=_get_diagram_edges(dag.roots),
         ),
         diagram_file=diagram_file
@@ -50,6 +50,12 @@ def _get_diagram_node(task_type):
             if not diagrams_node['provider'] or not diagrams_node['resource_type'] or not diagrams_node['name']:
                 continue  # Not a valid mapping
             return diagrams_node
+    if os.getenv('AIRFLOW_DIAGRAMS__DEFAULT_TO_BLANK', 'False') == 'True':
+        return {
+            "provider": "generic",
+            "resource_type": "blank",
+            "name": "Blank"
+        }
     raise Exception(
         f"Missing Mapping for {task_type}. "
         "You are welcome to add the mapping to the mapping.json file <3."
@@ -61,20 +67,19 @@ def _get_diagram_imports(tasks):
         task.task_type
         for task in tasks
     }
-    return [
-        _get_diagram_node(task_type)
-        for task_type in unique_task_types
-    ]
+    diagram_imports = []
+    for task_type in unique_task_types:
+        diagram_node = _get_diagram_node(task_type)
+        if diagram_node not in diagram_imports:
+            diagram_imports.append(diagram_node)
+    return diagram_imports
 
 
-def _get_diagram_nodes(roots):
-    nodes = []
-    for edge in _get_diagram_edges(roots):
-        if edge["source"] not in nodes:
-            nodes.append(edge["source"])
-        if edge["target"] not in nodes:
-            nodes.append(edge["target"])
-    return nodes
+def _get_diagram_nodes(tasks):
+    return [{
+        'type': _get_diagram_node(task.task_type)['name'],
+        'id': task.task_id
+    } for task in tasks]
 
 
 def _get_diagram_edges(roots):
