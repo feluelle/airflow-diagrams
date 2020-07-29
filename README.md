@@ -30,8 +30,10 @@ Run this file and you will get a rendered diagram.
 A working example can be found in [examples](examples) with the [example_dag](examples/dags/example_dag.py) generating 
 the [diagram](examples/diagrams/example_dag.py) ([rendered](examples/diagrams/example_dag.png) version).
 
+## How it Works
+
+It iterates through all operators in the DAG and decides based on a [mapping](airflow_diagrams/mapping.json) which diagram node to display for each type of operator.
+
 ## Contributing
 
-This project is in a very early stage. And contributions are welcome <3.
-The [mapping.json](airflow_diagrams/mapping.json) needs a lot more entries 
-so the Diagram can be proper created for all kinds of Airflow DAGs.
+Contributions are welcome <3. Please go ahead and raise an issue if you have one or open a PR. Thank you. :)
