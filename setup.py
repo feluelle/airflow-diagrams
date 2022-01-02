@@ -19,7 +19,7 @@ setuptools.setup(
         "requests==2.26.0",
         "diagrams==0.20.0",
         "thefuzz[speedup]==0.19.0",
-        "Jinja2==3.0.3",
+        "jinja2<3.0,>=2.10",
     ],
     packages=setuptools.find_packages(),
     include_package_data=True,
