@@ -1,11 +1,11 @@
-import subprocess
-import unittest
+from typer.testing import CliRunner
+
+from airflow_diagrams import __app_name__, __version__, cli
+
+runner = CliRunner()
 
 
-class TestAirflowDiagrams(unittest.TestCase):
-    def test_run_example_dag(self):
-        subprocess.call(['python', 'examples/dags/example_dag.py'])
-
-
-if __name__ == '__main__':
-    unittest.main()
+def test_version():
+    result = runner.invoke(cli.app, ["--version"])
+    assert result.exit_code == 0
+    assert f"{__app_name__} v{__version__}\n" in result.stdout

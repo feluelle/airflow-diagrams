@@ -1,11 +1,13 @@
 from diagrams import Diagram
-{% for diagram_import in diagram_imports -%}
-from diagrams.{{ diagram_import["provider"] }}.{{ diagram_import["resource_type"] }} import {{ diagram_import["name"] }}
+{% for class_ref in diagram_class_refs -%}
+from diagrams.{{ class_ref.module_path }} import {{ class_ref.class_name }}
 {% endfor %}
 with Diagram("{{ diagram_name }}", show=False):
-    {% for diagram_node in diagram_nodes -%}
-    {{ diagram_node["id"] }} = {{ diagram_node["type"] }}("{{ diagram_node["id"] }}")
+    {% for node in diagram_nodes -%}
+    {{ node["task_id"] }} = {{ node["class_name"] }}("{{ node["task_id"] }}")
     {% endfor %}
-    {% for diagram_edge in diagram_edges -%}
-    {{ diagram_edge["source"]["id"] }} >> {{ diagram_edge["target"]["id"] }}
+    {% for edge in diagram_edges -%}
+    {% if edge["downstream_task_ids"] %}
+    {{ edge["task_id"] }} >> [{{ edge["downstream_task_ids"]|join(', ') }}]
+    {% endif %}
     {% endfor %}

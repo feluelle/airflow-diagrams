@@ -1,0 +1,7 @@
+# module_path
+k8s: Kubernetes
+# class_name
+AWS: AmazonWebServices
+EC2: ElasticComputeCloud
+EMR: ElasticMapReduce
+SDK: SoftwareDevelopmentKit
