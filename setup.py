@@ -19,7 +19,8 @@ setuptools.setup(
         "requests==2.26.0",
         "diagrams==0.20.0",
         "thefuzz[speedup]==0.19.0",
-        "jinja2<3.0,>=2.10",
+        "Jinja2",  # Also included in diagrams
+        "PyYAML==6.0",
     ],
     packages=setuptools.find_packages(),
     include_package_data=True,
