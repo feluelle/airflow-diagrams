@@ -104,13 +104,13 @@ def generate(  # dead: disable
                 ),
                 choices_options=dict(
                     removesuffixes=[],
-                    replaceabbreviations=abbreviations | {".": " "},
+                    replaceabbreviations=abbreviations,
                 ),
             )
             match_class_ref: ClassRef = class_ref_matcher.match()
-            logging.debug(
-                "Found the following match_class_ref: %s",
-                match_class_ref,
+            secho(
+                f"Found match {match_class_ref} for task {airflow_class_ref}.",
+                fg=colors.CYAN,
             )
             matches_class_refs.append(match_class_ref)
             diagram_nodes.append(
@@ -140,6 +140,5 @@ def generate(  # dead: disable
 
         secho(
             f"Successfully generated diagrams file {output_file} from dag with id {airflow_dag_id}.",
-            fg=colors.CYAN,
+            fg=colors.GREEN,
         )
-    secho("Done.", fg=colors.GREEN)

@@ -54,6 +54,7 @@ class ClassRefMatcher:
             class_ref=self.query,
             text=self._generate_text(class_ref=self.query, **self.query_options),
         )
+        logging.debug("Query: %s", _query)
         _choices = [
             ClassRefMatchObject(
                 class_ref=choice,
@@ -64,7 +65,7 @@ class ClassRefMatcher:
         result = process.extractOne(
             _query.text,
             [_choice.text for _choice in _choices],
-            scorer=fuzz.token_sort_ratio,
+            scorer=fuzz.token_set_ratio,
         )
         logging.debug("Result: %s", result)
         return next(
@@ -102,7 +103,7 @@ class ClassRefMatcher:
                 class_name,
                 abbreviations=replaceabbreviations,
             )
-        class_name = self._separate_words(class_name)
+        class_name = " ".join(findall("[A-Z][^A-Z]*", class_name))
 
         module_path = class_ref.module_path
         if replaceabbreviations:
@@ -110,7 +111,7 @@ class ClassRefMatcher:
                 module_path,
                 abbreviations=replaceabbreviations,
             )
-        module_path = self._separate_words(module_path)
+        module_path = module_path.replace(".", " ").replace("_", " ")
 
         return f"{module_path} {class_name}"
 
@@ -123,9 +124,6 @@ class ClassRefMatcher:
         for k, v in abbreviations.items():
             word = word.replace(k, v)
         return word
-
-    def _separate_words(self, text: str) -> str:
-        return " ".join(findall("[A-Z][^A-Z]*", text))
 
 
 class AirflowClient:
