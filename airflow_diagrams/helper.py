@@ -18,6 +18,8 @@ from thefuzz import fuzz, process
 
 from airflow_diagrams import __location__
 
+MATCHING_PERCENTAGE_MIN: int = 75
+
 
 @dataclass
 class ClassRef:
@@ -25,6 +27,14 @@ class ClassRef:
 
     module_path: str
     class_name: str
+
+    def __hash__(self) -> int:
+        """
+        Build a hash based on all attributes.
+
+        :returns: a hash of all attributes.
+        """
+        return hash(self.module_path) ^ hash(self.class_name)
 
 
 @dataclass
@@ -70,7 +80,8 @@ class ClassRefMatcher:
         logging.debug("Result: %s", result)
         return next(
             filter(
-                lambda _choice: _choice.text == result[0] and result[1] > 75,
+                lambda _choice: _choice.text == result[0]
+                and result[1] >= MATCHING_PERCENTAGE_MIN,
                 _choices,
             ),
             self._get_fallback_class_ref_match_object(),
