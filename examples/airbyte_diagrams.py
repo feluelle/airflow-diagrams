@@ -6,3 +6,4 @@ with Diagram("airbyte", show=False):
     airbyte_trigger_async = Blank("airbyte_trigger_async")
     
     airbyte_trigger_async >> [airbyte_job_sensor]
+    

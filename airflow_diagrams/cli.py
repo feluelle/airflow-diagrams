@@ -87,7 +87,7 @@ def generate(  # dead: disable
     airflow_client = AirflowClient(host, username, password)
     airflow_dags = [dag_id] if dag_id else airflow_client.get_dags()
     for airflow_dag_id in airflow_dags:
-        matches_class_refs: list[ClassRef] = []
+        matches_class_refs: set[ClassRef] = set()
         diagram_nodes: list = []
         diagram_edges: list = []
 
@@ -112,19 +112,20 @@ def generate(  # dead: disable
                 f"Found match {match_class_ref} for task {airflow_class_ref}.",
                 fg=colors.CYAN,
             )
-            matches_class_refs.append(match_class_ref)
+            matches_class_refs.add(match_class_ref)
             diagram_nodes.append(
                 dict(
                     task_id=airflow_task["task_id"],
                     class_name=match_class_ref.class_name,
                 ),
             )
-            diagram_edges.append(
-                dict(
-                    task_id=airflow_task["task_id"],
-                    downstream_task_ids=airflow_task["downstream_task_ids"],
-                ),
-            )
+            if airflow_task["downstream_task_ids"]:
+                diagram_edges.append(
+                    dict(
+                        task_id=airflow_task["task_id"],
+                        downstream_task_ids=airflow_task["downstream_task_ids"],
+                    ),
+                )
 
         output_file = os.path.join(output_path, f"{airflow_dag_id}_diagrams.py")
         render_jinja(

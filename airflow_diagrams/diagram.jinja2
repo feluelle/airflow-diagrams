@@ -1,5 +1,5 @@
 from diagrams import Diagram
-{% for class_ref in diagram_class_refs|unique -%}
+{% for class_ref in diagram_class_refs -%}
 from diagrams.{{ class_ref.module_path }} import {{ class_ref.class_name }}
 {% endfor %}
 with Diagram("{{ diagram_name }}", show=False):
@@ -7,7 +7,5 @@ with Diagram("{{ diagram_name }}", show=False):
     {{ node["task_id"] }} = {{ node["class_name"] }}("{{ node["task_id"] }}")
     {% endfor %}
     {% for edge in diagram_edges -%}
-    {%- if edge["downstream_task_ids"] -%}
     {{ edge["task_id"] }} >> [{{ edge["downstream_task_ids"]|join(', ') }}]
-    {%- endif -%}
     {% endfor %}
