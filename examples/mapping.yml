@@ -1,0 +1,1 @@
+airflow.providers.amazon.aws.transfers.s3_to_redshift.S3ToRedshiftOperator: aws.storage.S3

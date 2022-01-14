@@ -33,7 +33,11 @@ Examples of generated diagrams can be found in the [examples](examples) director
 
 ## 🤔 How it Works
 
-It connects via the [Airflow REST API](https://airflow.apache.org/docs/apache-airflow/stable/stable-rest-api-ref.html) to your Airflow installation to retrieve DAGs (in case you don't specify a dag id) and Tasks to generate matching diagrams nodes.
+ℹ️ At first it connects, by using the official [Apache Airflow Python Client](https://github.com/apache/airflow-client-python), to your Airflow installation to retrieve all DAGs (in case you don't specify any `dag_id`) and all Tasks for the DAG(s).
+
+🔮 Then it tries to find a diagram node for every DAGs task, by using [Fuzzy String Matching](https://github.com/seatgeek/thefuzz), that matches the most. If you are unhappy about the match you can also provide a `mapping.yml` file to statically map from Airflow task to diagram node.
+
+🪄 Lastly it renders the results into a python file which can then be executed to retrieve the rendered diagram. 🎉
 
 ## ❤️ Contributing
 

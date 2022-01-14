@@ -1,1 +1,0 @@
-include airflow_diagrams/diagram.jinja2
