@@ -1,9 +1,12 @@
-name: test
+name: publish
 
-on: push
+on:
+  release:
+    types:
+      - published
 
 jobs:
-  test:
+  publish:
     runs-on: ubuntu-latest
     steps:
       - name: Check out repository
@@ -30,5 +33,9 @@ jobs:
         run: poetry install --no-interaction --no-root
       - name: Install library
         run: poetry install --no-interaction
-      - name: Run tests
-        run: poetry run pytest --cov=airflow_diagrams tests/
+      - name: Publish to PyPI
+        env:
+          PYPI_TOKEN: ${{ secrets.PYPI_TOKEN }}
+        run: |
+          poetry config pypi-token.pypi $PYPI_TOKEN
+          poetry publish --build
