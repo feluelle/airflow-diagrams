@@ -31,7 +31,4 @@ jobs:
       - name: Install library
         run: poetry install --no-interaction
       - name: Run tests
-        run: |
-          source .venv/bin/activate
-          pytest tests/
-          coverage report
+        run: poetry run pytest --cov=airflow_diagrams tests/
