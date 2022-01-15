@@ -7,14 +7,15 @@ license = "MIT"
 
 [tool.poetry.dependencies]
 python = "^3.9"
-typer = "0.4.0"
-diagrams = "0.20.0"
-thefuzz = {version = "0.19.0", extras = ["speedup"]}
-PyYAML = "6.0"
-toml = "0.10.2"
-apache-airflow-client = "2.2.0"
+typer = "^0.4.0"
+diagrams = "^0.20.0"
+thefuzz = {version = "^0.19.0", extras = ["speedup"]}
+PyYAML = "^6.0"
+toml = "^0.10.2"
+apache-airflow-client = "^2.2.0"
 
 [tool.poetry.dev-dependencies]
+pytest = "^6.2.5"
 
 [build-system]
 requires = ["poetry-core>=1.0.0"]
