@@ -11,6 +11,9 @@ keywords = [
     "cli"
 ]
 
+[tool.poetry.scripts]
+airflow-diagrams = "airflow_diagrams.cli:app"
+
 [tool.poetry.dependencies]
 python = "^3.9"
 typer = "^0.4.0"

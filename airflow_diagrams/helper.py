@@ -1,6 +1,7 @@
 import ast
 import os
 from os.path import dirname
+from pathlib import Path
 
 import diagrams
 import yaml
@@ -82,7 +83,7 @@ def load_abbreviations() -> dict:
         return yaml.safe_load(abbreviations_yaml)
 
 
-def load_mappings(file: str) -> dict:
+def load_mappings(file: Path) -> dict:
     """
     Load mappings from a yaml file.
 

@@ -1,6 +1,7 @@
 """This module provides the airflow-diagrams CLI."""
 import logging
 import os
+from pathlib import Path
 from typing import Optional
 
 from airflow_client.client.api_client import ApiClient, Configuration
@@ -41,11 +42,11 @@ def main(
 
 @app.command()
 def generate(  # dead: disable
-    dag_id: str = Option(
+    dag_id: Optional[str] = Option(
         None,
         "--airflow-dag-id",
         "-d",
-        help="The dag id from which to generate the diagram.",
+        help="The dag id from which to generate the diagram. By default it generates for all.",
     ),
     host: str = Option(
         "http://localhost:8080/api/v1",
@@ -65,17 +66,22 @@ def generate(  # dead: disable
         "-p",
         help="The password of the airflow rest api.",
     ),
-    output_path: str = Option(
+    output_path: Path = Option(
         ".",
         "--output-path",
         "-o",
         help="The path to output the diagrams to.",
+        exists=True,
+        file_okay=False,
+        writable=True,
     ),
-    mapping_file: str = Option(
+    mapping_file: Path = Option(
         None,
         "--mapping-file",
         "-m",
-        help="The mapping file to use for static mapping from Airflow task to diagram node.",
+        help="The mapping file to use for static mapping from Airflow task to diagram node. By default no mapping file is being used.",
+        exists=True,
+        dir_okay=False,
     ),
     verbose: bool = Option(
         False,
