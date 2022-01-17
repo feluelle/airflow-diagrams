@@ -20,8 +20,9 @@ Then just call it like this:
 ```
 Usage: airflow-diagrams generate [OPTIONS]
 
-  Generates <airflow-dag-id>_diagrams.py which contains the definition to
-  create a diagram. Run this file and you will get a rendered diagram.
+  Generates <airflow-dag-id>_diagrams.py in <output-path> directory which
+  contains the definition to create a diagram. Run this file and you will get
+  a rendered diagram.
 
 Options:
   -d, --airflow-dag-id TEXT    The dag id from which to generate the diagram.
