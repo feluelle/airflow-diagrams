@@ -15,6 +15,14 @@ class AirflowTask:
     task_id: str
     downstream_task_ids: list[str]
 
+    def __str__(self) -> str:
+        """
+        Define pretty string reprenstation.
+
+        :returns: the string representation of the Airflow Task.
+        """
+        return f"Airflow Task {self.task_id} ({self.class_ref}) with downstream tasks {self.downstream_task_ids}"
+
 
 class AirflowDag:
     """Retrieve Airflow DAG information."""
@@ -22,6 +30,14 @@ class AirflowDag:
     def __init__(self, dag_id: str, dag_api: DAGApi) -> None:
         self.dag_id = dag_id
         self.dag_api = dag_api
+
+    def __str__(self) -> str:
+        """
+        Define pretty string reprenstation.
+
+        :returns: the string representation of the Airflow DAG.
+        """
+        return f"Airflow DAG {self.dag_id}"
 
     def get_tasks(self) -> list[AirflowTask]:
         """

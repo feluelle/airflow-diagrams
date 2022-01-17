@@ -97,10 +97,12 @@ def generate(  # dead: disable
     with ApiClient(configuration=airflow_api_config) as api_client:
         airflow_api_tree = AirflowApiTree(api_client)
         for airflow_dag in airflow_api_tree.get_dags(dag_id):
+            secho(f"ℹ️ Retrieved {airflow_dag}.", fg=colors.CYAN)
             matches_class_refs: set[ClassRef] = set()
             diagram_nodes: list[dict] = []
             diagram_edges: list[dict] = []
             for airflow_task in airflow_dag.get_tasks():
+                secho(f"  ℹ️ Retrieved {airflow_task}.", fg=colors.CYAN)
                 class_ref_matcher = ClassRefMatcher(
                     query=airflow_task.class_ref,
                     choices=diagrams_class_refs,
@@ -114,10 +116,7 @@ def generate(  # dead: disable
                     ),
                 )
                 match_class_ref: ClassRef = class_ref_matcher.match(mappings)
-                secho(
-                    f"Found match {match_class_ref} for task {airflow_task.class_ref}.",
-                    fg=colors.CYAN,
-                )
+                secho(f"  🔮Found match {match_class_ref}.", fg=colors.MAGENTA)
                 matches_class_refs.add(match_class_ref)
                 diagram_nodes.append(
                     dict(
@@ -144,7 +143,5 @@ def generate(  # dead: disable
                 ),
                 output_file=output_file,
             )
-            secho(
-                f"Successfully generated diagrams file {output_file} from dag with id {airflow_dag.dag_id}.",
-                fg=colors.GREEN,
-            )
+            secho(f"🪄 Generated diagrams file {output_file}.", fg=colors.YELLOW)
+        secho("Done. 🎉", fg=colors.GREEN)
