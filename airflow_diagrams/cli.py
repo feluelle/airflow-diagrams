@@ -41,7 +41,7 @@ def main(
 
 
 @app.command(
-    help="Generates <dag-id>_diagrams.py which contains the definition to create a diagram. Run this file and you will get a rendered diagram.",
+    help="Generates <airflow-dag-id>_diagrams.py in <output-path> directory which contains the definition to create a diagram. Run this file and you will get a rendered diagram.",
 )
 def generate(  # dead: disable
     dag_id: Optional[str] = Option(
