@@ -3,7 +3,13 @@ name = "airflow-diagrams"
 version = "1.0.0.dev0"
 description = "Auto-generated Diagrams from Airflow DAGs."
 authors = ["Felix Uellendall <feluelle@pm.me>"]
-license = "MIT"
+license = "Apache-2.0"
+readme = "README.md"
+keywords = [
+    "airflow",
+    "diagrams",
+    "cli"
+]
 
 [tool.poetry.dependencies]
 python = "^3.9"
