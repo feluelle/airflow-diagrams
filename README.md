@@ -12,18 +12,12 @@ from providers like AWS, GCP, Azure, etc. via [diagrams](https://github.com/ming
 
 ## 🚀 Get started
 
-### Installation
-
 To install it from [PyPI](https://pypi.org/) run:
 ```
 pip install airflow-diagrams
 ```
-
-### Usage
-
-To use this auto-generator just run the following command:
+Then just call it like this:
 ```
-❯ airflow-diagrams generate --help
 Usage: airflow-diagrams generate [OPTIONS]
 
 Options:
@@ -45,10 +39,7 @@ Options:
                                purposes.
   --help                       Show this message and exit.
 ```
-
-This will create a file like `<dag-id>_diagrams.py` which contains the definition to create a diagram. Run this file and you will get a rendered diagram.
-
-Examples of generated diagrams can be found in the [examples](examples) directory.
+_Examples of generated diagrams can be found in the [examples](examples) directory._
 
 ## 🤔 How it Works
 
