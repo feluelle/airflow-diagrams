@@ -15,6 +15,7 @@ from airflow_diagrams.helper import (
     load_abbreviations,
     load_mappings,
     render_jinja,
+    to_var,
 )
 
 app = Typer()
@@ -128,6 +129,7 @@ def generate(  # dead: disable
                 matches_class_refs.add(match_class_ref)
                 diagram_nodes.append(
                     dict(
+                        task_var=to_var(airflow_task.task_id),
                         task_id=airflow_task.task_id,
                         class_name=match_class_ref.class_name,
                     ),
@@ -135,8 +137,11 @@ def generate(  # dead: disable
                 if airflow_task.downstream_task_ids:
                     diagram_edges.append(
                         dict(
-                            task_id=airflow_task.task_id,
-                            downstream_task_ids=airflow_task.downstream_task_ids,
+                            task_var=to_var(airflow_task.task_id),
+                            downstream_task_vars=map(
+                                to_var,
+                                airflow_task.downstream_task_ids,
+                            ),
                         ),
                     )
 

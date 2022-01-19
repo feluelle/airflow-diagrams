@@ -4,8 +4,8 @@ from diagrams.{{ class_ref.module_path }} import {{ class_ref.class_name }}
 {% endfor %}
 with Diagram("{{ diagram_name }}", show=False):
     {% for node in diagram_nodes -%}
-    {{ node["task_id"] }} = {{ node["class_name"] }}("{{ node["task_id"] }}")
+    {{ node["task_var"] }} = {{ node["class_name"] }}("{{ node["task_id"] }}")
     {% endfor %}
     {% for edge in diagram_edges -%}
-    {{ edge["task_id"] }} >> [{{ edge["downstream_task_ids"]|join(', ') }}]
+    {{ edge["task_var"] }} >> [{{ edge["downstream_task_vars"]|join(', ') }}]
     {% endfor %}
