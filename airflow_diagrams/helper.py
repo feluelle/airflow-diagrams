@@ -1,5 +1,6 @@
 import ast
 import os
+from hashlib import md5
 from os.path import dirname
 from pathlib import Path
 
@@ -87,6 +88,7 @@ def load_mappings(file: Path) -> dict:
     """
     Load mappings from a yaml file.
 
+    :params file: The file to load.
     :returns: a dict of Airflow task to diagram node mapping.
     """
     with open(
@@ -94,3 +96,13 @@ def load_mappings(file: Path) -> dict:
         "r",
     ) as mapping_yaml:
         return yaml.safe_load(mapping_yaml)
+
+
+def to_var(string: str) -> str:
+    """
+    Convert a string to a valid python variable name.
+
+    :params string: The string to convert.
+    :returns: a valid python variable name.
+    """
+    return f"_{md5(string.encode()).hexdigest()}"  # nosec
