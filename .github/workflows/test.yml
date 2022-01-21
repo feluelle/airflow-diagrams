@@ -32,3 +32,7 @@ jobs:
         run: poetry install --no-interaction
       - name: Run tests
         run: poetry run pytest --cov=airflow_diagrams tests/
+      - name: Setup Graphviz
+        uses: ts-graphviz/setup-graphviz@v1
+      - name: Render generated diagrams
+        run: poetry run python generated/test_dag_diagrams.py

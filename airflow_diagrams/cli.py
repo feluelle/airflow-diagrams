@@ -94,6 +94,7 @@ def generate(  # dead: disable
     ),
 ) -> None:
     if verbose:
+        echo("💬 Running with verbose output..")
         logging.basicConfig(level=logging.DEBUG)
 
     mappings: dict = load_mappings(mapping_file) if mapping_file else {}

@@ -31,6 +31,18 @@ class AirflowDag:
         self.dag_id = dag_id
         self.dag_api = dag_api
 
+    def __eq__(self, __o: object) -> bool:
+        """
+        Check dag equality.
+
+        :params __o: The object to check against.
+
+        :returns: True if the dag_id is the same, if not False.
+        """
+        if isinstance(__o, AirflowDag):
+            return self.dag_id == __o.dag_id
+        return False
+
     def __str__(self) -> str:
         """
         Define pretty string reprenstation.
