@@ -34,6 +34,8 @@ jobs:
         run: poetry run pytest --cov-report=xml --cov=airflow_diagrams tests/
       - name: Upload coverage to Codecov
         uses: codecov/codecov-action@v2
+        with:
+          verbose: true
       - name: Setup Graphviz
         uses: ts-graphviz/setup-graphviz@v1
       - name: Render generated diagrams
