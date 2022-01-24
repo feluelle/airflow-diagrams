@@ -5,6 +5,13 @@ on: push
 jobs:
   test:
     runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        python: ['3.9', '3.10']
+        include:
+          - python: '3.11.0-alpha - 3.11.0'
+            experimental: true
     steps:
       - name: Check out repository
         uses: actions/checkout@v2
@@ -12,7 +19,7 @@ jobs:
         id: setup-python
         uses: actions/setup-python@v2
         with:
-          python-version: 3.9
+          python-version: ${{ matrix.python }}
       - name: Install Poetry
         uses: snok/install-poetry@v1
         with:
@@ -31,4 +38,12 @@ jobs:
       - name: Install library
         run: poetry install --no-interaction
       - name: Run tests
-        run: poetry run pytest --cov=airflow_diagrams tests/
+        run: poetry run pytest --cov-report=xml --cov=airflow_diagrams tests/
+      - name: Upload coverage to Codecov
+        uses: codecov/codecov-action@v2
+        with:
+          verbose: true
+      - name: Setup Graphviz
+        uses: ts-graphviz/setup-graphviz@v1
+      - name: Render generated diagrams
+        run: poetry run python generated/test_dag_diagrams.py

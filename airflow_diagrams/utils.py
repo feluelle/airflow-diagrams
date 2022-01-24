@@ -1,54 +1,14 @@
-import ast
 import os
 from hashlib import md5
 from os.path import dirname
 from pathlib import Path
 
-import diagrams
 import yaml
 from jinja2.environment import Environment
 from jinja2.loaders import FileSystemLoader
 from jinja2.runtime import StrictUndefined
 
 from airflow_diagrams import __location__
-from airflow_diagrams.class_ref import ClassRef
-
-
-def get_diagrams_class_refs() -> list[ClassRef]:
-    """
-    Get class references of the diagram module.
-
-    :returns: a list of class references.
-    """
-    class_refs: list[ClassRef] = []
-    directory = f"{os.path.dirname(diagrams.__file__)}/"
-
-    for root, _, files in os.walk(directory):
-        for file in files:
-            if not file.endswith(".py") or file == "__init__.py":
-                continue
-
-            file_absolute_path = os.path.join(root, file)
-            module_path = (
-                file_absolute_path.removeprefix(
-                    directory,
-                )
-                .removesuffix(".py")
-                .replace("/", ".")
-            )
-
-            with open(file_absolute_path) as _file:
-                _node = ast.parse(_file.read())
-
-            for node in ast.walk(_node):
-                if isinstance(node, ast.ClassDef) and not node.name.startswith("_"):
-                    class_refs.append(
-                        ClassRef(
-                            module_path=module_path,
-                            class_name=node.name,
-                        ),
-                    )
-    return class_refs
 
 
 def render_jinja(template_file: str, context: dict, output_file: str) -> None:
