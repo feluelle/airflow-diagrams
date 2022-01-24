@@ -1,4 +1,6 @@
+import ast
 import logging
+import os
 from dataclasses import dataclass
 from re import findall
 from typing import Optional
@@ -150,3 +152,42 @@ class ClassRefMatcher:
         for k, v in abbreviations.items():
             word = word.replace(k, v)
         return word
+
+
+def retrieve_class_refs(directory: str) -> list[ClassRef]:
+    """
+    Retrieve class references from directory.
+
+    :params directory: The directory from which to start parsing.
+
+    :returns: a list of class references.
+    """
+    class_refs: list[ClassRef] = []
+
+    for root, _, files in os.walk(directory):
+        for file in files:
+            if not file.endswith(".py") or file == "__init__.py":
+                continue
+
+            file_absolute_path = os.path.join(root, file)
+            module_path = (
+                file_absolute_path.removeprefix(
+                    directory,
+                )
+                .removesuffix(".py")
+                .replace("/", ".")
+            )
+
+            with open(file_absolute_path) as _file:
+                _node = ast.parse(_file.read())
+
+            for node in ast.walk(_node):
+                if isinstance(node, ast.ClassDef) and not node.name.startswith("_"):
+                    class_refs.append(
+                        ClassRef(
+                            module_path=module_path,
+                            class_name=node.name,
+                        ),
+                    )
+
+    return class_refs

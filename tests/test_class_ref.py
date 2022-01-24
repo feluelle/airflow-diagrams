@@ -1,6 +1,8 @@
+import ast
+
 import pytest
 
-from airflow_diagrams.class_ref import ClassRef, ClassRefMatcher
+from airflow_diagrams.class_ref import ClassRef, ClassRefMatcher, retrieve_class_refs
 
 
 @pytest.fixture
@@ -44,3 +46,26 @@ def test_class_ref_matcher_match_with_mappings(class_ref_matcher):
     assert class_ref_matcher.match(mappings=mappings) == ClassRef.from_string(
         mappings[query_str],
     )
+
+
+def test_retrieve_class_refs(mocker):
+    """Test retrieving class refs from directory"""
+    mocker.patch(
+        "os.walk",
+        return_value=[
+            ("/module", (), ("path.py",)),
+        ],
+    )
+    mocker.patch("builtins.open")
+    mocker.patch(
+        "ast.parse",
+        return_value=ast.Module(
+            body=[
+                ast.ClassDef(name="ClassName", lineno=1),
+            ],
+        ),
+    )
+
+    assert retrieve_class_refs(directory="/module/") == [
+        ClassRef(module_path="path", class_name="ClassName"),
+    ]
