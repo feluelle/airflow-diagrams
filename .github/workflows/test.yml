@@ -5,6 +5,10 @@ on: push
 jobs:
   test:
     runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        python: [3.9, 3.10]
     steps:
       - name: Check out repository
         uses: actions/checkout@v2
@@ -12,7 +16,7 @@ jobs:
         id: setup-python
         uses: actions/setup-python@v2
         with:
-          python-version: 3.9
+          python-version: ${{ matrix.python }}
       - name: Install Poetry
         uses: snok/install-poetry@v1
         with:
