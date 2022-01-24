@@ -10,7 +10,7 @@ jobs:
       matrix:
         python: ['3.9', '3.10']
         include:
-          - python: '3.11'
+          - python: '3.11.0-alpha - 3.11.0'
             experimental: true
     steps:
       - name: Check out repository
