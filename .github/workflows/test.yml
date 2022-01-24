@@ -9,6 +9,9 @@ jobs:
       fail-fast: false
       matrix:
         python: ['3.9', '3.10']
+        include:
+          - python: '3.11'
+            experimental: true
     steps:
       - name: Check out repository
         uses: actions/checkout@v2
