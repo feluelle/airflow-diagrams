@@ -16,6 +16,7 @@ from airflow_diagrams.utils import (
     load_mappings,
     render_jinja,
     to_var,
+    wrap_str,
 )
 
 app = Typer()
@@ -92,6 +93,12 @@ def generate(  # dead: disable
         "-v",
         help="Verbose output i.e. useful for debugging purposes.",
     ),
+    label_wrap: Optional[str] = Option(
+        None,
+        "--label-wrap",
+        "-lw",
+        help="Specify either a number for label width or a separator to indicate when to wrap a label.",
+    ),
 ) -> None:
     if verbose:
         echo("💬 Running with verbose output..")
@@ -133,7 +140,9 @@ def generate(  # dead: disable
                 diagram_nodes.append(
                     dict(
                         task_var=to_var(airflow_task.task_id),
-                        task_id=airflow_task.task_id,
+                        task_id=wrap_str(airflow_task.task_id, label_wrap)
+                        if label_wrap
+                        else airflow_task.task_id,
                         class_name=match_class_ref.class_name,
                     ),
                 )
