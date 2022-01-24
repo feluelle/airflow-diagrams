@@ -18,6 +18,8 @@ To install it from [PyPI](https://pypi.org/) run:
 ```
 pip install airflow-diagrams
 ```
+> **_NOTE:_** Make sure you have [Graphviz](https://www.graphviz.org/) installed.
+
 Then just call it like this:
 ```
 Usage: airflow-diagrams generate [OPTIONS]
