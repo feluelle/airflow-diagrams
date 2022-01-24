@@ -6,6 +6,10 @@ EMR: ElasticMapReduce
 
 RDS: RelationalDatabaseService
 
+S3: SimpleStorageService
+
 SDK: SoftwareDevelopmentKit
 
 k8s: kubernetes
+
+s3: SimpleStorageService
