@@ -97,7 +97,7 @@ def generate(  # dead: disable
         None,
         "--label-wrap",
         "-lw",
-        help="Specify either a number for label width or a separator to indicate when to wrap a label.",
+        help="Specify either a number for label width or a separator to indicate when to wrap a label. By default it does not wrap labels.",
     ),
 ) -> None:
     if verbose:

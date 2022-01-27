@@ -45,6 +45,8 @@ Options:
                                mapping file is being used.
   -v, --verbose                Verbose output i.e. useful for debugging
                                purposes.
+  -lw, --label-wrap TEXT       Specify either a number for label width or a
+                               separator to indicate when to wrap a label.
   --help                       Show this message and exit.
 ```
 _Examples of generated diagrams can be found in the [examples](examples) directory._
