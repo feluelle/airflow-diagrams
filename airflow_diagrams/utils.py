@@ -2,6 +2,7 @@ import os
 from hashlib import md5
 from os.path import dirname
 from pathlib import Path
+from textwrap import wrap
 
 import yaml
 from jinja2.environment import Environment
@@ -66,3 +67,16 @@ def to_var(string: str) -> str:
     :returns: a valid python variable name.
     """
     return f"_{md5(string.encode()).hexdigest()}"  # nosec
+
+
+def wrap_str(string: str, indicator: str) -> str:
+    """
+    Wrap a string with newline chars based on indicator.
+
+    :params string: The string to wrap.
+    :params indicator: Specify either a number for width or a separator to indicate when to wrap.
+    :returns: the wrapped string.
+    """
+    if indicator.isdigit():
+        return "\\n".join(wrap(string, int(indicator), break_on_hyphens=False))
+    return "\\n".join(string.split(indicator))
