@@ -106,8 +106,8 @@ class ClassRefMatcher:
 
     def _get_fallback_class_ref_match_object(self) -> ClassRefMatchObject:
         class_ref_blank = ClassRef(
-            module_path="generic.blank",
-            class_name="Blank",
+            module_path="programming.flowchart",
+            class_name="Action",
         )
         return ClassRefMatchObject(
             class_ref=class_ref_blank,

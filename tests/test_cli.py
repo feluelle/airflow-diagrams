@@ -43,7 +43,7 @@ def test_generate(mock_dag):
     assert (
         "ℹ️ Retrieved Airflow DAG test_dag.\n"
         "  ℹ️ Retrieved Airflow Task test_task (module.path.ClassName) with downstream tasks [].\n"
-        "  🔮Found match generic.blank.Blank.\n"
+        "  🔮Found match programming.flowchart.Action.\n"
         "🪄 Generated diagrams file generated/test_dag_diagrams.py.\n"
         "Done. 🎉\n"
     ) == result.stdout
