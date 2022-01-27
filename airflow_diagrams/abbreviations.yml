@@ -12,4 +12,4 @@ SDK: SoftwareDevelopmentKit
 
 k8s: kubernetes
 
-s3: SimpleStorageService
+s3: simple_storage_service
