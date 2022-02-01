@@ -52,7 +52,7 @@ repos:
       - id: dead
         args: ["--exclude", "examples/"] # global exclude does not work
   - repo: https://github.com/psf/black
-    rev: 21.12b0
+    rev: 22.1.0
     hooks:
       - id: black
   - repo: https://github.com/PyCQA/flake8
@@ -61,7 +61,7 @@ repos:
       - id: flake8
         args: ["--max-line-length", "88", "--extend-ignore", "E203,E501"]
   - repo: https://github.com/PyCQA/bandit
-    rev: 1.7.1
+    rev: 1.7.2
     hooks:
       - id: bandit
         args: ["-c", ".bandit"]
