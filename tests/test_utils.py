@@ -1,4 +1,4 @@
-from airflow_diagrams.utils import load_abbreviations, load_mappings, to_var, wrap_str
+from airflow_diagrams.utils import load_abbreviations, load_mappings
 
 
 def test_load_abbreviations(mocker):
@@ -16,20 +16,3 @@ def test_load_mappings(mocker):
     )
     assert load_mappings(file=file_path) == {"airflow.task.Foo": "diagrams.node.Bar"}
     mock_open.assert_called_once_with(file_path, "r")
-
-
-def test_to_var():
-    """Test converting to python variable"""
-    var = to_var("foo-bar")
-    assert "-" not in var and "." not in var
-    assert var.startswith("_")
-
-
-def test_wrap_str__indicator_number():
-    """Test wrapping a string based on number"""
-    assert wrap_str("foobarfoobar", "10") == "foobarfoob\\nar"
-
-
-def test_wrap_str__indicator_separator():
-    """Test wrapping a string based on separator"""
-    assert wrap_str("foobarfoobar", "foo") == "\\nbar\\nbar"

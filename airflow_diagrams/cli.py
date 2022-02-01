@@ -11,13 +11,8 @@ from typer import Exit, Option, Typer, colors, echo, secho
 from airflow_diagrams import __app_name__, __version__
 from airflow_diagrams.airflow import AirflowApiTree
 from airflow_diagrams.class_ref import ClassRef, ClassRefMatcher, retrieve_class_refs
-from airflow_diagrams.utils import (
-    load_abbreviations,
-    load_mappings,
-    render_jinja,
-    to_var,
-    wrap_str,
-)
+from airflow_diagrams.diagrams import DiagramContext
+from airflow_diagrams.utils import load_abbreviations, load_mappings
 
 app = Typer()
 
@@ -115,11 +110,14 @@ def generate(  # dead: disable
     airflow_api_config = Configuration(host=host, username=username, password=password)
     with ApiClient(configuration=airflow_api_config) as api_client:
         airflow_api_tree = AirflowApiTree(api_client)
+
         for airflow_dag in airflow_api_tree.get_dags(dag_id):
             secho(f"ℹ️ Retrieved {airflow_dag}.", fg=colors.CYAN)
-            matches_class_refs: set[ClassRef] = set()
-            diagram_nodes: list[dict] = []
-            diagram_edges: list[dict] = []
+            diagram_context = DiagramContext(
+                airflow_dag=airflow_dag,
+                label_wrap=label_wrap,
+            )
+
             for airflow_task in airflow_dag.get_tasks():
                 secho(f"  ℹ️ Retrieved {airflow_task}.", fg=colors.CYAN)
                 class_ref_matcher = ClassRefMatcher(
@@ -136,37 +134,13 @@ def generate(  # dead: disable
                 )
                 match_class_ref: ClassRef = class_ref_matcher.match(mappings)
                 secho(f"  🔮Found match {match_class_ref}.", fg=colors.MAGENTA)
-                matches_class_refs.add(match_class_ref)
-                diagram_nodes.append(
-                    dict(
-                        task_var=to_var(airflow_task.task_id),
-                        task_id=wrap_str(airflow_task.task_id, label_wrap)
-                        if label_wrap
-                        else airflow_task.task_id,
-                        class_name=match_class_ref.class_name,
-                    ),
+                diagram_context.push(
+                    airflow_task=airflow_task,
+                    node_class_ref=match_class_ref,
                 )
-                if airflow_task.downstream_task_ids:
-                    diagram_edges.append(
-                        dict(
-                            task_var=to_var(airflow_task.task_id),
-                            downstream_task_vars=map(
-                                to_var,
-                                airflow_task.downstream_task_ids,
-                            ),
-                        ),
-                    )
 
-            output_file = os.path.join(output_path, f"{airflow_dag.dag_id}_diagrams.py")
-            render_jinja(
-                template_file="diagram.jinja2",
-                context=dict(
-                    diagram_class_refs=matches_class_refs,
-                    diagram_name=airflow_dag.dag_id,
-                    diagram_nodes=diagram_nodes,
-                    diagram_edges=diagram_edges,
-                ),
-                output_file=output_file,
-            )
+            output_file = output_path / f"{airflow_dag.dag_id}_diagrams.py"
+            diagram_context.render(output_file)
             secho(f"🪄 Generated diagrams file {output_file}.", fg=colors.YELLOW)
+
         secho("Done. 🎉", fg=colors.GREEN)
