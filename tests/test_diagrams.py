@@ -22,7 +22,6 @@ def airflow_task():
         ),
         task_id="foo_bar",
         downstream_task_ids=["fizz"],
-        group_name="Foo",
     )
 
 
