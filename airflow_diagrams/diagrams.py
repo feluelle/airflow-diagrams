@@ -121,7 +121,6 @@ class DiagramContext:
         if airflow_task.downstream_task_ids:
             self.edges.append(DiagramEdge(task=airflow_task))
 
-
     def render(self, output_file: Path) -> None:
         """
         Render the airflow dag with tasks context to the diagram.
