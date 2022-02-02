@@ -56,18 +56,27 @@ def render_jinja(template_file: str, context: dict, output_file: str) -> None:
 
 
 class DiagramNode:
-    """The node object in a diagram representation."""
+    """
+    The node object in a diagram representation.
+
+    :params task: The airflow task to display node information for.
+    :params class_name: The final diagrams class name.
+    """
 
     def __init__(self, task: AirflowTask, class_name: str, **kwargs) -> None:
         label_wrap = kwargs.pop("label_wrap")
 
         self.label = wrap_str(task.task_id, label_wrap) if label_wrap else task.task_id
         self.class_name = class_name
-        self.variable = to_var(self.label)
+        self.variable = to_var(task.task_id)
 
 
 class DiagramEdge:
-    """The edge object in a diagram representation."""
+    """
+    The edge object in a diagram representation.
+
+    :params task: The airflow task to display edge information for.
+    """
 
     def __init__(self, task: AirflowTask) -> None:
         self.variable = to_var(task.task_id)
@@ -88,9 +97,9 @@ class DiagramContext:
     def __init__(self, airflow_dag: AirflowDag, label_wrap: Optional[str]) -> None:
         self.airflow_dag = airflow_dag
         self.label_wrap = label_wrap
-        self.matches_class_refs: set[ClassRef] = set()
-        self.diagram_nodes: list[DiagramNode] = []
-        self.diagram_edges: list[DiagramEdge] = []
+        self.matched_class_refs: set[ClassRef] = set()
+        self.nodes: list[DiagramNode] = []
+        self.edges: list[DiagramEdge] = []
 
     def push(self, airflow_task: AirflowTask, node_class_ref: ClassRef) -> None:
         """
@@ -99,9 +108,9 @@ class DiagramContext:
         :params airflow_task: The airflow task from which to push.
         :params node_class_ref: The class reference of the node in the diagram.
         """
-        self.matches_class_refs.add(node_class_ref)
+        self.matched_class_refs.add(node_class_ref)
 
-        self.diagram_nodes.append(
+        self.nodes.append(
             DiagramNode(
                 task=airflow_task,
                 class_name=node_class_ref.class_name,
@@ -110,11 +119,8 @@ class DiagramContext:
         )
 
         if airflow_task.downstream_task_ids:
-            self.diagram_edges.append(
-                DiagramEdge(
-                    task=airflow_task,
-                ),
-            )
+            self.edges.append(DiagramEdge(task=airflow_task))
+
 
     def render(self, output_file: Path) -> None:
         """
@@ -125,10 +131,10 @@ class DiagramContext:
         render_jinja(
             template_file="diagram.jinja2",
             context=dict(
-                diagram_class_refs=self.matches_class_refs,
-                diagram_name=self.airflow_dag.dag_id,
-                diagram_nodes=self.diagram_nodes,
-                diagram_edges=self.diagram_edges,
+                class_refs=self.matched_class_refs,
+                name=self.airflow_dag.dag_id,
+                nodes=self.nodes,
+                edges=self.edges,
             ),
             output_file=output_file.as_posix(),
         )
