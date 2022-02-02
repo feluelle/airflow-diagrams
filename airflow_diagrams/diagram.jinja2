@@ -1,10 +1,18 @@
-from diagrams import Diagram
+from diagrams import Diagram{% if clusters %}, Cluster {% endif %}
 {% for class_ref in class_refs -%}
 from diagrams.{{ class_ref.module_path }} import {{ class_ref.class_name }}
 {% endfor %}
 with Diagram("{{ name }}", show=False):
+    {% for cluster in clusters -%}
+    {{ cluster.variable}} = Cluster("{{ cluster.label }}")
+    {% endfor %}
     {% for node in nodes -%}
+    {% if node.cluster_variable %}
+    with {{ node.cluster_variable }}:
+        {{ node.variable }} = {{ node.class_name }}("{{ node.label }}")
+    {% else %}
     {{ node.variable }} = {{ node.class_name }}("{{ node.label }}")
+    {% endif %}
     {% endfor %}
     {% for edge in edges -%}
     {{ edge.variable }} >> [{{ edge.downstream_variables|join(', ') }}]

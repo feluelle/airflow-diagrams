@@ -69,6 +69,7 @@ class DiagramNode:
         self.label = wrap_str(task.task_id, label_wrap) if label_wrap else task.task_id
         self.class_name = class_name
         self.variable = to_var(task.task_id)
+        self.cluster_variable = to_var(task.group_name) if task.group_name else None
 
 
 class DiagramEdge:
@@ -86,6 +87,23 @@ class DiagramEdge:
         )
 
 
+class DiagramCluster:
+    """
+    The cluster object in a diagram representation.
+
+    :params task: The airflow task to display cluster information for.
+    """
+
+    def __init__(self, task: AirflowTask, **kwargs) -> None:
+        label_wrap = kwargs.pop("label_wrap")
+
+        assert task.group_name  # nosec
+        self.label = (
+            wrap_str(task.group_name, label_wrap) if label_wrap else task.group_name
+        )
+        self.variable = to_var(task.group_name)
+
+
 class DiagramContext:
     """
     The whole diagram context in a diagram representation.
@@ -100,6 +118,7 @@ class DiagramContext:
         self.matched_class_refs: set[ClassRef] = set()
         self.nodes: list[DiagramNode] = []
         self.edges: list[DiagramEdge] = []
+        self.clusters: set[DiagramCluster] = set()
 
     def push(self, airflow_task: AirflowTask, node_class_ref: ClassRef) -> None:
         """
@@ -121,6 +140,11 @@ class DiagramContext:
         if airflow_task.downstream_task_ids:
             self.edges.append(DiagramEdge(task=airflow_task))
 
+        if airflow_task.group_name:
+            self.clusters.add(
+                DiagramCluster(task=airflow_task, label_wrap=self.label_wrap),
+            )
+
     def render(self, output_file: Path) -> None:
         """
         Render the airflow dag with tasks context to the diagram.
@@ -134,6 +158,7 @@ class DiagramContext:
                 name=self.airflow_dag.dag_id,
                 nodes=self.nodes,
                 edges=self.edges,
+                clusters=self.clusters,
             ),
             output_file=output_file.as_posix(),
         )

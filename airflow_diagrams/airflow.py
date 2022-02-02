@@ -14,6 +14,7 @@ class AirflowTask:
     class_ref: ClassRef
     task_id: str
     downstream_task_ids: list[str]
+    group_name: Optional[str]
 
     def __str__(self) -> str:
         """
@@ -62,6 +63,7 @@ class AirflowDag:
                 class_ref=ClassRef(**task["class_ref"]),
                 task_id=task["task_id"],
                 downstream_task_ids=task["downstream_task_ids"],
+                group_name=None,
             )
             # TODO: Enable type checking when https://github.com/apache/airflow-client-python/issues/20 is fixed.
             for task in self.dag_api.get_tasks(self.dag_id, _check_return_type=False)[

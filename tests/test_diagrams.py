@@ -5,6 +5,7 @@ import pytest
 from airflow_diagrams.airflow import AirflowDag, AirflowTask
 from airflow_diagrams.class_ref import ClassRef
 from airflow_diagrams.diagrams import (
+    DiagramCluster,
     DiagramContext,
     DiagramEdge,
     DiagramNode,
@@ -22,6 +23,7 @@ def airflow_task():
         ),
         task_id="foo_bar",
         downstream_task_ids=["fizz"],
+        group_name="Foo",
     )
 
 
@@ -59,6 +61,7 @@ def test_diagram_node(airflow_task):
     assert diagram_node.label == wrap_str(airflow_task.task_id, label_wrap)
     assert diagram_node.class_name == class_name
     assert diagram_node.variable == to_var(airflow_task.task_id)
+    assert diagram_node.cluster_variable == to_var(airflow_task.group_name)
 
 
 def test_diagram_edge(airflow_task):
@@ -71,6 +74,13 @@ def test_diagram_edge(airflow_task):
             airflow_task.downstream_task_ids,
         ),
     )
+
+
+def test_diagram_cluster(airflow_task):
+    """Test diagram cluster initialisation"""
+    diagram_cluster = DiagramCluster(task=airflow_task, label_wrap=None)
+    assert diagram_cluster.label == airflow_task.group_name
+    assert diagram_cluster.variable == to_var(airflow_task.group_name)
 
 
 def test_diagram_context(mocker, airflow_dag, airflow_task):
@@ -86,6 +96,7 @@ def test_diagram_context(mocker, airflow_dag, airflow_task):
     assert diagram_context.matched_class_refs
     assert diagram_context.nodes
     assert diagram_context.edges
+    assert diagram_context.clusters
 
     render_jinja = mocker.patch("airflow_diagrams.diagrams.render_jinja")
     output_file = Path("./foo.py")
@@ -97,6 +108,7 @@ def test_diagram_context(mocker, airflow_dag, airflow_task):
             name=diagram_context.airflow_dag.dag_id,
             nodes=diagram_context.nodes,
             edges=diagram_context.edges,
+            clusters=diagram_context.clusters,
         ),
         output_file=output_file.as_posix(),
     )
