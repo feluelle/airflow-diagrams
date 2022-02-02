@@ -103,6 +103,26 @@ class DiagramCluster:
         )
         self.variable = to_var(task.group_name)
 
+    def __hash__(self) -> int:
+        """
+        Build a hash based on all attributes.
+
+        :returns: a hash of all attributes.
+        """
+        return hash(self.label) ^ hash(self.variable)
+
+    def __eq__(self, __o: object) -> bool:
+        """
+        Check cluster equality.
+
+        :params __o: The object to check against.
+
+        :returns: True if the cluster is the same, if not False.
+        """
+        if isinstance(__o, DiagramCluster):
+            return self.label == __o.label and self.variable == __o.variable
+        return False
+
 
 class DiagramContext:
     """

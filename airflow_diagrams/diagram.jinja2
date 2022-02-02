@@ -5,14 +5,14 @@ from diagrams.{{ class_ref.module_path }} import {{ class_ref.class_name }}
 with Diagram("{{ name }}", show=False):
     {% for cluster in clusters -%}
     {{ cluster.variable}} = Cluster("{{ cluster.label }}")
-    {% endfor %}
+    {% endfor -%}
     {% for node in nodes -%}
-    {% if node.cluster_variable %}
+    {% if node.cluster_variable -%}
     with {{ node.cluster_variable }}:
         {{ node.variable }} = {{ node.class_name }}("{{ node.label }}")
-    {% else %}
+    {% else -%}
     {{ node.variable }} = {{ node.class_name }}("{{ node.label }}")
-    {% endif %}
+    {% endif -%}
     {% endfor %}
     {% for edge in edges -%}
     {{ edge.variable }} >> [{{ edge.downstream_variables|join(', ') }}]
