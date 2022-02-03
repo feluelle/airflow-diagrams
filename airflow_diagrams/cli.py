@@ -113,10 +113,7 @@ def generate(  # dead: disable
 
         for airflow_dag in airflow_api_tree.get_dags(dag_id):
             secho(f"ℹ️ Retrieved {airflow_dag}.", fg=colors.CYAN)
-            diagram_context = DiagramContext(
-                airflow_dag=airflow_dag,
-                label_wrap=label_wrap,
-            )
+            diagram_context = DiagramContext(airflow_dag)
 
             for airflow_task in airflow_dag.get_tasks():
                 secho(f"  ℹ️ Retrieved {airflow_task}.", fg=colors.CYAN)
@@ -140,7 +137,7 @@ def generate(  # dead: disable
                 )
 
             output_file = output_path / f"{airflow_dag.dag_id}_diagrams.py"
-            diagram_context.render(output_file)
+            diagram_context.render(output_file, label_wrap)
             secho(f"🪄 Generated diagrams file {output_file}.", fg=colors.YELLOW)
 
         secho("Done. 🎉", fg=colors.GREEN)

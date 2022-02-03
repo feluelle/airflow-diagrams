@@ -4,16 +4,16 @@ from diagrams.{{ class_ref.module_path }} import {{ class_ref.class_name }}
 {% endfor %}
 with Diagram("{{ name }}", show=False):
     {% for cluster in clusters -%}
-    {{ cluster.variable}} = Cluster("{{ cluster.label }}")
+    {{ cluster.get_variable()}} = Cluster("{{ cluster.get_label(label_wrap) }}")
     {% endfor -%}
     {% for node in nodes -%}
-    {% if node.cluster_variable -%}
-    with {{ node.cluster_variable }}:
-        {{ node.variable }} = {{ node.class_name }}("{{ node.label }}")
+    {% if node.cluster -%}
+    with {{ node.cluster.get_variable() }}:
+        {{ node.get_variable() }} = {{ node.class_name }}("{{ node.get_label(label_wrap) }}")
     {% else -%}
-    {{ node.variable }} = {{ node.class_name }}("{{ node.label }}")
+    {{ node.get_variable() }} = {{ node.class_name }}("{{ node.get_label(label_wrap) }}")
     {% endif -%}
     {% endfor %}
     {% for edge in edges -%}
-    {{ edge.variable }} >> [{{ edge.downstream_variables|join(', ') }}]
+    {{ edge.get_variable() }} >> [{{ edge.get_downstream_variables()|join(', ') }}]
     {% endfor %}

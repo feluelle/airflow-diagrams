@@ -54,21 +54,27 @@ def test_diagram_node(airflow_task):
     class_name = "DiagramsBar"
     label_wrap = "_"
     diagram_node = DiagramNode(
-        task=airflow_task,
+        _id=airflow_task.task_id,
         class_name=class_name,
-        label_wrap=label_wrap,
+        cluster=DiagramCluster(_id=airflow_task.group_name),
     )
-    assert diagram_node.label == wrap_str(airflow_task.task_id, label_wrap)
+    assert diagram_node.get_label(label_wrap) == wrap_str(
+        airflow_task.task_id,
+        label_wrap,
+    )
     assert diagram_node.class_name == class_name
-    assert diagram_node.variable == to_var(airflow_task.task_id)
-    assert diagram_node.cluster_variable == to_var(airflow_task.group_name)
+    assert diagram_node.get_variable() == to_var(airflow_task.task_id)
+    assert diagram_node.cluster.get_variable() == to_var(airflow_task.group_name)
 
 
 def test_diagram_edge(airflow_task):
     """Test diagram edge initialisation"""
-    diagram_edge = DiagramEdge(task=airflow_task)
-    assert diagram_edge.variable == to_var(airflow_task.task_id)
-    assert list(diagram_edge.downstream_variables) == list(
+    diagram_edge = DiagramEdge(
+        _id=airflow_task.task_id,
+        _downstream_ids=airflow_task.downstream_task_ids,
+    )
+    assert diagram_edge.get_variable() == to_var(airflow_task.task_id)
+    assert diagram_edge.get_downstream_variables() == list(
         map(
             to_var,
             airflow_task.downstream_task_ids,
@@ -78,16 +84,15 @@ def test_diagram_edge(airflow_task):
 
 def test_diagram_cluster(airflow_task):
     """Test diagram cluster initialisation"""
-    diagram_cluster = DiagramCluster(task=airflow_task, label_wrap=None)
-    assert diagram_cluster.label == airflow_task.group_name
-    assert diagram_cluster.variable == to_var(airflow_task.group_name)
+    diagram_cluster = DiagramCluster(_id=airflow_task.group_name)
+    assert diagram_cluster.get_label(label_wrap=None) == airflow_task.group_name
+    assert diagram_cluster.get_variable() == to_var(airflow_task.group_name)
 
 
 def test_diagram_context(mocker, airflow_dag, airflow_task):
     """Test diagram context initialisation, pushing and rendering"""
-    diagram_context = DiagramContext(airflow_dag=airflow_dag, label_wrap="_")
+    diagram_context = DiagramContext(airflow_dag=airflow_dag)
     assert diagram_context.airflow_dag
-    assert diagram_context.label_wrap
 
     diagram_context.push(
         airflow_task=airflow_task,
@@ -100,7 +105,8 @@ def test_diagram_context(mocker, airflow_dag, airflow_task):
 
     render_jinja = mocker.patch("airflow_diagrams.diagrams.render_jinja")
     output_file = Path("./foo.py")
-    diagram_context.render(output_file)
+    label_wrap = "_"
+    diagram_context.render(output_file, label_wrap)
     render_jinja.assert_called_once_with(
         template_file="diagram.jinja2",
         context=dict(
@@ -109,6 +115,7 @@ def test_diagram_context(mocker, airflow_dag, airflow_task):
             nodes=diagram_context.nodes,
             edges=diagram_context.edges,
             clusters=diagram_context.clusters,
+            label_wrap=label_wrap,
         ),
         output_file=output_file.as_posix(),
     )
