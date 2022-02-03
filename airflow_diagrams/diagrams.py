@@ -1,3 +1,4 @@
+from dataclasses import dataclass
 from hashlib import md5
 from os.path import dirname
 from pathlib import Path
@@ -55,35 +56,58 @@ def render_jinja(template_file: str, context: dict, output_file: str) -> None:
     )
 
 
-class DiagramNode:
-    """
-    The node object in a diagram representation.
+@dataclass
+class _DiagramItem:
+    """A generic item in a diagram representation."""
 
-    :params task: The airflow task to display node information for.
-    :params class_name: The final diagrams class name.
-    """
+    _id: str
 
-    def __init__(self, task: AirflowTask, class_name: str, **kwargs) -> None:
-        label_wrap = kwargs.pop("label_wrap")
+    def get_label(self, label_wrap: Optional[str]) -> str:  # dead: disable
+        """
+        Get the label of the item rendered.
 
-        self.label = wrap_str(task.task_id, label_wrap) if label_wrap else task.task_id
-        self.class_name = class_name
-        self.variable = to_var(task.task_id)
+        :params label_wrap: Specify either a number for label width or a separator to indicate when to wrap a label.
+        :returns: the label.
+        """
+        if label_wrap:
+            return wrap_str(self._id, label_wrap)
+        return self._id
+
+    def get_variable(self) -> str:  # dead: disable
+        """
+        Get the variable of the item rendered.
+
+        :returns: the variable.
+        """
+        return to_var(self._id)
 
 
-class DiagramEdge:
-    """
-    The edge object in a diagram representation.
+@dataclass(unsafe_hash=True)
+class DiagramCluster(_DiagramItem):
+    """The cluster object in a diagram representation."""
 
-    :params task: The airflow task to display edge information for.
-    """
 
-    def __init__(self, task: AirflowTask) -> None:
-        self.variable = to_var(task.task_id)
-        self.downstream_variables = map(
-            to_var,
-            task.downstream_task_ids,
-        )
+@dataclass
+class DiagramNode(_DiagramItem):
+    """The node object in a diagram representation."""
+
+    class_name: str
+    cluster: Optional[DiagramCluster]
+
+
+@dataclass
+class DiagramEdge(_DiagramItem):
+    """The edge object in a diagram representation."""
+
+    _downstream_ids: list[str]
+
+    def get_downstream_variables(self) -> list[str]:  # dead: disable
+        """
+        Get the downstream variables of the edge rendered.
+
+        :returns: downstream variables.
+        """
+        return list(map(to_var, self._downstream_ids))
 
 
 class DiagramContext:
@@ -91,15 +115,14 @@ class DiagramContext:
     The whole diagram context in a diagram representation.
 
     :params airflow_dag: The airflow dag to render the context for.
-    :params label_wrap: Wrap labels on given indicator.
     """
 
-    def __init__(self, airflow_dag: AirflowDag, label_wrap: Optional[str]) -> None:
+    def __init__(self, airflow_dag: AirflowDag) -> None:
         self.airflow_dag = airflow_dag
-        self.label_wrap = label_wrap
         self.matched_class_refs: set[ClassRef] = set()
         self.nodes: list[DiagramNode] = []
         self.edges: list[DiagramEdge] = []
+        self.clusters: set[DiagramCluster] = set()
 
     def push(self, airflow_task: AirflowTask, node_class_ref: ClassRef) -> None:
         """
@@ -110,22 +133,35 @@ class DiagramContext:
         """
         self.matched_class_refs.add(node_class_ref)
 
-        self.nodes.append(
-            DiagramNode(
-                task=airflow_task,
-                class_name=node_class_ref.class_name,
-                label_wrap=self.label_wrap,
-            ),
+        cluster = (
+            DiagramCluster(_id=airflow_task.group_name)
+            if airflow_task.group_name
+            else None
         )
 
-        if airflow_task.downstream_task_ids:
-            self.edges.append(DiagramEdge(task=airflow_task))
+        node = DiagramNode(
+            _id=airflow_task.task_id,
+            class_name=node_class_ref.class_name,
+            cluster=cluster,
+        )
+        self.nodes.append(node)
 
-    def render(self, output_file: Path) -> None:
+        if airflow_task.downstream_task_ids:
+            edge = DiagramEdge(
+                _id=airflow_task.task_id,
+                _downstream_ids=airflow_task.downstream_task_ids,
+            )
+            self.edges.append(edge)
+
+        if cluster:
+            self.clusters.add(cluster)
+
+    def render(self, output_file: Path, label_wrap: Optional[str]) -> None:
         """
         Render the airflow dag with tasks context to the diagram.
 
         :params output_file: The output file path to write the diagrams file to.
+        :params label_wrap: Specify either a number for label width or a separator to indicate when to wrap a label.
         """
         render_jinja(
             template_file="diagram.jinja2",
@@ -134,6 +170,8 @@ class DiagramContext:
                 name=self.airflow_dag.dag_id,
                 nodes=self.nodes,
                 edges=self.edges,
+                clusters=self.clusters,
+                label_wrap=label_wrap,
             ),
             output_file=output_file.as_posix(),
         )

@@ -14,6 +14,7 @@ def test_airflow_dag_get_tasks(airflow_api_tree):
                 ),
                 task_id="test_task_1",
                 downstream_task_ids=[],
+                group_name=None,
             ),
             dict(
                 class_ref=dict(
@@ -22,6 +23,7 @@ def test_airflow_dag_get_tasks(airflow_api_tree):
                 ),
                 task_id="test_task_2",
                 downstream_task_ids=["test_task_1"],
+                group_name=None,
             ),
         ],
     )
@@ -30,6 +32,7 @@ def test_airflow_dag_get_tasks(airflow_api_tree):
             class_ref=ClassRef(**task["class_ref"]),
             task_id=task["task_id"],
             downstream_task_ids=task["downstream_task_ids"],
+            group_name=None,
         )
         for task in airflow_api_tree.dag_api.get_tasks.return_value["tasks"]
     ]
