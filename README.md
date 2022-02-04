@@ -2,6 +2,7 @@
 
 [![pre-commit.ci status](https://results.pre-commit.ci/badge/github/feluelle/airflow-diagrams/master.svg)](https://results.pre-commit.ci/latest/github/feluelle/airflow-diagrams/master)
 ![test workflow](https://github.com/feluelle/airflow-diagrams/actions/workflows/test.yml/badge.svg)
+![codeql-analysis workflow](https://github.com/feluelle/airflow-diagrams/actions/workflows/codeql-analysis.yml/badge.svg)
 [![codecov](https://codecov.io/gh/feluelle/airflow-diagrams/branch/master/graph/badge.svg?token=J8UEP8IVY4)](https://codecov.io/gh/feluelle/airflow-diagrams)
 [![PyPI version](https://img.shields.io/pypi/v/airflow-diagrams)](https://pypi.org/project/airflow-diagrams/)
 [![License](https://img.shields.io/pypi/l/airflow-diagrams)](https://github.com/feluelle/airflow-diagrams/blob/master/LICENSE)
