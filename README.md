@@ -6,6 +6,7 @@
 [![PyPI version](https://img.shields.io/pypi/v/airflow-diagrams)](https://pypi.org/project/airflow-diagrams/)
 [![License](https://img.shields.io/pypi/l/airflow-diagrams)](https://github.com/feluelle/airflow-diagrams/blob/master/LICENSE)
 [![PyPI - Python Version](https://img.shields.io/pypi/pyversions/airflow-diagrams)](https://pypi.org/project/airflow-diagrams/)
+[![PyPI version](https://img.shields.io/pypi/dm/airflow-diagrams)](https://pypi.org/project/airflow-diagrams/)
 
 > Auto-generated Diagrams from Airflow DAGs.
 
