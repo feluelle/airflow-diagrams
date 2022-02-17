@@ -12,7 +12,7 @@ from airflow_diagrams import __app_name__, __version__
 from airflow_diagrams.airflow import AirflowApiTree
 from airflow_diagrams.class_ref import ClassRef, ClassRefMatcher, retrieve_class_refs
 from airflow_diagrams.diagrams import DiagramContext
-from airflow_diagrams.utils import load_abbreviations, load_mappings
+from airflow_diagrams.utils import load_abbreviations, load_mappings, print_group
 
 app = Typer()
 
@@ -112,32 +112,33 @@ def generate(  # dead: disable
         airflow_api_tree = AirflowApiTree(api_client)
 
         for airflow_dag in airflow_api_tree.get_dags(dag_id):
-            secho(f"ℹ️ Retrieved {airflow_dag}.", fg=colors.CYAN)
-            diagram_context = DiagramContext(airflow_dag)
+            with print_group(collapse=not verbose):
+                secho(f"ℹ️ Retrieved {airflow_dag}.", fg=colors.CYAN)
+                diagram_context = DiagramContext(airflow_dag)
 
-            for airflow_task in airflow_dag.get_tasks():
-                secho(f"  ℹ️ Retrieved {airflow_task}.", fg=colors.CYAN)
-                class_ref_matcher = ClassRefMatcher(
-                    query=airflow_task.class_ref,
-                    choices=diagrams_class_refs,
-                    query_options=dict(
-                        removesuffixes=["Operator", "Sensor"],
-                        replaceabbreviations=abbreviations,
-                    ),
-                    choices_options=dict(
-                        removesuffixes=[],
-                        replaceabbreviations=abbreviations,
-                    ),
-                )
-                match_class_ref: ClassRef = class_ref_matcher.match(mappings)
-                secho(f"  🔮Found match {match_class_ref}.", fg=colors.MAGENTA)
-                diagram_context.push(
-                    airflow_task=airflow_task,
-                    node_class_ref=match_class_ref,
-                )
+                for airflow_task in airflow_dag.get_tasks():
+                    secho(f"  ℹ️ Retrieved {airflow_task}.", fg=colors.CYAN)
+                    class_ref_matcher = ClassRefMatcher(
+                        query=airflow_task.class_ref,
+                        choices=diagrams_class_refs,
+                        query_options=dict(
+                            removesuffixes=["Operator", "Sensor"],
+                            replaceabbreviations=abbreviations,
+                        ),
+                        choices_options=dict(
+                            removesuffixes=[],
+                            replaceabbreviations=abbreviations,
+                        ),
+                    )
+                    match_class_ref: ClassRef = class_ref_matcher.match(mappings)
+                    secho(f"  🔮Found match {match_class_ref}.", fg=colors.MAGENTA)
+                    diagram_context.push(
+                        airflow_task=airflow_task,
+                        node_class_ref=match_class_ref,
+                    )
 
-            output_file = output_path / f"{airflow_dag.dag_id}_diagrams.py"
-            diagram_context.render(output_file, label_wrap)
+                output_file = output_path / f"{airflow_dag.dag_id}_diagrams.py"
+                diagram_context.render(output_file, label_wrap)
             secho(f"🪄 Generated diagrams file {output_file}.", fg=colors.YELLOW)
 
         secho("Done. 🎉", fg=colors.GREEN)
