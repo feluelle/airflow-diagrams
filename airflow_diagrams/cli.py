@@ -6,15 +6,16 @@ from typing import Optional
 
 import diagrams
 from airflow_client.client.api_client import ApiClient, Configuration
-from typer import Exit, Option, Typer, colors, echo, secho
+from typer import Exit, Option, colors, echo, secho
 
 from airflow_diagrams import __app_name__, __version__
 from airflow_diagrams.airflow import AirflowApiTree
 from airflow_diagrams.class_ref import ClassRef, ClassRefMatcher, retrieve_class_refs
+from airflow_diagrams.custom_typer import CustomTyper
 from airflow_diagrams.diagrams import DiagramContext
 from airflow_diagrams.utils import load_abbreviations, load_mappings
 
-app = Typer()
+app = CustomTyper()
 
 
 def _version_callback(value: bool) -> None:
