@@ -5,13 +5,14 @@ from pathlib import Path
 from typing import Optional
 
 import diagrams
+import yaml
 from airflow_client.client.api_client import ApiClient, Configuration
 from rich import print as rprint
 from rich.progress import Progress, SpinnerColumn, TimeElapsedColumn
-from typer import Exit, Option
+from typer import Argument, Exit, Option
 
 from airflow_diagrams import __app_name__, __version__
-from airflow_diagrams.airflow import AirflowApiTree
+from airflow_diagrams.airflow import AirflowApiTree, retrieve_airflow_info
 from airflow_diagrams.class_ref import ClassRef, ClassRefMatcher, retrieve_class_refs
 from airflow_diagrams.custom_typer import CustomTyper
 from airflow_diagrams.diagrams import DiagramContext
@@ -168,3 +169,45 @@ def generate(  # dead: disable
                 progress.advance(task_airflow_dags)
 
         rprint("[green]Done. 🎉")
+
+
+@app.command(help="Download Airflow Information to file.")
+def download(  # dead: disable
+    output_file: Path = Argument(
+        ...,
+        help="The file to download airflow information to.",
+        writable=True,
+    ),
+    dag_id: Optional[str] = Option(
+        None,
+        "--airflow-dag-id",
+        "-d",
+        help="The dag id for which to retrieve airflow information. By default it retrieves for all.",
+    ),
+    host: str = Option(
+        "http://localhost:8080/api/v1",
+        "--airflow-host",
+        "-h",
+        help="The host of the airflow rest api from where to retrieve the dag tasks information.",
+    ),
+    username: str = Option(
+        "admin",
+        "--airflow-username",
+        "-u",
+        help="The username of the airflow rest api.",
+    ),
+    password: str = Option(
+        "admin",
+        "--airflow-password",
+        "-p",
+        help="The password of the airflow rest api.",
+    ),
+) -> None:
+    rprint("[cyan]ℹ️ Retrieving Airflow information...")
+    airflow_info = retrieve_airflow_info(dag_id, host, username, password)
+
+    rprint("[yellow]📝Dumping to file...")
+    with open(output_file, "w") as file:
+        yaml.dump(airflow_info, file)
+
+    rprint("[green]Done. 🎉")
