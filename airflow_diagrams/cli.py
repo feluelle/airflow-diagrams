@@ -6,7 +6,9 @@ from typing import Optional
 
 import diagrams
 from airflow_client.client.api_client import ApiClient, Configuration
-from typer import Exit, Option, colors, echo, secho
+from rich import print as rprint
+from rich.progress import Progress, SpinnerColumn, TimeElapsedColumn
+from typer import Exit, Option
 
 from airflow_diagrams import __app_name__, __version__
 from airflow_diagrams.airflow import AirflowApiTree
@@ -20,7 +22,7 @@ app = CustomTyper()
 
 def _version_callback(value: bool) -> None:
     if value:
-        echo(f"{__app_name__} v{__version__}")
+        rprint(f"{__app_name__} v{__version__}")
         raise Exit()
 
 
@@ -97,7 +99,7 @@ def generate(  # dead: disable
     ),
 ) -> None:
     if verbose:
-        echo("💬 Running with verbose output..")
+        rprint("💬 Running with verbose output..")
         logging.basicConfig(level=logging.DEBUG)
 
     mappings: dict = load_mappings(mapping_file) if mapping_file else {}
@@ -112,33 +114,52 @@ def generate(  # dead: disable
     with ApiClient(configuration=airflow_api_config) as api_client:
         airflow_api_tree = AirflowApiTree(api_client)
 
-        for airflow_dag in airflow_api_tree.get_dags(dag_id):
-            secho(f"ℹ️ Retrieved {airflow_dag}.", fg=colors.CYAN)
-            diagram_context = DiagramContext(airflow_dag)
+        with Progress(
+            SpinnerColumn(),
+            *Progress.get_default_columns(),
+            "[yellow]Elapsed:",
+            TimeElapsedColumn(),
+            transient=True,
+        ) as progress:
+            airflow_dags = airflow_api_tree.get_dags(dag_id)
+            task_airflow_dags = progress.add_task(
+                "[green]Total Progress",
+                total=len(airflow_dags),
+            )
+            for airflow_dag in airflow_dags:
+                rprint(f"[cyan]ℹ️ Retrieved {airflow_dag}.")
+                diagram_context = DiagramContext(airflow_dag)
 
-            for airflow_task in airflow_dag.get_tasks():
-                secho(f"  ℹ️ Retrieved {airflow_task}.", fg=colors.CYAN)
-                class_ref_matcher = ClassRefMatcher(
-                    query=airflow_task.class_ref,
-                    choices=diagrams_class_refs,
-                    query_options=dict(
-                        removesuffixes=["Operator", "Sensor"],
-                        replaceabbreviations=abbreviations,
-                    ),
-                    choices_options=dict(
-                        removesuffixes=[],
-                        replaceabbreviations=abbreviations,
-                    ),
+                airflow_tasks = airflow_dag.get_tasks()
+                task_airflow_dag_tasks = progress.add_task(
+                    f"[green]DAG {airflow_dag.dag_id} Progress",
+                    total=len(airflow_tasks),
                 )
-                match_class_ref: ClassRef = class_ref_matcher.match(mappings)
-                secho(f"  🔮Found match {match_class_ref}.", fg=colors.MAGENTA)
-                diagram_context.push(
-                    airflow_task=airflow_task,
-                    node_class_ref=match_class_ref,
-                )
+                for airflow_task in airflow_tasks:
+                    rprint(f"  [cyan]ℹ️ Retrieved {airflow_task}.")
+                    class_ref_matcher = ClassRefMatcher(
+                        query=airflow_task.class_ref,
+                        choices=diagrams_class_refs,
+                        query_options=dict(
+                            removesuffixes=["Operator", "Sensor"],
+                            replaceabbreviations=abbreviations,
+                        ),
+                        choices_options=dict(
+                            removesuffixes=[],
+                            replaceabbreviations=abbreviations,
+                        ),
+                    )
+                    match_class_ref: ClassRef = class_ref_matcher.match(mappings)
+                    rprint(f"  [magenta]🔮Found match {match_class_ref}.")
+                    diagram_context.push(
+                        airflow_task=airflow_task,
+                        node_class_ref=match_class_ref,
+                    )
+                    progress.advance(task_airflow_dag_tasks)
 
-            output_file = output_path / f"{airflow_dag.dag_id}_diagrams.py"
-            diagram_context.render(output_file, label_wrap)
-            secho(f"🪄 Generated diagrams file {output_file}.", fg=colors.YELLOW)
+                output_file = output_path / f"{airflow_dag.dag_id}_diagrams.py"
+                diagram_context.render(output_file, label_wrap)
+                rprint(f"[yellow]🪄 Generated diagrams file {output_file}.")
+                progress.advance(task_airflow_dags)
 
-        secho("Done. 🎉", fg=colors.GREEN)
+        rprint("[green]Done. 🎉")

@@ -45,8 +45,9 @@ def test_generate(mock_dag):
         "  ℹ️ Retrieved Airflow Task test_task (module.path.ClassName) with downstream tasks [].\n"
         "  🔮Found match programming.flowchart.Action.\n"
         "🪄 Generated diagrams file generated/test_dag_diagrams.py.\n"
+        "\n"  # New line due to progress bar
         "Done. 🎉\n"
-    ) == result.stdout
+    ).replace("\n", "") == result.stdout.replace("\n", "")
 
 
 def test_generate_with_verbose(mock_dag):
