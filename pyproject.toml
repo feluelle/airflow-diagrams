@@ -21,6 +21,7 @@ diagrams = "^0.20.0"
 thefuzz = {version = "^0.19.0", extras = ["speedup"]}
 PyYAML = "^6.0"
 apache-airflow-client = "^2.2.0"
+click-help-colors = "^0.9.1"
 
 [tool.poetry.dev-dependencies]
 pytest = "^6.2.5"
