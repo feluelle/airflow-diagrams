@@ -111,7 +111,7 @@ def retrieve_airflow_info(
     :params username: The username of the airflow rest api.
     :params password: The password of the airflow rest api.
 
-    :returns a dictionary of Airflow information.
+    :returns: a dictionary of Airflow information.
     """
     airflow_api_config = Configuration(host=host, username=username, password=password)
     with ApiClient(configuration=airflow_api_config) as api_client:
