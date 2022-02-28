@@ -14,16 +14,21 @@
 This project aims to easily visualise your [Airflow](https://github.com/apache/airflow) DAGs on service level
 from providers like AWS, GCP, Azure, etc. via [diagrams](https://github.com/mingrammer/diagrams).
 
+![demo](assets/images/demo.svg)
+
 ## 🚀 Get started
 
 To install it from [PyPI](https://pypi.org/) run:
-```
+
+```console
 pip install airflow-diagrams
 ```
+
 > **_NOTE:_** Make sure you have [Graphviz](https://www.graphviz.org/) installed.
 
 Then just call it like this:
-```
+
+```console
 Usage: airflow-diagrams generate [OPTIONS]
 
   Generates <airflow-dag-id>_diagrams.py in <output-path> directory which
@@ -50,8 +55,11 @@ Options:
   -lw, --label-wrap TEXT       Specify either a number for label width or a
                                separator to indicate when to wrap a label. By
                                default it does not wrap labels.
+  --progress                   Specify whether to show a progress bar or not.
+                               By default it does not show progress.
   --help                       Show this message and exit.
 ```
+
 _Examples of generated diagrams can be found in the [examples](examples) directory._
 
 ## 🤔 How it Works

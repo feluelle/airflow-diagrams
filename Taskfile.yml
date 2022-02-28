@@ -1,0 +1,13 @@
+version: '3'
+
+tasks:
+  demo:
+    cmds:
+      # 1. Record demo as json
+      - asciinema rec assets/json/demo_output.json -c "airflow-diagrams generate --airflow-dag-id dbt -o examples/" --overwrite
+      # 2. Combine previous demo output and command
+      - echo "airflow-diagrams generate --airflow-dag-id dbt -o examples/" | python3 dev/demo/demo_editor.py
+      # 3. Convert demo to svg
+      - docker run --rm -i -v $PWD/assets:/data bric3/svg-term-cli svg-term --in /data/json/demo_full.json --out /data/images/demo.svg --window --width 100
+      # 4. Render diagram
+      - cd examples && python3 dbt_diagrams.py
