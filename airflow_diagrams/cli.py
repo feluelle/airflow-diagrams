@@ -97,6 +97,11 @@ def generate(  # dead: disable
         "-lw",
         help="Specify either a number for label width or a separator to indicate when to wrap a label. By default it does not wrap labels.",
     ),
+    progress_bar: bool = Option(
+        False,
+        "--progress",
+        help="Specify whether to show a progress bar or not. By default it does not show progress.",
+    ),
 ) -> None:
     if verbose:
         rprint("💬 Running with verbose output..")
@@ -120,6 +125,7 @@ def generate(  # dead: disable
             "[yellow]Elapsed:",
             TimeElapsedColumn(),
             transient=True,
+            disable=not progress_bar,
         ) as progress:
             airflow_dags = airflow_api_tree.get_dags(dag_id)
             task_airflow_dags = progress.add_task(
