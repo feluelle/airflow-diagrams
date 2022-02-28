@@ -14,12 +14,18 @@
 This project aims to easily visualise your [Airflow](https://github.com/apache/airflow) DAGs on service level
 from providers like AWS, GCP, Azure, etc. via [diagrams](https://github.com/mingrammer/diagrams).
 
+![demo](assets/images/demo.svg)
+
+![diagram](examples/dbt.png)
+
 ## 🚀 Get started
 
 To install it from [PyPI](https://pypi.org/) run:
-```
+
+```console
 pip install airflow-diagrams
 ```
+
 > **_NOTE:_** Make sure you have [Graphviz](https://www.graphviz.org/) installed.
 
 Then just call it like this:

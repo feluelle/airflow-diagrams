@@ -1,3 +1,7 @@
+ci:
+  skip:
+    - "demo"
+
 default_language_version:
     python: python3.9
 exclude: "examples/"
@@ -14,6 +18,7 @@ repos:
       - id: check-yaml
       - id: debug-statements
       - id: end-of-file-fixer
+        exclude: "assets/images/demo.svg"
       - id: sort-simple-yaml
         files: "airflow_diagrams/abbreviations.yml|examples/mapping.yml"
       - id: trailing-whitespace
@@ -76,3 +81,11 @@ repos:
     hooks:
       - id: isort
         args: ["--profile", "black"]
+  - repo: local
+    hooks:
+      - id: demo
+        name: Recreate demo
+        entry: task demo
+        language: system
+        files: \.py$
+        pass_filenames: false
