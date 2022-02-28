@@ -94,7 +94,6 @@ def generate(  # dead: disable
     label_wrap: Optional[str] = Option(
         None,
         "--label-wrap",
-        "-lw",
         help="Specify either a number for label width or a separator to indicate when to wrap a label. By default it does not wrap labels.",
     ),
     progress_bar: bool = Option(
