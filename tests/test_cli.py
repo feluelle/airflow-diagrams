@@ -58,3 +58,12 @@ def test_generate_with_verbose(mock_dag):
     )
     assert result.exit_code == 0
     assert result.stdout.startswith("💬 Running with verbose output..")
+
+
+def test_download(mock_dag):
+    """Test downloading Airflow information"""
+    result = runner.invoke(cli.app, ["download", "generated/airflow_dags.yml"])
+    assert result.exit_code == 0
+    assert (
+        "ℹ️ Retrieving Airflow information...\n" "📝Dumping to file...\n" "Done. 🎉\n"
+    ) == result.stdout

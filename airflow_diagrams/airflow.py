@@ -2,7 +2,7 @@ from dataclasses import dataclass
 from typing import Optional
 
 from airflow_client.client.api.dag_api import DAGApi
-from airflow_client.client.api_client import ApiClient
+from airflow_client.client.api_client import ApiClient, Configuration
 
 from airflow_diagrams.class_ref import ClassRef
 
@@ -95,3 +95,29 @@ class AirflowApiTree:
             )
             for dag in self.dag_api.get_dags()["dags"]
         ]
+
+
+def retrieve_airflow_info(
+    dag_id: Optional[str],
+    host: str,
+    username: str,
+    password: str,
+) -> dict:
+    """
+    Retrieve Airflow Information from Airflow API.
+
+    :params dag_id: The dag id for which to retrieve airflow information. By default it retrieves for all.
+    :params host: The host of the airflow rest api from where to retrieve the dag tasks information.
+    :params username: The username of the airflow rest api.
+    :params password: The password of the airflow rest api.
+
+    :returns: a dictionary of Airflow information.
+    """
+    airflow_api_config = Configuration(host=host, username=username, password=password)
+    with ApiClient(configuration=airflow_api_config) as api_client:
+        airflow_api_tree = AirflowApiTree(api_client)
+
+        airflow_info = {}
+        for airflow_dag in airflow_api_tree.get_dags(dag_id):
+            airflow_info[airflow_dag.dag_id] = airflow_dag.get_tasks()
+        return airflow_info

@@ -1,0 +1,32 @@
+airbyte:
+- !!python/object:airflow_diagrams.airflow.AirflowTask
+  class_ref: !!python/object:airflow_diagrams.class_ref.ClassRef
+    class_name: AirbyteJobSensor
+    module_path: airflow.providers.airbyte.sensors.airbyte
+  downstream_task_ids: []
+  group_name: null
+  task_id: airbyte_job_sensor
+- !!python/object:airflow_diagrams.airflow.AirflowTask
+  class_ref: !!python/object:airflow_diagrams.class_ref.ClassRef
+    class_name: AirbyteTriggerSyncOperator
+    module_path: airflow.providers.airbyte.operators.airbyte
+  downstream_task_ids:
+  - airbyte_job_sensor
+  group_name: null
+  task_id: airbyte_trigger_async
+dbt:
+- !!python/object:airflow_diagrams.airflow.AirflowTask
+  class_ref: !!python/object:airflow_diagrams.class_ref.ClassRef
+    class_name: KubernetesPodOperator
+    module_path: airflow.providers.cncf.kubernetes.operators.kubernetes_pod
+  downstream_task_ids: []
+  group_name: null
+  task_id: dbt_run
+mails_to_postgres:
+- !!python/object:airflow_diagrams.airflow.AirflowTask
+  class_ref: !!python/object:airflow_diagrams.class_ref.ClassRef
+    class_name: ImapMailsToS3Operator
+    module_path: providers.amazon.aws.transfers.imap_mails_to_s3
+  downstream_task_ids: []
+  group_name: null
+  task_id: transfer_imap_mails_to_s3
