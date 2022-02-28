@@ -91,8 +91,8 @@ def test_diagram_cluster(airflow_task):
 
 def test_diagram_context(mocker, airflow_dag, airflow_task):
     """Test diagram context initialisation, pushing and rendering"""
-    diagram_context = DiagramContext(airflow_dag=airflow_dag)
-    assert diagram_context.airflow_dag
+    diagram_context = DiagramContext(airflow_dag_id="foo")
+    assert diagram_context.airflow_dag_id
 
     diagram_context.push(
         airflow_task=airflow_task,
@@ -111,7 +111,7 @@ def test_diagram_context(mocker, airflow_dag, airflow_task):
         template_file="diagram.jinja2",
         context=dict(
             class_refs=diagram_context.matched_class_refs,
-            name=diagram_context.airflow_dag.dag_id,
+            name=diagram_context.airflow_dag_id,
             nodes=diagram_context.nodes,
             edges=diagram_context.edges,
             clusters=diagram_context.clusters,

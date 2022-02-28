@@ -6,13 +6,12 @@ from typing import Optional
 
 import diagrams
 import yaml
-from airflow_client.client.api_client import ApiClient, Configuration
 from rich import print as rprint
 from rich.progress import Progress, SpinnerColumn, TimeElapsedColumn
 from typer import Argument, Exit, Option
 
 from airflow_diagrams import __app_name__, __version__
-from airflow_diagrams.airflow import AirflowApiTree, retrieve_airflow_info
+from airflow_diagrams.airflow import retrieve_airflow_info
 from airflow_diagrams.class_ref import ClassRef, ClassRefMatcher, retrieve_class_refs
 from airflow_diagrams.custom_typer import CustomTyper
 from airflow_diagrams.diagrams import DiagramContext
@@ -102,6 +101,14 @@ def generate(  # dead: disable
         "--progress",
         help="Specify whether to show a progress bar or not. By default it does not show progress.",
     ),
+    from_file: Path = Option(
+        None,
+        "--from-file",
+        "-f",
+        help="The file to read Airflow information from. By default it does not read Airflow info from file.",
+        exists=True,
+        dir_okay=False,
+    ),
 ) -> None:
     if verbose:
         rprint("💬 Running with verbose output..")
@@ -115,60 +122,62 @@ def generate(  # dead: disable
 
     abbreviations: dict = load_abbreviations()
 
-    airflow_api_config = Configuration(host=host, username=username, password=password)
-    with ApiClient(configuration=airflow_api_config) as api_client:
-        airflow_api_tree = AirflowApiTree(api_client)
+    if from_file:
+        rprint("[yellow]📝Loading Airflow information from file...")
+        with open(from_file, "r") as file:
+            airflow_info = yaml.unsafe_load(file)
+    else:
+        rprint("[cyan]ℹ️ Retrieving Airflow information...")
+        airflow_info = retrieve_airflow_info(dag_id, host, username, password)
 
-        with Progress(
-            SpinnerColumn(),
-            *Progress.get_default_columns(),
-            "[yellow]Elapsed:",
-            TimeElapsedColumn(),
-            transient=True,
-            disable=not progress_bar,
-        ) as progress:
-            airflow_dags = airflow_api_tree.get_dags(dag_id)
-            task_airflow_dags = progress.add_task(
-                "[green]Total Progress",
-                total=len(airflow_dags),
+    with Progress(
+        SpinnerColumn(),
+        *Progress.get_default_columns(),
+        "[yellow]Elapsed:",
+        TimeElapsedColumn(),
+        transient=True,
+        disable=not progress_bar,
+    ) as progress:
+        task_airflow_dags = progress.add_task(
+            "[green]Total Progress",
+            total=len(airflow_info.keys()),
+        )
+        for airflow_dag_id, airflow_tasks in airflow_info.items():
+            rprint(f"[cyan]ℹ️ Processing Airflow DAG {airflow_dag_id}.")
+            diagram_context = DiagramContext(airflow_dag_id)
+
+            task_airflow_dag_tasks = progress.add_task(
+                f"[green]DAG {airflow_dag_id} Progress",
+                total=len(airflow_tasks),
             )
-            for airflow_dag in airflow_dags:
-                rprint(f"[cyan]ℹ️ Retrieved {airflow_dag}.")
-                diagram_context = DiagramContext(airflow_dag)
-
-                airflow_tasks = airflow_dag.get_tasks()
-                task_airflow_dag_tasks = progress.add_task(
-                    f"[green]DAG {airflow_dag.dag_id} Progress",
-                    total=len(airflow_tasks),
+            for airflow_task in airflow_tasks:
+                rprint(f"  [cyan]ℹ️ Processing {airflow_task}.")
+                class_ref_matcher = ClassRefMatcher(
+                    query=airflow_task.class_ref,
+                    choices=diagrams_class_refs,
+                    query_options=dict(
+                        removesuffixes=["Operator", "Sensor"],
+                        replaceabbreviations=abbreviations,
+                    ),
+                    choices_options=dict(
+                        removesuffixes=[],
+                        replaceabbreviations=abbreviations,
+                    ),
                 )
-                for airflow_task in airflow_tasks:
-                    rprint(f"  [cyan]ℹ️ Retrieved {airflow_task}.")
-                    class_ref_matcher = ClassRefMatcher(
-                        query=airflow_task.class_ref,
-                        choices=diagrams_class_refs,
-                        query_options=dict(
-                            removesuffixes=["Operator", "Sensor"],
-                            replaceabbreviations=abbreviations,
-                        ),
-                        choices_options=dict(
-                            removesuffixes=[],
-                            replaceabbreviations=abbreviations,
-                        ),
-                    )
-                    match_class_ref: ClassRef = class_ref_matcher.match(mappings)
-                    rprint(f"  [magenta]🔮Found match {match_class_ref}.")
-                    diagram_context.push(
-                        airflow_task=airflow_task,
-                        node_class_ref=match_class_ref,
-                    )
-                    progress.advance(task_airflow_dag_tasks)
+                match_class_ref: ClassRef = class_ref_matcher.match(mappings)
+                rprint(f"  [magenta]🔮Found match {match_class_ref}.")
+                diagram_context.push(
+                    airflow_task=airflow_task,
+                    node_class_ref=match_class_ref,
+                )
+                progress.advance(task_airflow_dag_tasks)
 
-                output_file = output_path / f"{airflow_dag.dag_id}_diagrams.py"
-                diagram_context.render(output_file, label_wrap)
-                rprint(f"[yellow]🪄 Generated diagrams file {output_file}.")
-                progress.advance(task_airflow_dags)
+            output_file = output_path / f"{airflow_dag_id}_diagrams.py"
+            diagram_context.render(output_file, label_wrap)
+            rprint(f"[yellow]🪄 Generated diagrams file {output_file}.")
+            progress.advance(task_airflow_dags)
 
-        rprint("[green]Done. 🎉")
+    rprint("[green]Done. 🎉")
 
 
 @app.command(help="Download Airflow Information to file.")

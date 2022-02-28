@@ -9,7 +9,7 @@ from jinja2.environment import Environment
 from jinja2.loaders import FileSystemLoader
 from jinja2.runtime import StrictUndefined
 
-from airflow_diagrams.airflow import AirflowDag, AirflowTask
+from airflow_diagrams.airflow import AirflowTask
 from airflow_diagrams.class_ref import ClassRef
 
 
@@ -114,11 +114,11 @@ class DiagramContext:
     """
     The whole diagram context in a diagram representation.
 
-    :params airflow_dag: The airflow dag to render the context for.
+    :params airflow_dag_id: The airflow dag id to render the context for.
     """
 
-    def __init__(self, airflow_dag: AirflowDag) -> None:
-        self.airflow_dag = airflow_dag
+    def __init__(self, airflow_dag_id: str) -> None:
+        self.airflow_dag_id = airflow_dag_id
         self.matched_class_refs: set[ClassRef] = set()
         self.nodes: list[DiagramNode] = []
         self.edges: list[DiagramEdge] = []
@@ -167,7 +167,7 @@ class DiagramContext:
             template_file="diagram.jinja2",
             context=dict(
                 class_refs=self.matched_class_refs,
-                name=self.airflow_dag.dag_id,
+                name=self.airflow_dag_id,
                 nodes=self.nodes,
                 edges=self.edges,
                 clusters=self.clusters,
