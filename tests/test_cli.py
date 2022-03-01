@@ -50,6 +50,23 @@ def test_generate(mock_dag):
     ).replace("\n", "") == result.stdout.replace("\n", "")
 
 
+def test_generate_with_progress(mock_dag):
+    """Test end-to-end"""
+    result = runner.invoke(
+        cli.app,
+        ["generate", "--output-path", "generated/", "--progress"],
+    )
+    assert result.exit_code == 0
+    assert (
+        "ℹ️ Retrieving Airflow information...\n"
+        "ℹ️ Processing Airflow DAG test_dag...\n"
+        "  ℹ️ Processing Airflow Task test_task (module.path.ClassName) with downstream tasks []...\n"
+        "  🔮Found match programming.flowchart.Action.\n"
+        "🪄 Generated diagrams file generated/test_dag_diagrams.py.\n"
+        "Done. 🎉\n"
+    ).replace("\n", "") == result.stdout.replace("\n", "")
+
+
 def test_generate_with_verbose(mock_dag):
     """Test that logging level is DEBUG"""
     result = runner.invoke(

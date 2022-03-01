@@ -7,6 +7,7 @@ from typing import Optional
 import diagrams
 import yaml
 from rich import print as rprint
+from rich.logging import RichHandler
 from rich.progress import Progress, SpinnerColumn, TimeElapsedColumn
 from typer import Argument, Exit, Option
 
@@ -22,7 +23,7 @@ app = CustomTyper()
 
 def _version_callback(value: bool) -> None:
     if value:
-        rprint(f"{__app_name__} v{__version__}")
+        print(f"{__app_name__} v{__version__}")
         raise Exit()
 
 
@@ -112,7 +113,12 @@ def generate(  # dead: disable
 ) -> None:
     if verbose:
         rprint("💬 Running with verbose output...")
-        logging.basicConfig(level=logging.DEBUG)
+        logging.basicConfig(
+            level=logging.DEBUG,
+            format="%(message)s",
+            datefmt="[%X]",
+            handlers=[RichHandler()],
+        )
 
     mappings: dict = load_mappings(mapping_file) if mapping_file else {}
 
