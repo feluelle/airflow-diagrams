@@ -66,3 +66,10 @@ def test_airflow_api_tree_get_dags_with_dag_id(airflow_api_tree):
         AirflowDag(dag_id=dag_id, dag_api=airflow_api_tree.dag_api),
     ]
     airflow_api_tree.dag_api.assert_not_called()
+
+
+def test_airflow_dag_eq(airflow_api_tree):
+    """Test Airflow DAG equality"""
+    airflow_dag_kwargs = dict(dag_id="test_dag", dag_api=airflow_api_tree.dag_api)
+    assert AirflowDag(**airflow_dag_kwargs) == AirflowDag(**airflow_dag_kwargs)
+    assert AirflowDag(**airflow_dag_kwargs) != dict(**airflow_dag_kwargs)
