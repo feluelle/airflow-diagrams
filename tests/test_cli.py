@@ -60,6 +60,7 @@ def test_generate_with_verbose(mock_dag):
     assert result.stdout.startswith("💬 Running with verbose output..")
 
 
+@pytest.mark.order(after="test_download")
 def test_generate_from_file(mock_dag):
     """Test generate from Airflow info file"""
     result = runner.invoke(

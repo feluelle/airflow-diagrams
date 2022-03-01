@@ -30,6 +30,7 @@ markupsafe = "~2.0.1" # due to https://github.com/pallets/markupsafe/issues/282
 pytest = "^6.2.5"
 pytest-cov = "^3.0.0"
 pytest-mock = "^3.6.1"
+pytest-order = "^1.0.1"
 
 [build-system]
 requires = ["poetry-core>=1.0.0"]

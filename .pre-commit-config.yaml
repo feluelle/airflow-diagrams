@@ -87,5 +87,6 @@ repos:
         name: Recreate demo
         entry: task demo
         language: system
-        files: \.py$
+        files: ^airflow_diagrams/
+        types: [file, python]
         pass_filenames: false
