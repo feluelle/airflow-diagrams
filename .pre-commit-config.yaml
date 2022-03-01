@@ -81,6 +81,11 @@ repos:
     hooks:
       - id: isort
         args: ["--profile", "black"]
+  - repo: https://github.com/crate-ci/typos
+    rev: v1.4.1
+    hooks:
+      - id: typos
+        exclude: \.svg$
   - repo: local
     hooks:
       - id: demo
