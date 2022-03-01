@@ -42,8 +42,8 @@ def test_generate(mock_dag):
     assert result.exit_code == 0
     assert (
         "ℹ️ Retrieving Airflow information...\n"
-        "ℹ️ Processing Airflow DAG test_dag.\n"
-        "  ℹ️ Processing Airflow Task test_task (module.path.ClassName) with downstream tasks [].\n"
+        "ℹ️ Processing Airflow DAG test_dag...\n"
+        "  ℹ️ Processing Airflow Task test_task (module.path.ClassName) with downstream tasks []...\n"
         "  🔮Found match programming.flowchart.Action.\n"
         "🪄 Generated diagrams file generated/test_dag_diagrams.py.\n"
         "Done. 🎉\n"
@@ -57,7 +57,7 @@ def test_generate_with_verbose(mock_dag):
         ["generate", "--output-path", "generated/", "--verbose"],
     )
     assert result.exit_code == 0
-    assert result.stdout.startswith("💬 Running with verbose output..")
+    assert result.stdout.startswith("💬 Running with verbose output...")
 
 
 @pytest.mark.order(after="test_download")
@@ -70,8 +70,8 @@ def test_generate_from_file(mock_dag):
     assert result.exit_code == 0
     assert (
         "📝Loading Airflow information from file...\n"
-        "ℹ️ Processing Airflow DAG test_dag.\n"
-        "  ℹ️ Processing Airflow Task test_task (module.path.ClassName) with downstream tasks [].\n"
+        "ℹ️ Processing Airflow DAG test_dag...\n"
+        "  ℹ️ Processing Airflow Task test_task (module.path.ClassName) with downstream tasks []...\n"
         "  🔮Found match programming.flowchart.Action.\n"
         "🪄 Generated diagrams file generated/test_dag_diagrams.py.\n"
         "Done. 🎉\n"
@@ -84,4 +84,4 @@ def test_download(mock_dag):
     assert result.exit_code == 0
     assert (
         "ℹ️ Retrieving Airflow information...\n" "📝Dumping to file...\n" "Done. 🎉\n"
-    ) == result.stdout
+    ).replace("\n", "") == result.stdout.replace("\n", "")
