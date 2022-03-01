@@ -44,14 +44,6 @@ class AirflowDag:
             return self.dag_id == __o.dag_id
         return False
 
-    def __str__(self) -> str:
-        """
-        Define pretty string reprenstation.
-
-        :returns: the string representation of the Airflow DAG.
-        """
-        return f"Airflow DAG {self.dag_id}"
-
     def get_tasks(self) -> list[AirflowTask]:
         """
         Retrieve Airflow Tasks from the dag api.

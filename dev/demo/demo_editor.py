@@ -56,10 +56,12 @@ if __name__ == "__main__":
         input_file="assets/json/demo_output.json",
         output_file="assets/json/demo_full.json",
         time_delta=0.1,
-        header=dict(height=20, width=100, timestamp=1646050456),
+        header=dict(height=20, width=100, timestamp=0),
     ) as demo_editor:
         # Insert cursor
-        cursor = "\\u001b[K\\u001b[J\\r\\n\\u001b[1;32m❯\\u001b[0m \\u001b[K\\r\\u001b[C\\u001b[C"
+        cursor = (
+            "\\u001b[K\\u001b[J\\u001b[1;32m❯\\u001b[0m \\u001b[K\\r\\u001b[C\\u001b[C"
+        )
         demo_editor.outputs.insert(0, cursor)
         # Insert command
         command = input("Enter command: ")

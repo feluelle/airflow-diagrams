@@ -41,11 +41,11 @@ def test_generate(mock_dag):
     result = runner.invoke(cli.app, ["generate", "--output-path", "generated/"])
     assert result.exit_code == 0
     assert (
-        "ℹ️ Retrieved Airflow DAG test_dag.\n"
-        "  ℹ️ Retrieved Airflow Task test_task (module.path.ClassName) with downstream tasks [].\n"
+        "ℹ️ Retrieving Airflow information...\n"
+        "ℹ️ Processing Airflow DAG test_dag.\n"
+        "  ℹ️ Processing Airflow Task test_task (module.path.ClassName) with downstream tasks [].\n"
         "  🔮Found match programming.flowchart.Action.\n"
         "🪄 Generated diagrams file generated/test_dag_diagrams.py.\n"
-        "\n"  # New line due to progress bar
         "Done. 🎉\n"
     ).replace("\n", "") == result.stdout.replace("\n", "")
 
@@ -58,6 +58,24 @@ def test_generate_with_verbose(mock_dag):
     )
     assert result.exit_code == 0
     assert result.stdout.startswith("💬 Running with verbose output..")
+
+
+@pytest.mark.order(after="test_download")
+def test_generate_from_file(mock_dag):
+    """Test generate from Airflow info file"""
+    result = runner.invoke(
+        cli.app,
+        ["generate", "--output-path", "generated/", "-f", "generated/airflow_dags.yml"],
+    )
+    assert result.exit_code == 0
+    assert (
+        "📝Loading Airflow information from file...\n"
+        "ℹ️ Processing Airflow DAG test_dag.\n"
+        "  ℹ️ Processing Airflow Task test_task (module.path.ClassName) with downstream tasks [].\n"
+        "  🔮Found match programming.flowchart.Action.\n"
+        "🪄 Generated diagrams file generated/test_dag_diagrams.py.\n"
+        "Done. 🎉\n"
+    ).replace("\n", "") == result.stdout.replace("\n", "")
 
 
 def test_download(mock_dag):

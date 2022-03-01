@@ -81,11 +81,17 @@ repos:
     hooks:
       - id: isort
         args: ["--profile", "black"]
+  - repo: https://github.com/crate-ci/typos
+    rev: v1.4.1
+    hooks:
+      - id: typos
+        exclude: \.svg$
   - repo: local
     hooks:
       - id: demo
         name: Recreate demo
         entry: task demo
         language: system
-        files: \.py$
+        files: ^airflow_diagrams/|^dev/demo/
+        types: [file, python]
         pass_filenames: false
