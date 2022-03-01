@@ -89,7 +89,7 @@ def test_diagram_cluster(airflow_task):
     assert diagram_cluster.get_variable() == to_var(airflow_task.group_name)
 
 
-def test_diagram_context(mocker, airflow_dag, airflow_task):
+def test_diagram_context(mocker, airflow_task):
     """Test diagram context initialisation, pushing and rendering"""
     diagram_context = DiagramContext(airflow_dag_id="foo")
     assert diagram_context.airflow_dag_id
