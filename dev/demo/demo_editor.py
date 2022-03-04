@@ -68,4 +68,7 @@ if __name__ == "__main__":
         for index, char in enumerate(command, start=1):
             demo_editor.outputs.insert(index, char)
         # Insert new line
-        demo_editor.outputs.insert(len(command) + 1, "\\r\\n")
+        new_line = "\\r\\n"
+        demo_editor.outputs.insert(len(command) + 1, new_line)
+        # Append new line + cursor at the end
+        demo_editor.outputs.append(new_line + cursor)
