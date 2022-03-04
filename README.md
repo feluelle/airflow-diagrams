@@ -9,7 +9,7 @@
 [![PyPI - Python Version](https://img.shields.io/pypi/pyversions/airflow-diagrams)](https://pypi.org/project/airflow-diagrams/)
 [![PyPI version](https://img.shields.io/pypi/dm/airflow-diagrams)](https://pypi.org/project/airflow-diagrams/)
 
-> Auto-generated Diagrams from Airflow DAGs.
+> Auto-generated Diagrams from Airflow DAGs. 🔮 🪄
 
 This project aims to easily visualise your [Airflow](https://github.com/apache/airflow) DAGs on service level
 from providers like AWS, GCP, Azure, etc. via [diagrams](https://github.com/mingrammer/diagrams).
@@ -64,11 +64,9 @@ _Examples of generated diagrams can be found in the [examples](examples) directo
 
 ## 🤔 How it Works
 
-ℹ️ At first it connects, by using the official [Apache Airflow Python Client](https://github.com/apache/airflow-client-python), to your Airflow installation to retrieve all DAGs (in case you don't specify any `dag_id`) and all Tasks for the DAG(s).
-
-🔮 Then it tries to find a diagram node for every DAGs task, by using [Fuzzy String Matching](https://github.com/seatgeek/thefuzz), that matches the most. If you are unhappy about the match you can also provide a `mapping.yml` file to statically map from Airflow task to diagram node.
-
-🪄 Lastly it renders the results into a python file which can then be executed to retrieve the rendered diagram. 🎉
+1. ℹ️ It connects, by using the official [Apache Airflow Python Client](https://github.com/apache/airflow-client-python), to your Airflow installation to retrieve all DAGs (in case you don't specify any `dag_id`) and all Tasks for the DAG(s).
+1. 🪄 It processes every DAG and its Tasks and 🔮 tries to find a diagram node for every DAGs task, by using [Fuzzy String Matching](https://github.com/seatgeek/thefuzz), that matches the most. If you are unhappy about the match you can also provide a `mapping.yml` file to statically map from Airflow task to diagram node.
+1. 🎨 It renders the results into a python file which can then be executed to retrieve the rendered diagram. 🎉
 
 ## ❤️ Contributing
 
