@@ -1,5 +1,5 @@
 from dataclasses import dataclass
-from typing import Optional
+from typing import Generator, Optional
 
 from airflow_client.client.api.dag_api import DAGApi
 from airflow_client.client.api_client import ApiClient, Configuration
@@ -94,7 +94,7 @@ def retrieve_airflow_info(
     host: str,
     username: str,
     password: str,
-) -> dict:
+) -> Generator:
     """
     Retrieve Airflow Information from Airflow API.
 
@@ -103,13 +103,15 @@ def retrieve_airflow_info(
     :params username: The username of the airflow rest api.
     :params password: The password of the airflow rest api.
 
-    :returns: a dictionary of Airflow information.
+    :returns: a generator of Airflow information.
     """
     airflow_api_config = Configuration(host=host, username=username, password=password)
     with ApiClient(configuration=airflow_api_config) as api_client:
         airflow_api_tree = AirflowApiTree(api_client)
 
-        airflow_info = {}
-        for airflow_dag in airflow_api_tree.get_dags(dag_id):
-            airflow_info[airflow_dag.dag_id] = airflow_dag.get_tasks()
-        return airflow_info
+        airflow_dags = airflow_api_tree.get_dags(dag_id)
+        yield airflow_dags
+
+        for airflow_dag in airflow_dags:
+            airflow_tasks = airflow_dag.get_tasks()
+            yield airflow_dag.dag_id, airflow_tasks
