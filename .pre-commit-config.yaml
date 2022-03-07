@@ -66,7 +66,7 @@ repos:
       - id: flake8
         args: ["--max-line-length", "88", "--extend-ignore", "E203,E501"]
   - repo: https://github.com/PyCQA/bandit
-    rev: 1.7.3
+    rev: 1.7.4
     hooks:
       - id: bandit
         args: ["-c", ".bandit"]
@@ -82,7 +82,7 @@ repos:
       - id: isort
         args: ["--profile", "black"]
   - repo: https://github.com/crate-ci/typos
-    rev: v1.4.1
+    rev: typos-v0.8.6
     hooks:
       - id: typos
         exclude: \.svg$
