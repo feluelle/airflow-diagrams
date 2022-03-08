@@ -16,6 +16,10 @@ from providers like AWS, GCP, Azure, etc. via [diagrams](https://github.com/ming
 
 ![demo](assets/images/demo.svg)
 
+Before | After
+--- | ---
+![dag](assets/images/dbt_dag.png) | ![diagram](assets/images/dbt_diagram.png)
+
 ## 🚀 Get started
 
 To install it from [PyPI](https://pypi.org/) run:
