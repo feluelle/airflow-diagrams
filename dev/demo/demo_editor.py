@@ -11,6 +11,7 @@ class DemoEditor:
     :params output_file: The file path to the final demo.
     :params time_delta: The time delta used between each output.
     :params header: The asciinema header json. If not set read from recording.
+    :params restart_after: Restart after a number of seconds.
     """
 
     def __init__(
@@ -19,11 +20,13 @@ class DemoEditor:
         output_file: str,
         time_delta: float,
         header: Optional[dict],
+        restart_after: int,
     ) -> None:
         self.input_file = input_file
         self.output_file = output_file
         self.time_delta = time_delta
         self.header = header or {}
+        self.restart_after = restart_after
         self.outputs: List[str] = []
         with open(self.input_file, "r") as file:
             # Create header
@@ -48,7 +51,9 @@ class DemoEditor:
                 for index, output in enumerate(self.outputs, start=1)
             )
             # Write new line and wait for a second
-            file.write(f'[{len(self.outputs) * self.time_delta + 1}, "o", "\\r\\n"]\n')
+            file.write(
+                f'[{len(self.outputs) * self.time_delta + self.restart_after}, "o", "\\r\\n"]\n',
+            )
 
 
 if __name__ == "__main__":
@@ -57,6 +62,7 @@ if __name__ == "__main__":
         output_file="assets/json/demo_full.json",
         time_delta=0.1,
         header=dict(height=20, width=100, timestamp=0),
+        restart_after=3,
     ) as demo_editor:
         # Insert cursor
         cursor = (
