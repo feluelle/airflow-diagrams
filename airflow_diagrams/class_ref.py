@@ -1,9 +1,9 @@
 import ast
 import logging
 import os
+import re
 from dataclasses import dataclass
-from re import findall
-from typing import Optional
+from typing import Callable, Optional
 
 from thefuzz import fuzz, process
 
@@ -54,14 +54,18 @@ class ClassRefMatchObject:
     text: str
 
 
+class MatchNotFoundError(Exception):
+    """An exception raised when no match could be found."""
+
+
 @dataclass
 class ClassRefMatcher:
     """A class for matching class references."""
 
     query: ClassRef
+    query_cleanup: Optional[Callable]
     choices: list[ClassRef]
-    query_options: dict
-    choices_options: dict
+    abbreviations: Optional[dict]
 
     def match(self, mappings: Optional[dict] = None) -> ClassRef:
         """
@@ -77,15 +81,18 @@ class ClassRefMatcher:
                 logging.debug("Mapped to: %s", mapping_to)
                 return ClassRef.from_string(mapping_to)
 
+        _query_str = str(self.query)
+        if self.query_cleanup:
+            _query_str = self.query_cleanup(_query_str)
         _query = ClassRefMatchObject(
             class_ref=self.query,
-            text=self._generate_text(class_ref=self.query, **self.query_options),
+            text=self._generate_text(class_ref_str=_query_str),
         )
         logging.debug("Query: %s", _query)
         _choices = [
             ClassRefMatchObject(
                 class_ref=choice,
-                text=self._generate_text(class_ref=choice, **self.choices_options),
+                text=self._generate_text(class_ref_str=str(choice)),
             )
             for choice in self.choices
         ]
@@ -95,62 +102,35 @@ class ClassRefMatcher:
             scorer=fuzz.token_set_ratio,
         )
         logging.debug("Result: %s", result)
-        return next(
-            filter(
-                lambda _choice: _choice.text == result[0]
-                and result[1] >= MATCHING_PERCENTAGE_MIN,
-                _choices,
-            ),
-            self._get_fallback_class_ref_match_object(),
-        ).class_ref
+        try:
+            return next(
+                filter(
+                    lambda _choice: _choice.text == result[0]
+                    and result[1] >= MATCHING_PERCENTAGE_MIN,
+                    _choices,
+                ),
+            ).class_ref
+        except StopIteration:
+            raise MatchNotFoundError("No match found!")
 
-    def _get_fallback_class_ref_match_object(self) -> ClassRefMatchObject:
-        class_ref_blank = ClassRef(
-            module_path="programming.flowchart",
-            class_name="Action",
+    def _generate_text(self, class_ref_str: str) -> str:
+        if self.abbreviations:
+            class_ref_str = self._replace_abbreviations(
+                class_ref_str,
+                abbreviations=self.abbreviations,
+            )
+        class_ref = ClassRef.from_string(class_ref_str)
+        class_ref.class_name = " ".join(
+            re.findall(r"[A-Z][^A-Z]*", class_ref.class_name),
         )
-        return ClassRefMatchObject(
-            class_ref=class_ref_blank,
-            text=self._generate_text(class_ref=class_ref_blank, **self.choices_options),
-        )
-
-    def _generate_text(
-        self,
-        class_ref: ClassRef,
-        removesuffixes: Optional[list[str]],
-        replaceabbreviations: Optional[dict],
-    ) -> str:
-        class_name = class_ref.class_name
-        if removesuffixes:
-            class_name = self._remove_suffixes(
-                class_name,
-                suffixes=removesuffixes,
-            )
-        if replaceabbreviations:
-            class_name = self._replace_abbreviations(
-                class_name,
-                abbreviations=replaceabbreviations,
-            )
-        class_name = " ".join(findall("[A-Z][^A-Z]*", class_name))
-
-        module_path = class_ref.module_path
-        if replaceabbreviations:
-            module_path = self._replace_abbreviations(
-                module_path,
-                abbreviations=replaceabbreviations,
-            )
-        module_path = module_path.replace(".", " ").replace("_", " ")
-
-        return f"{module_path} {class_name}"
-
-    def _remove_suffixes(self, word: str, suffixes: list[str]) -> str:
-        for suffix in suffixes:
-            word = word.removesuffix(suffix)
-        return word
+        return str(class_ref).replace(".", " ").replace("_", " ")
 
     def _replace_abbreviations(self, word: str, abbreviations: dict) -> str:
         for k, v in abbreviations.items():
-            word = word.replace(k, v)
+            word = word.replace(k, v).replace(
+                k.lower(),
+                "_".join(re.findall(r"[A-Z][^A-Z]*", v)).lower(),
+            )
         return word
 
 
