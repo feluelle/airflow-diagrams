@@ -11,3 +11,11 @@ tasks:
       - docker run --rm -i -v $PWD/assets:/data bric3/svg-term-cli svg-term --in /data/json/demo_full.json --out /data/images/demo.svg --window --width 100
       # 4. Render diagram
       - cd examples && python3 dbt_diagrams.py
+  fake-dag:
+    cmds:
+      # 1. Create fake dag
+      - python3 dev/airflow/airflow_dags_creator.py
+      # 2. Generate diagram from fake dag
+      - airflow-diagrams generate -f generated/airflow_dags_random.yml -o generated/ -v
+      # 3. Render diagram
+      - cd generated && python3 random_dag_diagrams.py
