@@ -36,6 +36,14 @@ def mock_dag(airflow_api_tree):
                 task_id="test_task",
                 downstream_task_ids=[],
             ),
+            dict(
+                class_ref=dict(
+                    module_path="airflow.providers.amazon.aws.operators.s3",
+                    class_name="S3CreateBucketOperator",
+                ),
+                task_id="test_task_real",
+                downstream_task_ids=[],
+            ),
         ],
     )
 
@@ -57,6 +65,8 @@ def test_generate(mock_dag):
         "🪄 Processing Airflow DAG test_dag...",
         "  🪄 Processing Airflow Task test_task (module.operators.path.ClassNameOperator) with downstream tasks []...",
         "  🔮No match found! Falling back to programming.flowchart.Action.",
+        "  🪄 Processing Airflow Task test_task_real (airflow.providers.amazon.aws.operators.s3.S3CreateBucketOperator) with downstream tasks []...",
+        "  🔮Found match aws.storage.SimpleStorageServiceS3Bucket.",
         "🎨Generated diagrams file generated/test_dag_diagrams.py.",
         "Done. 🎉",
     ) == strip_white_space(result.stdout)
@@ -75,6 +85,8 @@ def test_generate_with_progress(mock_dag):
         "🪄 Processing Airflow DAG test_dag...",
         "  🪄 Processing Airflow Task test_task (module.operators.path.ClassNameOperator) with downstream tasks []...",
         "  🔮No match found! Falling back to programming.flowchart.Action.",
+        "  🪄 Processing Airflow Task test_task_real (airflow.providers.amazon.aws.operators.s3.S3CreateBucketOperator) with downstream tasks []...",
+        "  🔮Found match aws.storage.SimpleStorageServiceS3Bucket.",
         "🎨Generated diagrams file generated/test_dag_diagrams.py.",
         "Done. 🎉",
     ) == strip_white_space(result.stdout)
@@ -103,6 +115,8 @@ def test_generate_from_file(mock_dag):
         "🪄 Processing Airflow DAG test_dag...",
         "  🪄 Processing Airflow Task test_task (module.operators.path.ClassNameOperator) with downstream tasks []...",
         "  🔮No match found! Falling back to programming.flowchart.Action.",
+        "  🪄 Processing Airflow Task test_task_real (airflow.providers.amazon.aws.operators.s3.S3CreateBucketOperator) with downstream tasks []...",
+        "  🔮Found match aws.storage.SimpleStorageServiceS3Bucket.",
         "🎨Generated diagrams file generated/test_dag_diagrams.py.",
         "Done. 🎉",
     ) == strip_white_space(result.stdout)
