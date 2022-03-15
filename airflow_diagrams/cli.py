@@ -13,7 +13,12 @@ from typer import Argument, Exit, Option
 
 from airflow_diagrams import __app_name__, __version__
 from airflow_diagrams.airflow import retrieve_airflow_info
-from airflow_diagrams.class_ref import ClassRef, ClassRefMatcher, retrieve_class_refs
+from airflow_diagrams.class_ref import (
+    ClassRef,
+    ClassRefMatcher,
+    MatchNotFoundError,
+    retrieve_class_refs,
+)
 from airflow_diagrams.custom_typer import CustomTyper
 from airflow_diagrams.diagrams import DiagramContext
 from airflow_diagrams.utils import load_abbreviations, load_mappings
@@ -183,18 +188,26 @@ def generate(  # dead: disable
                 rprint(f"[blue dim]  🪄 Processing {airflow_task}...")
                 class_ref_matcher = ClassRefMatcher(
                     query=airflow_task.class_ref,
+                    query_cleanup=lambda query_str: (
+                        query_str.removeprefix("airflow.providers.")
+                        .replace(".operators.", ".")
+                        .replace(".sensors.", ".")
+                        .replace(".transfers.", ".")
+                        .removesuffix("Operator")
+                        .removesuffix("Sensor")
+                    ),
                     choices=diagrams_class_refs,
-                    query_options=dict(
-                        removesuffixes=["Operator", "Sensor"],
-                        replaceabbreviations=abbreviations,
-                    ),
-                    choices_options=dict(
-                        removesuffixes=[],
-                        replaceabbreviations=abbreviations,
-                    ),
+                    abbreviations=abbreviations,
                 )
-                match_class_ref: ClassRef = class_ref_matcher.match(mappings)
-                rprint(f"[magenta dim]  🔮Found match {match_class_ref}.")
+                try:
+                    match_class_ref = class_ref_matcher.match(mappings)
+                    rprint(f"[magenta dim]  🔮Found match {match_class_ref}.")
+                except MatchNotFoundError as error:
+                    match_class_ref = ClassRef(
+                        module_path="programming.flowchart",
+                        class_name="Action",
+                    )
+                    rprint(f"[red dim]  🔮{error} Falling back to {match_class_ref}.")
                 diagram_context.push(
                     airflow_task=airflow_task,
                     node_class_ref=match_class_ref,

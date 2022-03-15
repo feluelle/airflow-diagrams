@@ -8,8 +8,8 @@ from airflow_diagrams.class_ref import ClassRef, ClassRefMatcher, retrieve_class
 @pytest.fixture
 def class_ref():
     return ClassRef(
-        module_path="module.path",
-        class_name="ClassName",
+        module_path="module.operators.path",
+        class_name="ClassNameOperator",
     )
 
 
@@ -17,15 +17,16 @@ def class_ref():
 def class_ref_matcher(class_ref):
     return ClassRefMatcher(
         query=class_ref,
+        query_cleanup=lambda query_str: (
+            query_str.removeprefix("airflow.providers.")
+            .replace(".operators.", ".")
+            .replace(".sensors.", ".")
+            .replace(".transfers.", ".")
+            .removesuffix("Operator")
+            .removesuffix("Sensor")
+        ),
         choices=[class_ref],
-        query_options=dict(
-            removesuffixes=[],
-            replaceabbreviations=[],
-        ),
-        choices_options=dict(
-            removesuffixes=[],
-            replaceabbreviations=[],
-        ),
+        abbreviations=dict(),
     )
 
 
@@ -42,7 +43,7 @@ def test_class_ref_matcher_match(class_ref_matcher):
 def test_class_ref_matcher_match_with_mappings(class_ref_matcher):
     """Test matching with mappings"""
     query_str = str(class_ref_matcher.query)
-    mappings = {query_str: "test.custom.module.path.ClassName"}
+    mappings = {query_str: "test.custom.module.operators.path.ClassNameOperator"}
     assert class_ref_matcher.match(mappings=mappings) == ClassRef.from_string(
         mappings[query_str],
     )
