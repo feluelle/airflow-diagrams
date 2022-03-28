@@ -1,5 +1,7 @@
 ADLS: AzureDataLakeStorage
 
+API: ApplicationProgrammingInterface
+
 AWS: AmazonWebServices
 
 Dbt: DataBuildTool
@@ -19,6 +21,8 @@ GCP: GoogleCloudPlatform
 GCS: GoogleCloudStorage
 
 GDrive: GoogleDrive
+
+GKE: GoogleKubernetesEngine
 
 Imap: InternetMessageAccessProtocol
 
