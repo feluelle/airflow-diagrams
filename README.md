@@ -32,37 +32,7 @@ pip install airflow-diagrams
 
 Then just call it like this:
 
-```console
-Usage: airflow-diagrams generate [OPTIONS]
-
-  Generates <airflow-dag-id>_diagrams.py in <output-path> directory which
-  contains the definition to create a diagram. Run this file and you will get
-  a rendered diagram.
-
-Options:
-  -d, --airflow-dag-id TEXT    The dag id from which to generate the diagram.
-                               By default it generates for all.
-  -h, --airflow-host TEXT      The host of the airflow rest api from where to
-                               retrieve the dag tasks information.  [default:
-                               http://localhost:8080/api/v1]
-  -u, --airflow-username TEXT  The username of the airflow rest api.
-                               [default: admin]
-  -p, --airflow-password TEXT  The password of the airflow rest api.
-                               [default: admin]
-  -o, --output-path DIRECTORY  The path to output the diagrams to.  [default:
-                               .]
-  -m, --mapping-file FILE      The mapping file to use for static mapping from
-                               Airflow task to diagram node. By default no
-                               mapping file is being used.
-  -v, --verbose                Verbose output i.e. useful for debugging
-                               purposes.
-  --label-wrap TEXT            Specify either a number for label width or a
-                               separator to indicate when to wrap a label. By
-                               default it does not wrap labels.
-  --progress                   Specify whether to show a progress bar or not.
-                               By default it does not show progress.
-  --help                       Show this message and exit.
-```
+![usage](assets/images/usage.png)
 
 _Examples of generated diagrams can be found in the [examples](examples) directory._
 

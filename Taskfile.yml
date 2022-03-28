@@ -19,3 +19,7 @@ tasks:
       - airflow-diagrams generate -f generated/airflow_dags_random.yml -o generated/ -v
       # 3. Render diagram
       - cd generated && python3 random_dag_diagrams.py
+  usage:
+    cmds:
+      # Convert --help output to carbon-now usage screenshot
+      - airflow-diagrams generate --help | python3 dev/usage/usage_generator.py

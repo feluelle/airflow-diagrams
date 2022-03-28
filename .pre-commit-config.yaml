@@ -95,3 +95,9 @@ repos:
         files: ^airflow_diagrams/|^dev/demo/
         types: [file, python]
         pass_filenames: false
+      - id: usage
+        name: Recreate usage
+        entry: task usage
+        language: system
+        files: "airflow_diagrams/cli.py"
+        pass_filenames: false
