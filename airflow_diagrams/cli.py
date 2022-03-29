@@ -1,6 +1,7 @@
 """This module provides the airflow-diagrams CLI."""
 import logging
 import os
+import re
 from pathlib import Path
 from typing import Optional
 
@@ -197,6 +198,10 @@ def generate(  # dead: disable
                         .removesuffix("Sensor")
                     ),
                     choices=diagrams_class_refs,
+                    choice_cleanup=lambda choice_str: (
+                        # The 2nd level of diagrams module path is irrelevant for matching
+                        ".".join(re.findall(r"(.*)\.(?:.*)\.(.*)", choice_str)[0])
+                    ),
                     abbreviations=abbreviations,
                 )
                 try:
