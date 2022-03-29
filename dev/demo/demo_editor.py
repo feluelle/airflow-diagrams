@@ -1,6 +1,6 @@
 import json
 import re
-from typing import List, Optional
+from typing import Optional
 
 
 class DemoEditor:
@@ -27,7 +27,7 @@ class DemoEditor:
         self.time_delta = time_delta
         self.header = header or {}
         self.restart_after = restart_after
-        self.outputs: List[str] = []
+        self.outputs: list[str] = []
         with open(self.input_file, "r") as file:
             # Create header
             for k, v in json.loads(file.readline()).items():

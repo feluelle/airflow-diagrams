@@ -7,8 +7,6 @@ from typing import Callable, Optional
 from fs import open_fs
 from thefuzz import fuzz, process
 
-MATCHING_PERCENTAGE_MIN: int = 75
-
 
 @dataclass
 class ClassRef:
@@ -63,11 +61,12 @@ class ClassRefMatcher:
     """A class for matching class references."""
 
     query: ClassRef
-    query_cleanup: Optional[Callable]
+    query_cleanup: Optional[Callable[[str], str]]
     choices: list[ClassRef]
-    abbreviations: Optional[dict]
+    choice_cleanup: Optional[Callable[[str], str]]
+    abbreviations: Optional[dict[str, str]]
 
-    def match(self, mappings: Optional[dict] = None) -> ClassRef:
+    def match(self, mappings: Optional[dict[str, str]] = None) -> ClassRef:
         """
         Find best match for a query, giving choices. Optionally using mappings.
 
@@ -81,37 +80,38 @@ class ClassRefMatcher:
                 logging.debug("Mapped to: %s", mapping_to)
                 return ClassRef.from_string(mapping_to)
 
-        _query_str = str(self.query)
-        if self.query_cleanup:
-            _query_str = self.query_cleanup(_query_str)
         _query = ClassRefMatchObject(
             class_ref=self.query,
-            text=self._generate_text(class_ref_str=_query_str),
+            text=self._generate_text(
+                class_ref_str=self.query_cleanup(str(self.query))
+                if self.query_cleanup
+                else str(self.query),
+            ),
         )
         logging.debug("Query: %s", _query)
         _choices = [
             ClassRefMatchObject(
                 class_ref=choice,
-                text=self._generate_text(class_ref_str=str(choice)),
+                text=self._generate_text(
+                    class_ref_str=self.choice_cleanup(str(choice))
+                    if self.choice_cleanup
+                    else str(choice),
+                ),
             )
             for choice in self.choices
         ]
-        result = process.extractOne(
+        matches = process.extractBests(
             _query.text,
             [_choice.text for _choice in _choices],
             scorer=fuzz.token_set_ratio,
+            score_cutoff=75,
         )
-        logging.debug("Result: %s", result)
-        try:
-            return next(
-                filter(
-                    lambda _choice: _choice.text == result[0]
-                    and result[1] >= MATCHING_PERCENTAGE_MIN,
-                    _choices,
-                ),
-            ).class_ref
-        except StopIteration:
-            raise MatchNotFoundError("No match found!")
+        logging.debug("Match: %s", matches)
+        if matches:
+            match_text, _ = matches[0]
+            choice = next(filter(lambda _choice: _choice.text == match_text, _choices))
+            return choice.class_ref
+        raise MatchNotFoundError("No match found!")
 
     def _generate_text(self, class_ref_str: str) -> str:
         if self.abbreviations:
@@ -125,7 +125,7 @@ class ClassRefMatcher:
         )
         return str(class_ref).replace(".", " ").replace("_", " ")
 
-    def _replace_abbreviations(self, word: str, abbreviations: dict) -> str:
+    def _replace_abbreviations(self, word: str, abbreviations: dict[str, str]) -> str:
         for k, v in abbreviations.items():
             word = word.replace(k, v).replace(
                 k.lower(),

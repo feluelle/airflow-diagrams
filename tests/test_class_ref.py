@@ -1,4 +1,5 @@
 import ast
+import re
 
 import pytest
 
@@ -26,6 +27,9 @@ def class_ref_matcher(class_ref):
             .removesuffix("Sensor")
         ),
         choices=[class_ref],
+        choice_cleanup=lambda choice_str: (
+            ".".join(re.findall(r"(.*)\.(?:.*)\.(.*)", choice_str)[0])
+        ),
         abbreviations=dict(),
     )
 
