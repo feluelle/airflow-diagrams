@@ -14,7 +14,7 @@ from airflow_diagrams.diagrams import (
 )
 
 
-@pytest.fixture
+@pytest.fixture()
 def airflow_task():
     return AirflowTask(
         class_ref=ClassRef(
@@ -27,7 +27,7 @@ def airflow_task():
     )
 
 
-@pytest.fixture
+@pytest.fixture()
 def airflow_dag(mocker):
     return AirflowDag(dag_id="foo", dag_api=mocker.ANY)
 
@@ -35,7 +35,8 @@ def airflow_dag(mocker):
 def test_to_var():
     """Test converting to python variable"""
     var = to_var("foo-bar")
-    assert "-" not in var and "." not in var
+    assert "-" not in var
+    assert "." not in var
     assert var.startswith("_")
 
 

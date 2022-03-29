@@ -17,8 +17,8 @@ def strip_white_space(*strings) -> str:
     return "".join(strings).replace(" ", "").replace("\t", "").replace("\n", "")
 
 
-@pytest.fixture
-def mock_dag(airflow_api_tree):
+@pytest.fixture()
+def _mock_dag(airflow_api_tree):
     airflow_api_tree.dag_api.get_dags.return_value = dict(
         dags=[
             dict(
@@ -55,7 +55,8 @@ def test_version():
     assert f"{__app_name__} v{__version__}\n" == result.stdout
 
 
-def test_generate(mock_dag):
+@pytest.mark.usefixtures("_mock_dag")
+def test_generate():
     """Test end-to-end"""
     result = runner.invoke(cli.app, ["generate", "--output-path", "generated/"])
     assert result.exit_code == 0
@@ -72,7 +73,8 @@ def test_generate(mock_dag):
     ) == strip_white_space(result.stdout)
 
 
-def test_generate_with_progress(mock_dag):
+@pytest.mark.usefixtures("_mock_dag")
+def test_generate_with_progress():
     """Test end-to-end"""
     result = runner.invoke(
         cli.app,
@@ -92,7 +94,8 @@ def test_generate_with_progress(mock_dag):
     ) == strip_white_space(result.stdout)
 
 
-def test_generate_with_verbose(mock_dag):
+@pytest.mark.usefixtures("_mock_dag")
+def test_generate_with_verbose():
     """Test that logging level is DEBUG"""
     result = runner.invoke(
         cli.app,
@@ -103,7 +106,8 @@ def test_generate_with_verbose(mock_dag):
 
 
 @pytest.mark.order(after="test_download")
-def test_generate_from_file(mock_dag):
+@pytest.mark.usefixtures("_mock_dag")
+def test_generate_from_file():
     """Test generate from Airflow info file"""
     result = runner.invoke(
         cli.app,
@@ -122,7 +126,8 @@ def test_generate_from_file(mock_dag):
     ) == strip_white_space(result.stdout)
 
 
-def test_download(mock_dag):
+@pytest.mark.usefixtures("_mock_dag")
+def test_download():
     """Test downloading Airflow information"""
     result = runner.invoke(cli.app, ["download", "generated/airflow_dags.yml"])
     assert result.exit_code == 0
