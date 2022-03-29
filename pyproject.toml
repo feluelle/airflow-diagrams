@@ -23,8 +23,10 @@ PyYAML = "^6.0"
 apache-airflow-client = "^2.2.0"
 click-help-colors = "^0.9.1"
 rich = "^11.2.0"
+fs = "^2.4.15"
 # Dependencies of Dependencies
 markupsafe = "~2.0.1" # due to https://github.com/pallets/markupsafe/issues/282
+click = "~8.0.4" # due to https://github.com/tiangolo/typer/issues/377
 
 [tool.poetry.dev-dependencies]
 pytest = "^6.2.5"

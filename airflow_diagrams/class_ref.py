@@ -1,10 +1,10 @@
 import ast
 import logging
-import os
 import re
 from dataclasses import dataclass
 from typing import Callable, Optional
 
+from fs import open_fs
 from thefuzz import fuzz, process
 
 MATCHING_PERCENTAGE_MIN: int = 75
@@ -144,24 +144,12 @@ def retrieve_class_refs(directory: str) -> list[ClassRef]:
     """
     class_refs: list[ClassRef] = []
 
-    for root, _, files in os.walk(directory):
-        for file in files:
-            if not file.endswith(".py") or file == "__init__.py":
-                continue
+    fs = open_fs(directory)
+    for path in fs.walk.files(filter=["*.py"], exclude=["__init__.py"]):
+        with fs.open(path) as python_file:
+            module_path = path.removeprefix("/").removesuffix(".py").replace("/", ".")
 
-            file_absolute_path = os.path.join(root, file)
-            module_path = (
-                file_absolute_path.removeprefix(
-                    directory,
-                )
-                .removesuffix(".py")
-                .replace("/", ".")
-            )
-
-            with open(file_absolute_path) as _file:
-                _node = ast.parse(_file.read())
-
-            for node in ast.walk(_node):
+            for node in ast.walk(ast.parse(python_file.read())):
                 if isinstance(node, ast.ClassDef) and not node.name.startswith("_"):
                     class_refs.append(
                         ClassRef(

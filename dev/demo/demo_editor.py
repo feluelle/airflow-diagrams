@@ -41,7 +41,7 @@ class DemoEditor:
     def __enter__(self):
         return self
 
-    def __exit__(self, type, value, traceback) -> None:  # dead: disable
+    def __exit__(self, exc_type, exc_value, traceback) -> None:  # dead: disable
         with open(self.output_file, "w") as file:
             # Write header
             file.write(f"{json.dumps(self.header)}\n")
