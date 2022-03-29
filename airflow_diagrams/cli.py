@@ -10,6 +10,7 @@ import yaml
 from rich import print as rprint
 from rich.logging import RichHandler
 from rich.progress import Progress, SpinnerColumn, TimeElapsedColumn
+from rich.traceback import install
 from typer import Argument, Exit, Option
 
 from airflow_diagrams import __app_name__, __version__
@@ -23,6 +24,8 @@ from airflow_diagrams.class_ref import (
 from airflow_diagrams.custom_typer import CustomTyper
 from airflow_diagrams.diagrams import DiagramContext
 from airflow_diagrams.utils import load_abbreviations, load_mappings
+
+install()
 
 app = CustomTyper()
 
@@ -129,7 +132,7 @@ def generate(  # dead: disable
     mappings: dict = load_mappings(mapping_file) if mapping_file else {}
 
     diagrams_class_refs: list[ClassRef] = retrieve_class_refs(
-        directory=f"{os.path.dirname(diagrams.__file__)}/",
+        directory=os.path.dirname(diagrams.__file__),
     )
 
     abbreviations: dict = load_abbreviations()
