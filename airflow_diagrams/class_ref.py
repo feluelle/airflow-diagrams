@@ -106,7 +106,7 @@ class ClassRefMatcher:
             scorer=fuzz.token_set_ratio,
             score_cutoff=75,
         )
-        logging.debug("Match: %s", matches)
+        logging.debug("Matches: %s", matches)
         if matches:
             match_text, _ = matches[0]
             choice = next(filter(lambda _choice: _choice.text == match_text, _choices))

@@ -102,7 +102,7 @@ def test_generate_with_verbose():
         ["generate", "--output-path", "generated/", "--verbose"],
     )
     assert result.exit_code == 0
-    assert result.stdout.startswith("💬 Running with verbose output...")
+    assert result.stdout.startswith("💬Running with verbose output...")
 
 
 @pytest.mark.order(after="test_download")

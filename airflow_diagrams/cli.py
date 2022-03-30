@@ -121,7 +121,7 @@ def generate(  # dead: disable
     ),
 ) -> None:
     if verbose:
-        rprint("💬 Running with verbose output...")
+        rprint("💬Running with verbose output...")
         logging.basicConfig(
             level=logging.DEBUG,
             format="%(message)s",
@@ -204,7 +204,7 @@ def generate(  # dead: disable
                     choices=diagrams_class_refs,
                     choice_cleanup=lambda choice_str: (
                         # The 2nd level of diagrams module path is irrelevant for matching
-                        ".".join(re.findall(r"(.*)\.(?:.*)\.(.*)", choice_str)[0])
+                        re.sub(r"\.\w+\.", ".", choice_str)
                     ),
                     abbreviations=abbreviations,
                 )
