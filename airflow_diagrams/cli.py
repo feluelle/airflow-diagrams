@@ -10,6 +10,7 @@ import yaml
 from rich import print as rprint
 from rich.logging import RichHandler
 from rich.progress import Progress, SpinnerColumn, TimeElapsedColumn
+from rich.traceback import install
 from typer import Argument, Exit, Option
 
 from airflow_diagrams import __app_name__, __version__
@@ -23,6 +24,8 @@ from airflow_diagrams.class_ref import (
 from airflow_diagrams.custom_typer import CustomTyper
 from airflow_diagrams.diagrams import DiagramContext
 from airflow_diagrams.utils import load_abbreviations, load_mappings
+
+install(max_frames=1)
 
 app = CustomTyper()
 
@@ -118,18 +121,19 @@ def generate(  # dead: disable
     ),
 ) -> None:
     if verbose:
-        rprint("💬 Running with verbose output...")
+        rprint("💬Running with verbose output...")
         logging.basicConfig(
             level=logging.DEBUG,
             format="%(message)s",
             datefmt="[%X]",
             handlers=[RichHandler()],
         )
+        install(max_frames=0)
 
     mappings: dict = load_mappings(mapping_file) if mapping_file else {}
 
     diagrams_class_refs: list[ClassRef] = retrieve_class_refs(
-        directory=f"{os.path.dirname(diagrams.__file__)}/",
+        directory=os.path.dirname(diagrams.__file__),
     )
 
     abbreviations: dict = load_abbreviations()
@@ -200,7 +204,7 @@ def generate(  # dead: disable
                     choices=diagrams_class_refs,
                     choice_cleanup=lambda choice_str: (
                         # The 2nd level of diagrams module path is irrelevant for matching
-                        ".".join(re.findall(r"(.*)\.(?:.*)\.(.*)", choice_str)[0])
+                        re.sub(r"\.\w+\.", ".", choice_str)
                     ),
                     abbreviations=abbreviations,
                 )
