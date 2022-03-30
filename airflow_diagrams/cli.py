@@ -25,7 +25,7 @@ from airflow_diagrams.custom_typer import CustomTyper
 from airflow_diagrams.diagrams import DiagramContext
 from airflow_diagrams.utils import load_abbreviations, load_mappings
 
-install()
+install(max_frames=1)
 
 app = CustomTyper()
 
@@ -128,6 +128,7 @@ def generate(  # dead: disable
             datefmt="[%X]",
             handlers=[RichHandler()],
         )
+        install(max_frames=0)
 
     mappings: dict = load_mappings(mapping_file) if mapping_file else {}
 
