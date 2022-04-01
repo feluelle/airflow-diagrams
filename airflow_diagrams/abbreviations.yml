@@ -32,6 +32,8 @@ ML: MachineLearning
 
 MsSql: MicrosoftSQLServer
 
+OCI: OracleCloudInfrastructure
+
 RDS: RelationalDatabaseService
 
 S3: SimpleStorageService
