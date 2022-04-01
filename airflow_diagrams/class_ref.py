@@ -108,8 +108,14 @@ class ClassRefMatcher:
         )
         logging.debug("Matches: %s", matches)
         if matches:
-            match_text, _ = matches[0]
-            choice = next(filter(lambda _choice: _choice.text == match_text, _choices))
+            matches.sort(
+                key=lambda match: (match[1], len(match[0].split())),
+                reverse=True,
+            )
+            logging.debug("Matches (sorted): %s", matches)
+            choice = next(
+                filter(lambda _choice: _choice.text == matches[0][0], _choices),
+            )
             return choice.class_ref
         raise MatchNotFoundError("No match found!")
 
