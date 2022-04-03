@@ -15,6 +15,14 @@ def class_ref():
 
 
 @pytest.fixture()
+def class_ref_without_module_path():
+    return ClassRef(
+        module_path=None,
+        class_name="ClassNameOperator",
+    )
+
+
+@pytest.fixture()
 def class_ref_matcher(class_ref):
     return ClassRefMatcher(
         query=class_ref,
@@ -37,6 +45,16 @@ def class_ref_matcher(class_ref):
 def test_class_ref_str_and_from_string(class_ref):
     """Test converting a ClassRef to str & creating a ClassRef from a string"""
     assert ClassRef.from_string(str(class_ref)) == class_ref
+
+
+def test_class_ref_str_and_from_string_without_module_path(
+    class_ref_without_module_path,
+):
+    """Test converting a ClassRef to str & creating a ClassRef from a string"""
+    assert (
+        ClassRef.from_string(str(class_ref_without_module_path))
+        == class_ref_without_module_path
+    )
 
 
 def test_class_ref_matcher_match(class_ref_matcher):

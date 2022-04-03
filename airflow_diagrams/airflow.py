@@ -1,3 +1,4 @@
+import re
 from dataclasses import dataclass
 from typing import Generator, Optional
 
@@ -5,6 +6,7 @@ from airflow_client.client.api.dag_api import DAGApi
 from airflow_client.client.api_client import ApiClient, Configuration
 
 from airflow_diagrams.class_ref import ClassRef
+from airflow_diagrams.utils import experimental
 
 
 @dataclass
@@ -15,6 +17,21 @@ class AirflowTask:
     task_id: str
     downstream_task_ids: list[str]
     group_name: Optional[str]
+
+    def __hash__(self) -> int:
+        """
+        Build a hash based on all attributes.
+
+        :returns: a hash of all attributes.
+        """
+        return (
+            hash(self.class_ref)
+            ^ hash(self.task_id)
+            ^ hash(
+                downstream_task_id for downstream_task_id in self.downstream_task_ids
+            )
+            ^ hash(self.group_name)
+        )
 
     def __str__(self) -> str:
         """
@@ -62,6 +79,52 @@ class AirflowDag:
                 "tasks"
             ]
         ]
+
+
+@experimental
+def transfer_nodes(tasks: list[AirflowTask]) -> None:
+    """
+    Transfer Nodes replaces an Airflow transfer task by two tasks i.e. source & destination clustered.
+
+    :param tasks: The tasks to modify.
+    """
+    transfer_tasks = [
+        (task, match.groups())
+        for task in tasks
+        if task.class_ref.module_path
+        and ".transfers." in task.class_ref.module_path
+        and (match := re.search(r"(\w+)To(\w+)", task.class_ref.class_name))
+    ]
+
+    for task, (source_class_name, destination_class_name) in transfer_tasks:
+        source_task_id = f"[SOURCE] {task.task_id}"
+        destination_task_id = f"[DESTINATION] {task.task_id}"
+        source = AirflowTask(
+            class_ref=ClassRef(
+                module_path=None,  # We don't know if the original module_path belongs to source or destination
+                class_name=source_class_name,
+            ),
+            task_id=source_task_id,
+            downstream_task_ids=[destination_task_id],
+            group_name=task.task_id,
+        )
+        destination = AirflowTask(
+            class_ref=ClassRef(
+                module_path=None,  # We don't know if the original module_path belongs to source or destination
+                class_name=destination_class_name,
+            ),
+            task_id=destination_task_id,
+            downstream_task_ids=task.downstream_task_ids,
+            group_name=task.task_id,
+        )
+        tasks.extend([source, destination])
+        tasks.remove(task)
+
+    transfer_task_ids = list(map(lambda task: task[0].task_id, transfer_tasks))
+    for t_idx, t in enumerate(tasks):
+        for dt_idx, dt_id in enumerate(t.downstream_task_ids):
+            if dt_id in transfer_task_ids:
+                tasks[t_idx].downstream_task_ids[dt_idx] = f"[SOURCE] {dt_id}"
 
 
 class AirflowApiTree:

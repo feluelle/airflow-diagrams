@@ -12,6 +12,8 @@ tasks:
       # 4. Render diagram
       - cd examples && python3 dbt_diagrams.py
   fake-dag:
+    env:
+        AIRFLOW_DIAGRAMS__EXPERIMENTAL: true
     cmds:
       # 1. Create fake dag
       - python3 dev/airflow/airflow_dags_creator.py

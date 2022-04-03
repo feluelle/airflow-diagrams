@@ -1,9 +1,12 @@
 import pytest
 from typer.testing import CliRunner
 
-from airflow_diagrams import __app_name__, __version__, cli
+from airflow_diagrams import __app_name__, __experimental__, __version__, cli
 
-runner = CliRunner()
+if __experimental__:
+    runner = CliRunner(env={"AIRFLOW_DIAGRAMS__EXPERIMENTAL": "true"})
+else:
+    runner = CliRunner()
 
 STDOUT_LINES = (
     "ℹ️ Retrieving Airflow DAGs...",
@@ -67,6 +70,10 @@ def test_version():
     assert f"{__app_name__} v{__version__}\n" == result.stdout
 
 
+@pytest.mark.skipif(
+    __experimental__,
+    reason="Only run test when experimental features are disabled.",
+)
 @pytest.mark.usefixtures("_mock_dag")
 def test_generate():
     """Test end-to-end"""
@@ -75,6 +82,10 @@ def test_generate():
     assert strip_white_space(*STDOUT_LINES) == strip_white_space(result.stdout)
 
 
+@pytest.mark.skipif(
+    __experimental__,
+    reason="Only run test when experimental features are disabled.",
+)
 @pytest.mark.usefixtures("_mock_dag")
 def test_generate_with_progress():
     """Test end-to-end"""
@@ -84,6 +95,21 @@ def test_generate_with_progress():
     )
     assert result.exit_code == 0
     assert strip_white_space(*STDOUT_LINES) == strip_white_space(result.stdout)
+
+
+@pytest.mark.skipif(
+    not __experimental__,
+    reason="Only run test when experimental features are enabled.",
+)
+@pytest.mark.usefixtures("_mock_dag")
+def test_generate_experimental():
+    """Test end-to-end with experimental features enabled"""
+    result = runner.invoke(cli.app, ["generate", "--output-path", "generated/"])
+    assert result.exit_code == 0
+    assert strip_white_space(
+        "🧪Running with experimental features...",
+        *STDOUT_LINES,
+    ) == strip_white_space(result.stdout)
 
 
 @pytest.mark.usefixtures("_mock_dag")
@@ -97,6 +123,10 @@ def test_generate_with_verbose():
     assert result.stdout.startswith("💬Running with verbose output...")
 
 
+@pytest.mark.skipif(
+    __experimental__,
+    reason="Only run test when experimental features are disabled.",
+)
 @pytest.mark.order(after="test_download")
 @pytest.mark.usefixtures("_mock_dag")
 def test_generate_from_file():
@@ -112,6 +142,10 @@ def test_generate_from_file():
     ) == strip_white_space(result.stdout)
 
 
+@pytest.mark.skipif(
+    __experimental__,
+    reason="Only run test when experimental features are disabled.",
+)
 @pytest.mark.usefixtures("_mock_dag")
 def test_download():
     """Test downloading Airflow information"""

@@ -1,9 +1,10 @@
+import logging
 import os
 from pathlib import Path
 
 import yaml
 
-from airflow_diagrams import __location__
+from airflow_diagrams import __experimental__, __location__
 
 
 def load_abbreviations() -> dict:
@@ -31,3 +32,14 @@ def load_mappings(file: Path) -> dict:
         "r",
     ) as mapping_yaml:
         return yaml.safe_load(mapping_yaml)
+
+
+def experimental(func):
+    """Decorate experimental features."""
+
+    def wrapper(*args, **kwargs):
+        if __experimental__:
+            logging.debug("Calling experimental feature: %s", func.__name__)
+            func(*args, **kwargs)
+
+    return wrapper

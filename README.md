@@ -36,6 +36,10 @@ Then just call it like this:
 
 _Examples of generated diagrams can be found in the [examples](examples) directory._
 
+## 🧪 Experimental Features
+
+* **Transfer Nodes**: Convert Airflow transfer operators into two tasks i.e. source & destination grouped in a cluster
+
 ## 🤔 How it Works
 
 1. ℹ️ It connects, by using the official [Apache Airflow Python Client](https://github.com/apache/airflow-client-python), to your Airflow installation to retrieve all DAGs (in case you don't specify any `dag_id`) and all Tasks for the DAG(s).

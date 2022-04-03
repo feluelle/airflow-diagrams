@@ -1,4 +1,7 @@
-from airflow_diagrams.airflow import AirflowDag, AirflowTask
+import pytest
+
+from airflow_diagrams import __experimental__
+from airflow_diagrams.airflow import AirflowDag, AirflowTask, transfer_nodes
 from airflow_diagrams.class_ref import ClassRef
 
 
@@ -36,6 +39,79 @@ def test_airflow_dag_get_tasks(airflow_api_tree):
         )
         for task in airflow_api_tree.dag_api.get_tasks.return_value["tasks"]
     ]
+
+
+@pytest.mark.skipif(not __experimental__, reason="Transfer nodes are experimental.")
+def test_transfer_nodes():
+    """Test getting tasks from Airflow DAG"""
+    tasks = [
+        AirflowTask(
+            class_ref=ClassRef(
+                module_path=None,
+                class_name="Fizz",
+            ),
+            task_id="test_task_0",
+            downstream_task_ids=["test_task_1"],
+            group_name=None,
+        ),
+        AirflowTask(
+            class_ref=ClassRef(
+                module_path="foo.transfers.bar",
+                class_name="FooToBar",
+            ),
+            task_id="test_task_1",
+            downstream_task_ids=["test_task_2"],
+            group_name=None,
+        ),
+        AirflowTask(
+            class_ref=ClassRef(
+                module_path=None,
+                class_name="Fizz",
+            ),
+            task_id="test_task_2",
+            downstream_task_ids=[],
+            group_name=None,
+        ),
+    ]
+    transfer_nodes(tasks)
+    assert set(tasks) == {
+        AirflowTask(
+            class_ref=ClassRef(
+                module_path=None,
+                class_name="Fizz",
+            ),
+            task_id="test_task_0",
+            downstream_task_ids=["[SOURCE] test_task_1"],
+            group_name=None,
+        ),
+        AirflowTask(
+            class_ref=ClassRef(
+                module_path=None,
+                class_name="Foo",
+            ),
+            task_id="[SOURCE] test_task_1",
+            downstream_task_ids=["[DESTINATION] test_task_1"],
+            group_name="test_task_1",
+        ),
+        AirflowTask(
+            class_ref=ClassRef(
+                module_path=None,
+                class_name="Bar",
+            ),
+            task_id="[DESTINATION] test_task_1",
+            downstream_task_ids=["test_task_2"],
+            group_name="test_task_1",
+        ),
+        AirflowTask(
+            class_ref=ClassRef(
+                module_path=None,
+                class_name="Fizz",
+            ),
+            task_id="test_task_2",
+            downstream_task_ids=[],
+            group_name=None,
+        ),
+    }
 
 
 def test_airflow_api_tree_get_dags(airflow_api_tree):
