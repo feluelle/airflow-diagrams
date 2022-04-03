@@ -13,9 +13,11 @@ jobs:
       fail-fast: false
       matrix:
         python: ['3.9', '3.10']
+        experimental: [false]
         include:
           - python: '3.11.0-alpha - 3.11.0'
             experimental: true
+    continue-on-error: ${{ matrix.experimental }}
     steps:
       - name: Check out repository
         uses: actions/checkout@v2

@@ -5,6 +5,18 @@ from airflow_diagrams import __app_name__, __version__, cli
 
 runner = CliRunner()
 
+STDOUT_LINES = (
+    "ℹ️ Retrieving Airflow DAGs...",
+    "  ℹ️ Retrieving Airflow Tasks for Airflow DAG test_dag...",
+    "🪄 Processing Airflow DAG test_dag...",
+    "  🪄 Processing Airflow Task test_task (module.operators.path.ClassNameOperator) with downstream tasks []...",
+    "  🔮No match found! Falling back to programming.flowchart.Action.",
+    "  🪄 Processing Airflow Task test_task_real (airflow.providers.amazon.aws.operators.s3.S3CreateBucketOperator) with downstream tasks []...",
+    "  🔮Found match aws.storage.SimpleStorageServiceS3Bucket.",
+    "🎨Generated diagrams file generated/test_dag_diagrams.py.",
+    "Done. 🎉",
+)
+
 
 def strip_white_space(*strings) -> str:
     """
@@ -60,17 +72,7 @@ def test_generate():
     """Test end-to-end"""
     result = runner.invoke(cli.app, ["generate", "--output-path", "generated/"])
     assert result.exit_code == 0
-    assert strip_white_space(
-        "ℹ️ Retrieving Airflow DAGs...",
-        "  ℹ️ Retrieving Airflow Tasks for Airflow DAG test_dag...",
-        "🪄 Processing Airflow DAG test_dag...",
-        "  🪄 Processing Airflow Task test_task (module.operators.path.ClassNameOperator) with downstream tasks []...",
-        "  🔮No match found! Falling back to programming.flowchart.Action.",
-        "  🪄 Processing Airflow Task test_task_real (airflow.providers.amazon.aws.operators.s3.S3CreateBucketOperator) with downstream tasks []...",
-        "  🔮Found match aws.storage.SimpleStorageServiceS3Bucket.",
-        "🎨Generated diagrams file generated/test_dag_diagrams.py.",
-        "Done. 🎉",
-    ) == strip_white_space(result.stdout)
+    assert strip_white_space(*STDOUT_LINES) == strip_white_space(result.stdout)
 
 
 @pytest.mark.usefixtures("_mock_dag")
@@ -81,17 +83,7 @@ def test_generate_with_progress():
         ["generate", "--output-path", "generated/", "--progress"],
     )
     assert result.exit_code == 0
-    assert strip_white_space(
-        "ℹ️ Retrieving Airflow DAGs...",
-        "  ℹ️ Retrieving Airflow Tasks for Airflow DAG test_dag...",
-        "🪄 Processing Airflow DAG test_dag...",
-        "  🪄 Processing Airflow Task test_task (module.operators.path.ClassNameOperator) with downstream tasks []...",
-        "  🔮No match found! Falling back to programming.flowchart.Action.",
-        "  🪄 Processing Airflow Task test_task_real (airflow.providers.amazon.aws.operators.s3.S3CreateBucketOperator) with downstream tasks []...",
-        "  🔮Found match aws.storage.SimpleStorageServiceS3Bucket.",
-        "🎨Generated diagrams file generated/test_dag_diagrams.py.",
-        "Done. 🎉",
-    ) == strip_white_space(result.stdout)
+    assert strip_white_space(*STDOUT_LINES) == strip_white_space(result.stdout)
 
 
 @pytest.mark.usefixtures("_mock_dag")
@@ -116,13 +108,7 @@ def test_generate_from_file():
     assert result.exit_code == 0
     assert strip_white_space(
         "📝Loading Airflow information from file...",
-        "🪄 Processing Airflow DAG test_dag...",
-        "  🪄 Processing Airflow Task test_task (module.operators.path.ClassNameOperator) with downstream tasks []...",
-        "  🔮No match found! Falling back to programming.flowchart.Action.",
-        "  🪄 Processing Airflow Task test_task_real (airflow.providers.amazon.aws.operators.s3.S3CreateBucketOperator) with downstream tasks []...",
-        "  🔮Found match aws.storage.SimpleStorageServiceS3Bucket.",
-        "🎨Generated diagrams file generated/test_dag_diagrams.py.",
-        "Done. 🎉",
+        *STDOUT_LINES[2:],
     ) == strip_white_space(result.stdout)
 
 
@@ -132,8 +118,7 @@ def test_download():
     result = runner.invoke(cli.app, ["download", "generated/airflow_dags.yml"])
     assert result.exit_code == 0
     assert strip_white_space(
-        "ℹ️ Retrieving Airflow DAGs...",
-        "  ℹ️ Retrieving Airflow Tasks for Airflow DAG test_dag...",
+        *STDOUT_LINES[:2],
         "📝Dumping to file...",
-        "Done. 🎉",
+        STDOUT_LINES[-1],
     ) == strip_white_space(result.stdout)
