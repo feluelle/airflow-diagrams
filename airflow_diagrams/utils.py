@@ -26,8 +26,5 @@ def load_mappings(file: Path) -> dict:
     :params file: The file to load.
     :returns: a dict of Airflow task to diagram node mapping.
     """
-    with open(
-        file,
-        "r",
-    ) as mapping_yaml:
+    with open(file, "r") as mapping_yaml:
         return yaml.safe_load(mapping_yaml)

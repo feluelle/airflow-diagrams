@@ -119,6 +119,11 @@ def generate(  # dead: disable
         exists=True,
         dir_okay=False,
     ),
+    export_matches: Path = Option(
+        None,
+        "--export-matches",
+        help="Exports matches to file. This file can be used as mapping file. By default it is not being exported.",
+    ),
 ) -> None:
     if verbose:
         rprint("💬Running with verbose output...")
@@ -175,6 +180,9 @@ def generate(  # dead: disable
                 airflow_info_dict[airflow_dag_id] = airflow_tasks
                 progress.advance(task_requests)
 
+    if export_matches:
+        matches: dict[str, str] = {}
+
     with Progress(
         SpinnerColumn(),
         *Progress.get_default_columns(),
@@ -217,6 +225,8 @@ def generate(  # dead: disable
                         class_name="Action",
                     )
                     rprint(f"[red dim]  🔮{error} Falling back to {match_class_ref}.")
+                if export_matches:
+                    matches[str(class_ref_matcher.query)] = str(match_class_ref)
                 diagram_context.push(
                     airflow_task=airflow_task,
                     node_class_ref=match_class_ref,
@@ -227,6 +237,10 @@ def generate(  # dead: disable
             diagram_context.render(output_file, label_wrap)
             rprint(f"[yellow]🎨Generated diagrams file {output_file}.")
             progress.advance(task_processing)
+
+    if export_matches:
+        with open(export_matches, "w") as file:
+            yaml.safe_dump(matches, file)
 
     rprint("[green]Done. 🎉")
 

@@ -1,18 +1,14 @@
 """Creates random fake Airflow DAGs as yaml file."""
-import os
 import random
 
 import yaml
 from networkx import DiGraph, gnp_random_graph, to_dict_of_lists
 
-from airflow_diagrams import __location__
 from airflow_diagrams.airflow import AirflowTask
 from airflow_diagrams.class_ref import ClassRef, retrieve_class_refs
 
 
 def _retrieve_airflow_class_refs():
-    # Make sure to clone/download the airflow repo first into below directory
-    # E.g. gh repo clone apache/airflow generated/airflow
     class_refs = (
         retrieve_class_refs(directory="generated/airflow/airflow/operators")
         + retrieve_class_refs(directory="generated/airflow/airflow/sensors")
@@ -65,8 +61,5 @@ if __name__ == "__main__":
         random_dag=_generate_airflow_tasks(),
     )
 
-    with open(
-        os.path.join(__location__, "../generated/airflow_dags_random.yml"),
-        "w",
-    ) as file:
+    with open("generated/airflow_dags_random.yml", "w") as file:
         yaml.dump(airflow_dags, file)

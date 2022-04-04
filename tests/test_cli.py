@@ -113,6 +113,23 @@ def test_generate_from_file():
 
 
 @pytest.mark.usefixtures("_mock_dag")
+def test_generate_export_matches():
+    """Test generate with exporting matches"""
+    result = runner.invoke(
+        cli.app,
+        [
+            "generate",
+            "--output-path",
+            "generated/",
+            "--export-matches",
+            "generated/matches.yml",
+        ],
+    )
+    assert result.exit_code == 0
+    assert strip_white_space(*STDOUT_LINES) == strip_white_space(result.stdout)
+
+
+@pytest.mark.usefixtures("_mock_dag")
 def test_download():
     """Test downloading Airflow information"""
     result = runner.invoke(cli.app, ["download", "generated/airflow_dags.yml"])
