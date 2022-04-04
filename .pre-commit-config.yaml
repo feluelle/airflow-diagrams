@@ -42,7 +42,7 @@ repos:
       - id: python-no-log-warn
       - id: python-use-type-annotations
   - repo: https://github.com/asottile/add-trailing-comma
-    rev: v2.2.1
+    rev: v2.2.2
     hooks:
       - id: add-trailing-comma
   - repo: https://github.com/asottile/pyupgrade
