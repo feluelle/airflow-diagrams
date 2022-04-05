@@ -9,7 +9,7 @@ with Diagram("{{ name }}", show=False):
     {% for node in nodes -%}
     {% if node.cluster -%}
     with {{ node.cluster.get_variable() }}:
-        {{ node.get_variable() }} = {{ node.class_name }}("{{ node.get_label(label_wrap) }}")
+        {{ node.get_variable() }} = {{ node.class_name }}()
     {% else -%}
     {{ node.get_variable() }} = {{ node.class_name }}("{{ node.get_label(label_wrap) }}")
     {% endif -%}

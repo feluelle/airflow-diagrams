@@ -14,9 +14,14 @@ jobs:
       matrix:
         python: ['3.9', '3.10']
         experimental: [false]
+        experimental-features: [false, true]
         include:
           - python: '3.11.0-alpha - 3.11.0'
             experimental: true
+            experimental-features: false
+          - python: '3.11.0-alpha - 3.11.0'
+            experimental: true
+            experimental-features: true
     continue-on-error: ${{ matrix.experimental }}
     steps:
       - name: Check out repository
@@ -44,6 +49,8 @@ jobs:
       - name: Install library
         run: poetry install --no-interaction
       - name: Run tests
+        env:
+          AIRFLOW_DIAGRAMS__EXPERIMENTAL: ${{ matrix.experimental-features }}
         run: poetry run pytest --cov-report=xml --cov=airflow_diagrams tests/
       - name: Upload coverage to Codecov
         uses: codecov/codecov-action@v2

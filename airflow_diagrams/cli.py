@@ -14,7 +14,7 @@ from rich.traceback import install
 from typer import Argument, Exit, Option
 
 from airflow_diagrams import __app_name__, __version__
-from airflow_diagrams.airflow import retrieve_airflow_info
+from airflow_diagrams.airflow import retrieve_airflow_info, transfer_nodes
 from airflow_diagrams.class_ref import (
     ClassRef,
     ClassRefMatcher,
@@ -119,6 +119,11 @@ def generate(  # dead: disable
         exists=True,
         dir_okay=False,
     ),
+    experimental: bool = Argument(
+        False,
+        envvar="AIRFLOW_DIAGRAMS__EXPERIMENTAL",
+        help="Enable experimental features by setting the variable to 'true'.",
+    ),
 ) -> None:
     if verbose:
         rprint("💬Running with verbose output...")
@@ -129,6 +134,9 @@ def generate(  # dead: disable
             handlers=[RichHandler()],
         )
         install(max_frames=0)
+
+    if experimental:
+        rprint("🧪Running with experimental features...")
 
     mappings: dict = load_mappings(mapping_file) if mapping_file else {}
 
@@ -188,6 +196,8 @@ def generate(  # dead: disable
         for airflow_dag_id, airflow_tasks in airflow_info_dict.items():
             rprint(f"[blue]🪄 Processing Airflow DAG {airflow_dag_id}...")
             diagram_context = DiagramContext(airflow_dag_id)
+
+            transfer_nodes(airflow_tasks)
 
             for airflow_task in airflow_tasks:
                 rprint(f"[blue dim]  🪄 Processing {airflow_task}...")

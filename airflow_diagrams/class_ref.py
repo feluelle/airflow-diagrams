@@ -12,7 +12,7 @@ from thefuzz import fuzz, process
 class ClassRef:
     """A unique reference to a python class."""
 
-    module_path: str
+    module_path: Optional[str]
     class_name: str
 
     def __hash__(self) -> int:
@@ -29,7 +29,9 @@ class ClassRef:
 
         :returns: the string representation of the class ref.
         """
-        return f"{self.module_path}.{self.class_name}"
+        if self.module_path:
+            return f"{self.module_path}.{self.class_name}"
+        return self.class_name
 
     @staticmethod
     def from_string(string: str) -> "ClassRef":
@@ -40,8 +42,9 @@ class ClassRef:
 
         :returns: the ClassRef object.
         """
-        module_path, class_name = string.rsplit(".", 1)
-        return ClassRef(module_path, class_name)
+        if "." in string:
+            return ClassRef(*string.rsplit(".", 1))
+        return ClassRef(module_path=None, class_name=string)
 
 
 @dataclass
