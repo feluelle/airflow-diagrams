@@ -42,7 +42,7 @@ repos:
       - id: python-no-log-warn
       - id: python-use-type-annotations
   - repo: https://github.com/asottile/add-trailing-comma
-    rev: v2.2.2
+    rev: v2.2.3
     hooks:
       - id: add-trailing-comma
   - repo: https://github.com/asottile/pyupgrade
@@ -90,7 +90,7 @@ repos:
       - id: isort
         args: ["--profile", "black"]
   - repo: https://github.com/crate-ci/typos
-    rev: v1.6.0
+    rev: typos-v0.9.0
     hooks:
       - id: typos
         exclude: \.svg$
