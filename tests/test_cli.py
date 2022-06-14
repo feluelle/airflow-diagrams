@@ -79,6 +79,7 @@ def test_version():
             "--export-matches",
             "generated/matches.yml",
         ],
+        ["generate", "--output-path", "generated/", "-m", "examples/mapping.yml"],
     ],
 )
 @pytest.mark.usefixtures("_mock_dag")
