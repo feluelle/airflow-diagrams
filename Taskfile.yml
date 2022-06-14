@@ -2,23 +2,35 @@ version: '3'
 
 tasks:
   demo:
+    vars:
+      COMMAND: airflow-diagrams generate --airflow-dag-id dbt -o examples/
     cmds:
       # 1. Record demo as json
-      - asciinema rec assets/json/demo_output.json -c "airflow-diagrams generate --airflow-dag-id dbt -o examples/" --overwrite
+      - asciinema rec assets/json/demo_output.json -c "{{ .COMMAND }}" --overwrite
       # 2. Combine previous demo output and command
-      - echo "airflow-diagrams generate --airflow-dag-id dbt -o examples/" | python3 dev/demo/demo_editor.py
+      - echo "{{ .COMMAND }}" | python3 dev/demo/demo_editor.py
       # 3. Convert demo to svg
       - docker run --rm -i -v $PWD/assets:/data bric3/svg-term-cli svg-term --in /data/json/demo_full.json --out /data/images/demo.svg --window --width 100
       # 4. Render diagram
       - cd examples && python3 dbt_diagrams.py
+  airflow-download:
+    cmds:
+      # Pull latest data from airflow repo if exists else clone airflow repo
+      - cd generated/airflow && git fetch && git pull || gh repo clone apache/airflow generated/airflow
   fake-dag:
     cmds:
       # 1. Create fake dag
-      - python3 dev/airflow/airflow_dags_creator.py
+      - python3 dev/airflow/airflow_dags_creator.py -o generated/airflow_dags_random.yml
       # 2. Generate diagram from fake dag
       - airflow-diagrams generate -f generated/airflow_dags_random.yml -o generated/ -v
       # 3. Render diagram
       - cd generated && python3 random_dag_diagrams.py
+  create-mapping:
+    cmds:
+      # 1. Create dag with all available operators
+      - python3 dev/airflow/airflow_dags_creator.py -o generated/airflow_dags_mapping.yml -a
+      # 2. Generate diagram from dag
+      - airflow-diagrams generate -f generated/airflow_dags_mapping.yml -o generated/ --export-matches examples/mapping.yml
   usage:
     cmds:
       # Convert --help output to carbon-now usage screenshot

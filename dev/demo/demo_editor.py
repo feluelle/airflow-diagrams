@@ -27,16 +27,12 @@ class DemoEditor:
         self.time_delta = time_delta
         self.header = header or {}
         self.restart_after = restart_after
-        self.outputs: list[str] = []
         with open(self.input_file, "r") as file:
             # Create header
             for k, v in json.loads(file.readline()).items():
                 self.header.setdefault(k, v)
             # Create outputs
-            for line in file.readlines():
-                output = re.search(r'\[.*, "o", "(.*)"]', line)
-                if output:
-                    self.outputs.append(output.group(1))
+            self.outputs = re.findall(r'\[\d+\.\d+, "o", "(.*)"]', file.read())
 
     def __enter__(self):
         return self

@@ -67,38 +67,45 @@ def test_version():
     assert f"{__app_name__} v{__version__}\n" == result.stdout
 
 
-@pytest.mark.usefixtures("_mock_dag")
-def test_generate():
-    """Test end-to-end"""
-    result = runner.invoke(cli.app, ["generate", "--output-path", "generated/"])
-    assert result.exit_code == 0
-    assert strip_white_space(*STDOUT_LINES) == strip_white_space(result.stdout)
-
-
-@pytest.mark.usefixtures("_mock_dag")
-def test_generate_with_progress():
-    """Test end-to-end"""
-    result = runner.invoke(
-        cli.app,
+@pytest.mark.parametrize(
+    "cmd_args",
+    [
+        ["generate", "--output-path", "generated/"],
         ["generate", "--output-path", "generated/", "--progress"],
-    )
+        [
+            "generate",
+            "--output-path",
+            "generated/",
+            "--export-matches",
+            "generated/matches.yml",
+        ],
+        ["generate", "--output-path", "generated/", "-m", "examples/mapping.yml"],
+    ],
+)
+@pytest.mark.usefixtures("_mock_dag")
+def test_generate(cmd_args):
+    """Test end-to-end"""
+    result = runner.invoke(cli.app, cmd_args)
     assert result.exit_code == 0
     assert strip_white_space(*STDOUT_LINES) == strip_white_space(result.stdout)
 
 
-@pytest.mark.usefixtures("_mock_dag")
-def test_generate_with_verbose():
-    """Test that logging level is DEBUG"""
-    result = runner.invoke(
-        cli.app,
+@pytest.mark.parametrize(
+    "cmd_args",
+    [
         ["generate", "--output-path", "generated/", "--verbose"],
-    )
+        ["download", "generated/airflow_dags.yml", "--verbose"],
+    ],
+)
+@pytest.mark.usefixtures("_mock_dag")
+def test_verbose(cmd_args):
+    """Test that logging level is DEBUG"""
+    result = runner.invoke(cli.app, cmd_args)
     assert result.exit_code == 0
     assert result.stdout.startswith("💬Running with verbose output...")
 
 
 @pytest.mark.order(after="test_download")
-@pytest.mark.usefixtures("_mock_dag")
 def test_generate_from_file():
     """Test generate from Airflow info file"""
     result = runner.invoke(
@@ -112,8 +119,15 @@ def test_generate_from_file():
     ) == strip_white_space(result.stdout)
 
 
+@pytest.mark.parametrize(
+    "cmd_args",
+    [
+        ["download", "generated/airflow_dags.yml"],
+        ["download", "generated/airflow_dags.yml", "--progress"],
+    ],
+)
 @pytest.mark.usefixtures("_mock_dag")
-def test_download():
+def test_download(cmd_args):
     """Test downloading Airflow information"""
     result = runner.invoke(cli.app, ["download", "generated/airflow_dags.yml"])
     assert result.exit_code == 0
