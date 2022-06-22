@@ -128,7 +128,9 @@ airflow.operators.check_operator.ThresholdCheckOperator: programming.flowchart.A
 airflow.operators.check_operator.ValueCheckOperator: programming.flowchart.Action
 airflow.operators.datetime.BranchDateTimeOperator: programming.flowchart.Action
 airflow.operators.dummy.DummyOperator: programming.flowchart.Action
+airflow.operators.dummy_operator.DummyOperator: programming.flowchart.Action
 airflow.operators.email.EmailOperator: programming.flowchart.Action
+airflow.operators.empty.EmptyOperator: programming.flowchart.Action
 airflow.operators.latest_only.LatestOnlyOperator: programming.flowchart.Action
 airflow.operators.presto_check_operator.PrestoCheckOperator: programming.flowchart.Action
 airflow.operators.presto_check_operator.PrestoIntervalCheckOperator: programming.flowchart.Action
@@ -137,6 +139,7 @@ airflow.operators.python.BranchPythonOperator: programming.flowchart.Action
 airflow.operators.python.PythonOperator: programming.flowchart.Action
 airflow.operators.python.PythonVirtualenvOperator: programming.flowchart.Action
 airflow.operators.python.ShortCircuitOperator: programming.flowchart.Action
+airflow.operators.smooth.SmoothOperator: programming.flowchart.Action
 airflow.operators.sql.BaseSQLOperator: programming.flowchart.Action
 airflow.operators.sql.BranchSQLOperator: programming.flowchart.Action
 airflow.operators.sql.SQLCheckOperator: programming.flowchart.Action
@@ -156,6 +159,13 @@ airflow.providers.alibaba.cloud.operators.oss.OSSDeleteObjectOperator: programmi
 airflow.providers.alibaba.cloud.operators.oss.OSSDownloadObjectOperator: programming.flowchart.Action
 airflow.providers.alibaba.cloud.operators.oss.OSSUploadObjectOperator: programming.flowchart.Action
 airflow.providers.alibaba.cloud.sensors.oss_key.OSSKeySensor: programming.flowchart.Action
+airflow.providers.amazon.aws.operators.appflow.AppflowBaseOperator: aws.enablement.Iq
+airflow.providers.amazon.aws.operators.appflow.AppflowRecordsShortCircuitOperator: aws.database.Database
+airflow.providers.amazon.aws.operators.appflow.AppflowRunAfterOperator: aws.enablement.Iq
+airflow.providers.amazon.aws.operators.appflow.AppflowRunBeforeOperator: aws.enablement.Iq
+airflow.providers.amazon.aws.operators.appflow.AppflowRunDailyOperator: aws.enablement.Iq
+airflow.providers.amazon.aws.operators.appflow.AppflowRunFullOperator: aws.enablement.Iq
+airflow.providers.amazon.aws.operators.appflow.AppflowRunOperator: aws.enablement.Iq
 airflow.providers.amazon.aws.operators.athena.AWSAthenaOperator: aws.analytics.Athena
 airflow.providers.amazon.aws.operators.athena.AthenaOperator: aws.analytics.Athena
 airflow.providers.amazon.aws.operators.aws_lambda.AwsLambdaInvokeFunctionOperator: aws.compute.LambdaFunction
@@ -199,6 +209,7 @@ airflow.providers.amazon.aws.operators.glue.AwsGlueJobOperator: aws.analytics.Gl
 airflow.providers.amazon.aws.operators.glue.GlueJobOperator: aws.analytics.Glue
 airflow.providers.amazon.aws.operators.glue_crawler.AwsGlueCrawlerOperator: aws.analytics.Glue
 airflow.providers.amazon.aws.operators.glue_crawler.GlueCrawlerOperator: aws.analytics.Glue
+airflow.providers.amazon.aws.operators.quicksight.QuickSightCreateIngestionOperator: aws.analytics.Quicksight
 airflow.providers.amazon.aws.operators.rds.RdsBaseOperator: aws.database.RDS
 airflow.providers.amazon.aws.operators.rds.RdsCancelExportTaskOperator: aws.database.RDS
 airflow.providers.amazon.aws.operators.rds.RdsCopyDbSnapshotOperator: aws.database.RDS
@@ -207,12 +218,15 @@ airflow.providers.amazon.aws.operators.rds.RdsCreateEventSubscriptionOperator: a
 airflow.providers.amazon.aws.operators.rds.RdsDeleteDbSnapshotOperator: aws.database.RDS
 airflow.providers.amazon.aws.operators.rds.RdsDeleteEventSubscriptionOperator: aws.database.RDS
 airflow.providers.amazon.aws.operators.rds.RdsStartExportTaskOperator: aws.database.RDS
+airflow.providers.amazon.aws.operators.redshift_cluster.RedshiftCreateClusterOperator: aws.database.Redshift
+airflow.providers.amazon.aws.operators.redshift_cluster.RedshiftDeleteClusterOperator: aws.database.Redshift
 airflow.providers.amazon.aws.operators.redshift_cluster.RedshiftPauseClusterOperator: aws.database.Redshift
 airflow.providers.amazon.aws.operators.redshift_cluster.RedshiftResumeClusterOperator: aws.database.Redshift
 airflow.providers.amazon.aws.operators.redshift_data.RedshiftDataOperator: aws.database.Redshift
 airflow.providers.amazon.aws.operators.redshift_sql.RedshiftSQLOperator: aws.database.Redshift
 airflow.providers.amazon.aws.operators.s3.S3CopyObjectOperator: aws.storage.SimpleStorageServiceS3Object
 airflow.providers.amazon.aws.operators.s3.S3CreateBucketOperator: aws.storage.SimpleStorageServiceS3Bucket
+airflow.providers.amazon.aws.operators.s3.S3CreateObjectOperator: aws.storage.SimpleStorageServiceS3Object
 airflow.providers.amazon.aws.operators.s3.S3DeleteBucketOperator: aws.storage.SimpleStorageServiceS3Bucket
 airflow.providers.amazon.aws.operators.s3.S3DeleteBucketTaggingOperator: aws.storage.SimpleStorageServiceS3Bucket
 airflow.providers.amazon.aws.operators.s3.S3DeleteObjectsOperator: aws.storage.SimpleStorageServiceS3
@@ -260,6 +274,7 @@ airflow.providers.amazon.aws.sensors.glue_catalog_partition.AwsGlueCatalogPartit
 airflow.providers.amazon.aws.sensors.glue_catalog_partition.GlueCatalogPartitionSensor: aws.analytics.Glue
 airflow.providers.amazon.aws.sensors.glue_crawler.AwsGlueCrawlerSensor: aws.analytics.Glue
 airflow.providers.amazon.aws.sensors.glue_crawler.GlueCrawlerSensor: aws.analytics.Glue
+airflow.providers.amazon.aws.sensors.quicksight.QuickSightSensor: aws.analytics.Quicksight
 airflow.providers.amazon.aws.sensors.rds.RdsBaseSensor: aws.database.RDS
 airflow.providers.amazon.aws.sensors.rds.RdsExportTaskExistenceSensor: aws.database.RDS
 airflow.providers.amazon.aws.sensors.rds.RdsSnapshotExistenceSensor: aws.database.RDS
@@ -337,7 +352,9 @@ airflow.providers.celery.sensors.celery_queue.CeleryQueueSensor: programming.flo
 airflow.providers.cncf.kubernetes.operators.kubernetes_pod.KubernetesPodOperator: k8s.compute.Pod
 airflow.providers.cncf.kubernetes.operators.spark_kubernetes.SparkKubernetesOperator: k8s.network.Ep
 airflow.providers.cncf.kubernetes.sensors.spark_kubernetes.SparkKubernetesSensor: k8s.network.Ep
+airflow.providers.databricks.operators.databricks.DatabricksRunNowDeferrableOperator: azure.analytics.Databricks
 airflow.providers.databricks.operators.databricks.DatabricksRunNowOperator: azure.analytics.Databricks
+airflow.providers.databricks.operators.databricks.DatabricksSubmitRunDeferrableOperator: azure.analytics.Databricks
 airflow.providers.databricks.operators.databricks.DatabricksSubmitRunOperator: azure.analytics.Databricks
 airflow.providers.databricks.operators.databricks_repos.DatabricksReposCreateOperator: azure.analytics.Databricks
 airflow.providers.databricks.operators.databricks_repos.DatabricksReposDeleteOperator: azure.analytics.Databricks
@@ -729,7 +746,6 @@ airflow.providers.google.cloud.sensors.dataproc.DataprocJobSensor: gcp.analytics
 airflow.providers.google.cloud.sensors.gcs.GCSObjectExistenceSensor: ibm.storage.ObjectStorage
 airflow.providers.google.cloud.sensors.gcs.GCSObjectUpdateSensor: ibm.storage.ObjectStorage
 airflow.providers.google.cloud.sensors.gcs.GCSObjectsWithPrefixExistenceSensor: gcp.storage.Storage
-airflow.providers.google.cloud.sensors.gcs.GCSObjectsWtihPrefixExistenceSensor: gcp.storage.Storage
 airflow.providers.google.cloud.sensors.gcs.GCSUploadSessionCompleteSensor: gcp.storage.Storage
 airflow.providers.google.cloud.sensors.looker.LookerCheckPdtBuildSensor: gcp.devtools.Build
 airflow.providers.google.cloud.sensors.pubsub.PubSubPullSensor: gcp.analytics.Pubsub
@@ -838,6 +854,7 @@ airflow.providers.mysql.transfers.vertica_to_mysql.VerticaToMySqlOperator: progr
 airflow.providers.neo4j.operators.neo4j.Neo4jOperator: programming.flowchart.Action
 airflow.providers.opsgenie.operators.opsgenie.OpsgenieCloseAlertOperator: saas.alerting.Opsgenie
 airflow.providers.opsgenie.operators.opsgenie.OpsgenieCreateAlertOperator: saas.alerting.Opsgenie
+airflow.providers.opsgenie.operators.opsgenie.OpsgenieDeleteAlertOperator: saas.alerting.Opsgenie
 airflow.providers.opsgenie.operators.opsgenie_alert.OpsgenieAlertOperator: saas.alerting.Opsgenie
 airflow.providers.oracle.operators.oracle.OracleOperator: oci.connectivity.CDNWhite
 airflow.providers.oracle.operators.oracle.OracleStoredProcedureOperator: programming.flowchart.Action
@@ -846,6 +863,7 @@ airflow.providers.papermill.operators.papermill.PapermillOperator: programming.f
 airflow.providers.plexus.operators.job.PlexusJobOperator: programming.flowchart.Action
 airflow.providers.postgres.operators.postgres.PostgresOperator: programming.flowchart.Action
 airflow.providers.presto.transfers.gcs_to_presto.GCSToPrestoOperator: gcp.storage.Storage
+airflow.providers.presto.transfers.presto_to_slack.PrestoToSlackOperator: programming.flowchart.Action
 airflow.providers.qubole.operators.qubole.QuboleOperator: programming.flowchart.Action
 airflow.providers.qubole.operators.qubole_check.QuboleCheckOperator: programming.flowchart.Action
 airflow.providers.qubole.operators.qubole_check.QuboleValueCheckOperator: programming.flowchart.Action
@@ -874,8 +892,9 @@ airflow.providers.sqlite.operators.sqlite.SqliteOperator: programming.flowchart.
 airflow.providers.ssh.operators.ssh.SSHOperator: programming.flowchart.Action
 airflow.providers.tableau.operators.tableau.TableauOperator: onprem.analytics.Tableau
 airflow.providers.tableau.operators.tableau_refresh_workbook.TableauRefreshWorkbookOperator: programming.flowchart.Action
-airflow.providers.tableau.sensors.tableau_job_status.TableauJobStatusSensor: programming.flowchart.Action
+airflow.providers.tableau.sensors.tableau.TableauJobStatusSensor: programming.flowchart.Action
 airflow.providers.telegram.operators.telegram.TelegramOperator: saas.chat.Telegram
+airflow.providers.trino.operators.trino.TrinoOperator: programming.flowchart.Action
 airflow.providers.trino.transfers.gcs_to_trino.GCSToTrinoOperator: gcp.storage.Storage
 airflow.providers.vertica.operators.vertica.VerticaOperator: programming.flowchart.Action
 airflow.providers.yandex.operators.yandexcloud_dataproc.DataprocCreateClusterOperator: programming.flowchart.Action
