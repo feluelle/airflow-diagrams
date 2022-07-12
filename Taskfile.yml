@@ -6,13 +6,13 @@ tasks:
       COMMAND: airflow-diagrams generate --airflow-dag-id dbt -o examples/
     cmds:
       # 1. Record demo as json
-      - asciinema rec assets/json/demo_output.json -c "{{ .COMMAND }}" --overwrite
+      - source .venv/bin/activate && asciinema rec assets/json/demo_output.json -c "{{ .COMMAND }}" --overwrite
       # 2. Combine previous demo output and command
-      - echo "{{ .COMMAND }}" | python3 dev/demo/demo_editor.py
+      - echo "{{ .COMMAND }}" | .venv/bin/python3 dev/demo/demo_editor.py
       # 3. Convert demo to svg
       - docker run --rm -i -v $PWD/assets:/data bric3/svg-term-cli svg-term --in /data/json/demo_full.json --out /data/images/demo.svg --window --width 100
       # 4. Render diagram
-      - cd examples && python3 dbt_diagrams.py
+      - cd examples && ../.venv/bin/python3 dbt_diagrams.py
   airflow-download:
     cmds:
       # Pull latest data from airflow repo if exists else clone airflow repo
@@ -34,4 +34,4 @@ tasks:
   usage:
     cmds:
       # Convert --help output to carbon-now usage screenshot
-      - airflow-diagrams generate --help | python3 dev/usage/usage_generator.py
+      - source .venv/bin/activate && airflow-diagrams generate --help | .venv/bin/python3 dev/usage/usage_generator.py
