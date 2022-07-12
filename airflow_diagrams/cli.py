@@ -11,7 +11,7 @@ from rich import print as rprint
 from rich.logging import RichHandler
 from rich.progress import Progress, SpinnerColumn, TimeElapsedColumn
 from rich.traceback import install
-from typer import Argument, Exit, Option
+from typer import Argument, Exit, Option, Typer
 
 from airflow_diagrams import __app_name__, __version__
 from airflow_diagrams.airflow import retrieve_airflow_info
@@ -21,13 +21,12 @@ from airflow_diagrams.class_ref import (
     MatchNotFoundError,
     retrieve_class_refs,
 )
-from airflow_diagrams.custom_typer import CustomTyper
 from airflow_diagrams.diagrams import DiagramContext
 from airflow_diagrams.utils import load_abbreviations, load_mappings
 
 install(max_frames=1)
 
-app = CustomTyper()
+app = Typer()
 
 
 def _version_callback(value: bool) -> None:
