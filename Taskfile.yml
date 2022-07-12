@@ -20,17 +20,17 @@ tasks:
   fake-dag:
     cmds:
       # 1. Create fake dag
-      - python3 dev/airflow/airflow_dags_creator.py -o generated/airflow_dags_random.yml
+      - .venv/bin/python3 dev/airflow/airflow_dags_creator.py -o generated/airflow_dags_random.yml
       # 2. Generate diagram from fake dag
-      - airflow-diagrams generate -f generated/airflow_dags_random.yml -o generated/ -v
+      - source .venv/bin/activate && airflow-diagrams generate -f generated/airflow_dags_random.yml -o generated/ -v
       # 3. Render diagram
-      - cd generated && python3 random_dag_diagrams.py
+      - cd generated && ../.venv/bin/python3 random_dag_diagrams.py
   create-mapping:
     cmds:
       # 1. Create dag with all available operators
-      - python3 dev/airflow/airflow_dags_creator.py -o generated/airflow_dags_mapping.yml -a
+      - .venv/bin/python3 dev/airflow/airflow_dags_creator.py -o generated/airflow_dags_mapping.yml -a
       # 2. Generate diagram from dag
-      - airflow-diagrams generate -f generated/airflow_dags_mapping.yml -o generated/ --export-matches examples/mapping.yml
+      - source .venv/bin/activate && airflow-diagrams generate -f generated/airflow_dags_mapping.yml -o generated/ --export-matches examples/mapping.yml
   usage:
     cmds:
       # Convert --help output to carbon-now usage screenshot
