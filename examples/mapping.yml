@@ -213,8 +213,10 @@ airflow.providers.amazon.aws.operators.quicksight.QuickSightCreateIngestionOpera
 airflow.providers.amazon.aws.operators.rds.RdsBaseOperator: aws.database.RDS
 airflow.providers.amazon.aws.operators.rds.RdsCancelExportTaskOperator: aws.database.RDS
 airflow.providers.amazon.aws.operators.rds.RdsCopyDbSnapshotOperator: aws.database.RDS
+airflow.providers.amazon.aws.operators.rds.RdsCreateDbInstanceOperator: aws.database.RDSInstance
 airflow.providers.amazon.aws.operators.rds.RdsCreateDbSnapshotOperator: aws.database.RDS
 airflow.providers.amazon.aws.operators.rds.RdsCreateEventSubscriptionOperator: aws.database.RDS
+airflow.providers.amazon.aws.operators.rds.RdsDeleteDbInstanceOperator: aws.database.RDSInstance
 airflow.providers.amazon.aws.operators.rds.RdsDeleteDbSnapshotOperator: aws.database.RDS
 airflow.providers.amazon.aws.operators.rds.RdsDeleteEventSubscriptionOperator: aws.database.RDS
 airflow.providers.amazon.aws.operators.rds.RdsStartExportTaskOperator: aws.database.RDS
@@ -352,6 +354,9 @@ airflow.providers.celery.sensors.celery_queue.CeleryQueueSensor: programming.flo
 airflow.providers.cncf.kubernetes.operators.kubernetes_pod.KubernetesPodOperator: k8s.compute.Pod
 airflow.providers.cncf.kubernetes.operators.spark_kubernetes.SparkKubernetesOperator: k8s.network.Ep
 airflow.providers.cncf.kubernetes.sensors.spark_kubernetes.SparkKubernetesSensor: k8s.network.Ep
+airflow.providers.common.sql.operators.sql.SQLColumnCheckOperator: programming.flowchart.Action
+airflow.providers.common.sql.operators.sql.SQLTableCheckOperator: programming.flowchart.Action
+airflow.providers.common.sql.sensors.sql.SqlSensor: programming.flowchart.Action
 airflow.providers.databricks.operators.databricks.DatabricksRunNowDeferrableOperator: azure.analytics.Databricks
 airflow.providers.databricks.operators.databricks.DatabricksRunNowOperator: azure.analytics.Databricks
 airflow.providers.databricks.operators.databricks.DatabricksSubmitRunDeferrableOperator: azure.analytics.Databricks
@@ -827,6 +832,12 @@ airflow.providers.microsoft.azure.operators.adls.ADLSListOperator: azure.storage
 airflow.providers.microsoft.azure.operators.adls_delete.AzureDataLakeStorageDeleteOperator: azure.storage.DataLakeStorage
 airflow.providers.microsoft.azure.operators.adls_list.AzureDataLakeStorageListOperator: azure.storage.DataLakeStorage
 airflow.providers.microsoft.azure.operators.adx.AzureDataExplorerQueryOperator: azure.storage.DataBox
+airflow.providers.microsoft.azure.operators.asb.AzureServiceBusCreateQueueOperator: azure.integration.ServiceBus
+airflow.providers.microsoft.azure.operators.asb.AzureServiceBusDeleteQueueOperator: azure.integration.ServiceBus
+airflow.providers.microsoft.azure.operators.asb.AzureServiceBusReceiveMessageOperator: azure.integration.ServiceBus
+airflow.providers.microsoft.azure.operators.asb.AzureServiceBusSendMessageOperator: azure.integration.ServiceBus
+airflow.providers.microsoft.azure.operators.asb.AzureServiceBusSubscriptionCreateOperator: azure.integration.ServiceBus
+airflow.providers.microsoft.azure.operators.asb.AzureServiceBusSubscriptionDeleteOperator: azure.integration.ServiceBus
 airflow.providers.microsoft.azure.operators.batch.AzureBatchOperator: azure.ml.BatchAI
 airflow.providers.microsoft.azure.operators.container_instances.AzureContainerInstancesOperator: azure.compute.ContainerInstances
 airflow.providers.microsoft.azure.operators.cosmos.AzureCosmosInsertDocumentOperator: azure.database.CosmosDb
@@ -873,6 +884,7 @@ airflow.providers.qubole.sensors.qubole.QuboleSensor: programming.flowchart.Acti
 airflow.providers.redis.operators.redis_publish.RedisPublishOperator: programming.flowchart.Action
 airflow.providers.redis.sensors.redis_key.RedisKeySensor: programming.flowchart.Action
 airflow.providers.redis.sensors.redis_pub_sub.RedisPubSubSensor: programming.flowchart.Action
+airflow.providers.salesforce.operators.bulk.SalesforceBulkOperator: programming.flowchart.Action
 airflow.providers.salesforce.operators.salesforce_apex_rest.SalesforceApexRestOperator: programming.flowchart.Action
 airflow.providers.segment.operators.segment_track_event.SegmentTrackEventOperator: programming.flowchart.Action
 airflow.providers.sftp.operators.sftp.SFTPOperator: programming.flowchart.Action
@@ -882,6 +894,7 @@ airflow.providers.slack.operators.slack.SlackAPIFileOperator: programming.langua
 airflow.providers.slack.operators.slack.SlackAPIOperator: openstack.apiproxies.EC2API
 airflow.providers.slack.operators.slack.SlackAPIPostOperator: programming.language.C
 airflow.providers.slack.operators.slack_webhook.SlackWebhookOperator: programming.flowchart.Action
+airflow.providers.slack.transfers.sql_to_slack.SqlToSlackOperator: programming.flowchart.Action
 airflow.providers.snowflake.operators.snowflake.SnowflakeCheckOperator: saas.analytics.Snowflake
 airflow.providers.snowflake.operators.snowflake.SnowflakeIntervalCheckOperator: saas.analytics.Snowflake
 airflow.providers.snowflake.operators.snowflake.SnowflakeOperator: saas.analytics.Snowflake
@@ -910,7 +923,6 @@ airflow.sensors.external_task.ExternalTaskSensor: programming.flowchart.Action
 airflow.sensors.filesystem.FileSensor: programming.flowchart.Action
 airflow.sensors.python.PythonSensor: programming.flowchart.Action
 airflow.sensors.smart_sensor.SmartSensorOperator: ibm.user.Sensor
-airflow.sensors.sql.SqlSensor: onprem.workflow.Airflow
 airflow.sensors.time_delta.TimeDeltaSensor: programming.flowchart.Action
 airflow.sensors.time_sensor.TimeSensor: ibm.user.Sensor
 airflow.sensors.weekday.DayOfWeekSensor: programming.flowchart.Action
