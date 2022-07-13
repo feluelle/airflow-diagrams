@@ -418,7 +418,7 @@ python-versions = ">=3.7"
 
 [[package]]
 name = "typer"
-version = "0.6.0"
+version = "0.6.1"
 description = "Typer, build great CLIs. Easy to code. Based on Python type hints."
 category = "main"
 optional = false
@@ -452,7 +452,7 @@ socks = ["PySocks (>=1.5.6,!=1.5.7,<2.0)"]
 [metadata]
 lock-version = "1.1"
 python-versions = "^3.9"
-content-hash = "4f3822df2837fa1327f9d2d83c8982d759858ff026c6a4bb9a14caee4ba99ebf"
+content-hash = "3fdfb1eae386675ec3ce6effe8bb322cb5b8cb4eef04fa53ad89c0485c41ceda"
 
 [metadata.files]
 apache-airflow-client = [
