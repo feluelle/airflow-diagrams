@@ -16,7 +16,7 @@ airflow-diagrams = "airflow_diagrams.cli:app"
 
 [tool.poetry.dependencies]
 python = "^3.9"
-typer = {extras = ["all"], version = "^0.6.0"}
+typer = {extras = ["all"], version = "^0.6.1"}
 diagrams = "^0.21.0"
 thefuzz = {version = "^0.19.0", extras = ["speedup"]}
 PyYAML = "^6.0"
