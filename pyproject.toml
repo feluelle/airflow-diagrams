@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "airflow-diagrams"
-version = "2.0.0"
+version = "2.1.0rc1"
 description = "Auto-generated Diagrams from Airflow DAGs."
 authors = ["Felix Uellendall <feluelle@pm.me>"]
 license = "Apache-2.0"
