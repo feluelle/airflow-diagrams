@@ -15,8 +15,37 @@ def class_ref():
 
 
 @pytest.fixture()
+def class_ref_mapped():
+    return ClassRef(
+        module_path="test.custom.module.operators.path",
+        class_name="ClassNameOperator",
+    )
+
+
+@pytest.fixture()
 def class_ref_matcher(class_ref):
     return ClassRefMatcher(
+        choices=[class_ref],
+        choice_cleanup=lambda choice_str: (
+            ".".join(re.findall(r"(.*)\.(?:.*)\.(.*)", choice_str)[0])
+        ),
+    )
+
+
+@pytest.fixture()
+def class_ref_matcher_with_mappings(class_ref, class_ref_mapped):
+    return ClassRefMatcher(
+        choices=[class_ref],
+        choice_cleanup=lambda choice_str: (
+            ".".join(re.findall(r"(.*)\.(?:.*)\.(.*)", choice_str)[0])
+        ),
+        mappings={str(class_ref): str(class_ref_mapped)},
+    )
+
+
+@pytest.fixture()
+def match_kwargs(class_ref):
+    return dict(
         query=class_ref,
         query_cleanup=lambda query_str: (
             query_str.removeprefix("airflow.providers.")
@@ -26,11 +55,6 @@ def class_ref_matcher(class_ref):
             .removesuffix("Operator")
             .removesuffix("Sensor")
         ),
-        choices=[class_ref],
-        choice_cleanup=lambda choice_str: (
-            ".".join(re.findall(r"(.*)\.(?:.*)\.(.*)", choice_str)[0])
-        ),
-        abbreviations=dict(),
     )
 
 
@@ -39,18 +63,19 @@ def test_class_ref_str_and_from_string(class_ref):
     assert ClassRef.from_string(str(class_ref)) == class_ref
 
 
-def test_class_ref_matcher_match(class_ref_matcher):
+def test_class_ref_matcher_match(class_ref_matcher, class_ref, match_kwargs):
     """Test matching"""
-    assert class_ref_matcher.match() == class_ref_matcher.choices[0]
+    assert class_ref_matcher.match(**match_kwargs) == class_ref
 
 
-def test_class_ref_matcher_match_with_mappings(class_ref_matcher):
+def test_class_ref_matcher_match_with_mappings(
+    class_ref_matcher_with_mappings,
+    class_ref,
+    class_ref_mapped,
+    match_kwargs,
+):
     """Test matching with mappings"""
-    query_str = str(class_ref_matcher.query)
-    mappings = {query_str: "test.custom.module.operators.path.ClassNameOperator"}
-    assert class_ref_matcher.match(mappings=mappings) == ClassRef.from_string(
-        mappings[query_str],
-    )
+    assert class_ref_matcher_with_mappings.match(**match_kwargs) == class_ref_mapped
 
 
 def test_retrieve_class_refs(mocker):
@@ -67,5 +92,5 @@ def test_retrieve_class_refs(mocker):
     )
 
     assert retrieve_class_refs(directory="/module/") == [
-        ClassRef(module_path="module.path", class_name="ClassName"),
+        ClassRef(module_path=".module.path", class_name="ClassName"),
     ]

@@ -1,6 +1,6 @@
 from diagrams import Diagram{% if clusters %}, Cluster {% endif %}
 {% for class_ref in class_refs -%}
-from diagrams.{{ class_ref.module_path }} import {{ class_ref.class_name }}
+from {{ class_ref.module_path }} import {{ class_ref.class_name }}
 {% endfor %}
 with Diagram("{{ name }}", show=False):
     {% for cluster in clusters -%}
