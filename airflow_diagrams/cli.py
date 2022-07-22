@@ -105,6 +105,16 @@ def _generate_diagram(
     if export_matches:
         matches: dict[str, str] = {}
 
+    class_ref_matcher = ClassRefMatcher(
+        choices=diagrams_class_refs,
+        choice_cleanup=lambda choice_str: (
+            # The 2nd level of diagrams module path is irrelevant for matching
+            re.sub(r"\.\w+\.", ".", choice_str.removeprefix("diagrams."))
+        ),
+        abbreviations=abbreviations,
+        mappings=mappings,
+    )
+
     with Progress(
         SpinnerColumn(),
         *Progress.get_default_columns(),
@@ -124,34 +134,27 @@ def _generate_diagram(
 
             for airflow_task in airflow_tasks:
                 rprint(f"[blue dim]  🪄 Processing {airflow_task}...")
-                class_ref_matcher = ClassRefMatcher(
-                    query=airflow_task.class_ref,
-                    query_cleanup=lambda query_str: (
-                        query_str.removeprefix("airflow.providers.")
-                        .replace(".operators.", ".")
-                        .replace(".sensors.", ".")
-                        .replace(".transfers.", ".")
-                        .removesuffix("Operator")
-                        .removesuffix("Sensor")
-                    ),
-                    choices=diagrams_class_refs,
-                    choice_cleanup=lambda choice_str: (
-                        # The 2nd level of diagrams module path is irrelevant for matching
-                        re.sub(r"\.\w+\.", ".", choice_str)
-                    ),
-                    abbreviations=abbreviations,
-                )
                 try:
-                    match_class_ref = class_ref_matcher.match(mappings)
+                    match_class_ref = class_ref_matcher.match(
+                        query=airflow_task.class_ref,
+                        query_cleanup=lambda query_str: (
+                            query_str.removeprefix("airflow.providers.")
+                            .replace(".operators.", ".")
+                            .replace(".sensors.", ".")
+                            .replace(".transfers.", ".")
+                            .removesuffix("Operator")
+                            .removesuffix("Sensor")
+                        ),
+                    )
                     rprint(f"[magenta dim]  🔮Found match {match_class_ref}.")
                 except MatchNotFoundError as error:
                     match_class_ref = ClassRef(
-                        module_path="programming.flowchart",
+                        module_path="diagrams.programming.flowchart",
                         class_name="Action",
                     )
                     rprint(f"[red dim]  🔮{error} Falling back to {match_class_ref}.")
                 if export_matches:
-                    matches[str(class_ref_matcher.query)] = str(match_class_ref)
+                    matches[str(airflow_task.class_ref)] = str(match_class_ref)
                 diagram_context.push(
                     airflow_task=airflow_task,
                     node_class_ref=match_class_ref,

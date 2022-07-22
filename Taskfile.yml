@@ -22,7 +22,7 @@ tasks:
       # 1. Create fake dag
       - .venv/bin/python3 dev/airflow/airflow_dags_creator.py -o generated/airflow_dags_random.yml
       # 2. Generate diagram from fake dag
-      - source .venv/bin/activate && airflow-diagrams generate -f generated/airflow_dags_random.yml -o generated/ -v
+      - source .venv/bin/activate && airflow-diagrams generate -f generated/airflow_dags_random.yml -o generated/ -v --label-wrap .
       # 3. Render diagram
       - cd generated && ../.venv/bin/python3 random_dag_diagrams.py
   create-mapping:

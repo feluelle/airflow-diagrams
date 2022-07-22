@@ -10,9 +10,9 @@ STDOUT_LINES = (
     "  ℹ️ Retrieving Airflow Tasks for Airflow DAG test_dag...",
     "🪄 Processing Airflow DAG test_dag...",
     "  🪄 Processing Airflow Task test_task (module.operators.path.ClassNameOperator) with downstream tasks []...",
-    "  🔮No match found! Falling back to programming.flowchart.Action.",
+    "  🔮No match found! Falling back to diagrams.programming.flowchart.Action.",
     "  🪄 Processing Airflow Task test_task_real (airflow.providers.amazon.aws.operators.s3.S3CreateBucketOperator) with downstream tasks []...",
-    "  🔮Found match aws.storage.SimpleStorageServiceS3Bucket.",
+    "  🔮Found match diagrams.aws.storage.SimpleStorageServiceS3Bucket.",
     "🎨Generated diagrams file generated/test_dag_diagrams.py.",
     "Done. 🎉",
 )

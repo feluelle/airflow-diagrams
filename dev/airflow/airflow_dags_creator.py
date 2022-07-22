@@ -10,7 +10,7 @@ from airflow_diagrams.class_ref import ClassRef, retrieve_class_refs
 
 
 def _retrieve_airflow_class_refs():
-    class_refs = retrieve_class_refs(directory="generated/airflow")
+    class_refs = retrieve_class_refs(directory="generated/airflow/airflow")
     return list(
         filter(
             lambda class_ref: (
