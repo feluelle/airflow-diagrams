@@ -51,7 +51,7 @@ repos:
     hooks:
       - id: pyupgrade
   - repo: https://github.com/asottile/yesqa
-    rev: v1.3.0
+    rev: v1.4.0
     hooks:
       - id: yesqa
   - repo: https://github.com/asottile/dead
@@ -64,7 +64,7 @@ repos:
     hooks:
       - id: black
   - repo: https://github.com/PyCQA/flake8
-    rev: 5.0.2
+    rev: 5.0.4
     hooks:
       - id: flake8
         args: ["--max-line-length", "88", "--extend-ignore", "E203,E501,B008"]
