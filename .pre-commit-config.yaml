@@ -47,7 +47,7 @@ repos:
     hooks:
       - id: add-trailing-comma
   - repo: https://github.com/asottile/pyupgrade
-    rev: v2.37.3
+    rev: v2.38.0
     hooks:
       - id: pyupgrade
   - repo: https://github.com/asottile/yesqa
@@ -91,12 +91,12 @@ repos:
       - id: isort
         args: ["--profile", "black"]
   - repo: https://github.com/crate-ci/typos
-    rev: v1.12.4
+    rev: typos-dict-v0.9.3
     hooks:
       - id: typos
         exclude: \.svg$
   - repo: https://github.com/pycqa/autoflake
-    rev: v1.5.3
+    rev: v1.6.0
     hooks:
       - id: autoflake
         args: ["--remove-all-unused-imports", "--in-place"]
