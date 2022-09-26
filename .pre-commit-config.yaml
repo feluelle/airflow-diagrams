@@ -43,11 +43,11 @@ repos:
       - id: python-no-log-warn
       - id: python-use-type-annotations
   - repo: https://github.com/asottile/add-trailing-comma
-    rev: v2.2.3
+    rev: v2.3.0
     hooks:
       - id: add-trailing-comma
   - repo: https://github.com/asottile/pyupgrade
-    rev: v2.38.0
+    rev: v2.38.2
     hooks:
       - id: pyupgrade
   - repo: https://github.com/asottile/yesqa
@@ -91,12 +91,12 @@ repos:
       - id: isort
         args: ["--profile", "black"]
   - repo: https://github.com/crate-ci/typos
-    rev: typos-dict-v0.9.3
+    rev: typos-dict-v0.9.5
     hooks:
       - id: typos
         exclude: \.svg$
   - repo: https://github.com/pycqa/autoflake
-    rev: v1.6.0
+    rev: v1.6.1
     hooks:
       - id: autoflake
         args: ["--remove-all-unused-imports", "--in-place"]
