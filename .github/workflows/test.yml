@@ -20,10 +20,10 @@ jobs:
     continue-on-error: ${{ matrix.experimental }}
     steps:
       - name: Check out repository
-        uses: actions/checkout@v2
+        uses: actions/checkout@v3
       - name: Setup python
         id: setup-python
-        uses: actions/setup-python@v2
+        uses: actions/setup-python@v4
         with:
           python-version: ${{ matrix.python }}
       - name: Install Poetry
@@ -34,7 +34,7 @@ jobs:
           installer-parallel: true
       - name: Load cached venv
         id: cached-poetry-dependencies
-        uses: actions/cache@v2
+        uses: actions/cache@v3
         with:
           path: .venv
           key: venv-${{ runner.os }}-${{ steps.setup-python.outputs.python-version }}-${{ hashFiles('**/poetry.lock') }}
@@ -46,7 +46,7 @@ jobs:
       - name: Run tests
         run: poetry run pytest --cov-report=xml --cov=airflow_diagrams tests/
       - name: Upload coverage to Codecov
-        uses: codecov/codecov-action@v2
+        uses: codecov/codecov-action@v3
         with:
           verbose: true
       - name: Setup Graphviz
