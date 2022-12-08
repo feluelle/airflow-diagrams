@@ -13,10 +13,7 @@ def test_load_abbreviations(mocker):
         mocker.mock_open(read_data=json.dumps(abbreviations)),
     )
     assert load_abbreviations() == abbreviations
-    mock_open.assert_called_once_with(
-        os.path.join(__location__, "abbreviations.yml"),
-        "r",
-    )
+    mock_open.assert_called_once_with(os.path.join(__location__, "abbreviations.yml"))
 
 
 def test_load_mappings(mocker):
@@ -28,4 +25,4 @@ def test_load_mappings(mocker):
         mocker.mock_open(read_data=json.dumps(mappings)),
     )
     assert load_mappings(file=file_path) == mappings
-    mock_open.assert_called_once_with(file_path, "r")
+    mock_open.assert_called_once_with(file_path)

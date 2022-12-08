@@ -14,7 +14,6 @@ def load_abbreviations() -> dict:
     """
     with open(
         os.path.join(__location__, "abbreviations.yml"),
-        "r",
     ) as abbreviations_yaml:
         return yaml.safe_load(abbreviations_yaml)
 
@@ -26,5 +25,5 @@ def load_mappings(file: Path) -> dict:
     :params file: The file to load.
     :returns: a dict of Airflow task to diagram node mapping.
     """
-    with open(file, "r") as mapping_yaml:
+    with open(file) as mapping_yaml:
         return yaml.safe_load(mapping_yaml)

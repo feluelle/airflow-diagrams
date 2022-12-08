@@ -78,7 +78,7 @@ def _download_airflow_info(dag_id, host, username, password, progress_bar):
 
 def _load(from_file):
     rprint("[yellow]📝Loading Airflow information from file...")
-    with open(from_file, "r") as file:
+    with open(from_file) as file:
         return yaml.unsafe_load(file)
 
 

@@ -27,7 +27,7 @@ class DemoEditor:
         self.time_delta = time_delta
         self.header = header or {}
         self.restart_after = restart_after
-        with open(self.input_file, "r") as file:
+        with open(self.input_file) as file:
             # Create header
             for k, v in json.loads(file.readline()).items():
                 self.header.setdefault(k, v)
