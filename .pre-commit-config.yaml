@@ -26,7 +26,7 @@ repos:
         files: airflow_diagrams/abbreviations.yml|examples/mapping.yml
       - id: trailing-whitespace
   - repo: https://github.com/pre-commit/mirrors-mypy
-    rev: v1.0.1
+    rev: v1.1.1
     hooks:
       - id: mypy
         additional_dependencies:
@@ -73,7 +73,7 @@ repos:
           - flake8-builtins
           - flake8-pytest-style
   - repo: https://github.com/PyCQA/bandit
-    rev: 1.7.4
+    rev: 1.7.5
     hooks:
       - id: bandit
         args: ["-c", ".bandit"]
@@ -91,12 +91,12 @@ repos:
       - id: isort
         args: ["--profile", "black"]
   - repo: https://github.com/crate-ci/typos
-    rev: v1.13.12
+    rev: typos-dict-v0.9.23
     hooks:
       - id: typos
         exclude: \.svg$
   - repo: https://github.com/pycqa/autoflake
-    rev: v2.0.1
+    rev: v2.0.2
     hooks:
       - id: autoflake
         args: ["--remove-all-unused-imports", "--in-place"]
