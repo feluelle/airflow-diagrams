@@ -10,6 +10,7 @@ if __name__ == "__main__":
             "language": "plaintext",
             "backgroundColor": "transparent",
         },
+        timeout=5,
     )
 
     with open("assets/images/usage.png", "wb") as file:
