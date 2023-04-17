@@ -91,12 +91,12 @@ repos:
       - id: isort
         args: ["--profile", "black"]
   - repo: https://github.com/crate-ci/typos
-    rev: v1.14.5
+    rev: v1.14.6
     hooks:
       - id: typos
         exclude: \.svg$
   - repo: https://github.com/pycqa/autoflake
-    rev: v2.0.2
+    rev: v2.1.0
     hooks:
       - id: autoflake
         args: ["--remove-all-unused-imports", "--in-place"]
