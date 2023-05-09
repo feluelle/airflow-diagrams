@@ -47,7 +47,7 @@ repos:
     hooks:
       - id: add-trailing-comma
   - repo: https://github.com/asottile/pyupgrade
-    rev: v3.3.2
+    rev: v3.4.0
     hooks:
       - id: pyupgrade
   - repo: https://github.com/asottile/yesqa
@@ -55,7 +55,7 @@ repos:
     hooks:
       - id: yesqa
   - repo: https://github.com/asottile/dead
-    rev: v1.5.0
+    rev: v1.5.1
     hooks:
       - id: dead
         args: ["--exclude", "examples/"] # global exclude does not work
@@ -91,7 +91,7 @@ repos:
       - id: isort
         args: ["--profile", "black"]
   - repo: https://github.com/crate-ci/typos
-    rev: v1.14.8
+    rev: typos-dict-v0.9.26
     hooks:
       - id: typos
         exclude: \.svg$
