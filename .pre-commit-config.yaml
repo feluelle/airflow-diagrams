@@ -26,7 +26,7 @@ repos:
         files: airflow_diagrams/abbreviations.yml|examples/mapping.yml
       - id: trailing-whitespace
   - repo: https://github.com/pre-commit/mirrors-mypy
-    rev: v1.3.0
+    rev: v1.4.1
     hooks:
       - id: mypy
         additional_dependencies:
@@ -43,19 +43,19 @@ repos:
       - id: python-no-log-warn
       - id: python-use-type-annotations
   - repo: https://github.com/asottile/add-trailing-comma
-    rev: v2.4.0
+    rev: v3.0.0
     hooks:
       - id: add-trailing-comma
   - repo: https://github.com/asottile/pyupgrade
-    rev: v3.4.0
+    rev: v3.9.0
     hooks:
       - id: pyupgrade
   - repo: https://github.com/asottile/yesqa
-    rev: v1.4.0
+    rev: v1.5.0
     hooks:
       - id: yesqa
   - repo: https://github.com/asottile/dead
-    rev: v1.5.1
+    rev: v1.5.2
     hooks:
       - id: dead
         args: ["--exclude", "examples/"] # global exclude does not work
@@ -91,12 +91,12 @@ repos:
       - id: isort
         args: ["--profile", "black"]
   - repo: https://github.com/crate-ci/typos
-    rev: typos-dict-v0.9.27
+    rev: v1.16.0
     hooks:
       - id: typos
         exclude: \.svg$
   - repo: https://github.com/pycqa/autoflake
-    rev: v2.1.1
+    rev: v2.2.0
     hooks:
       - id: autoflake
         args: ["--remove-all-unused-imports", "--in-place"]
