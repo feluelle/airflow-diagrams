@@ -43,11 +43,11 @@ repos:
       - id: python-no-log-warn
       - id: python-use-type-annotations
   - repo: https://github.com/asottile/add-trailing-comma
-    rev: v3.0.0
+    rev: v3.0.1
     hooks:
       - id: add-trailing-comma
   - repo: https://github.com/asottile/pyupgrade
-    rev: v3.9.0
+    rev: v3.10.1
     hooks:
       - id: pyupgrade
   - repo: https://github.com/asottile/yesqa
@@ -64,7 +64,7 @@ repos:
     hooks:
       - id: black
   - repo: https://github.com/PyCQA/flake8
-    rev: 6.0.0
+    rev: 6.1.0
     hooks:
       - id: flake8
         args: ["--max-line-length", "88", "--extend-ignore", "E203,E501,B008"]
