@@ -163,7 +163,6 @@ def retrieve_class_refs(directory: str) -> list[ClassRef]:
                     class_name=node.name,
                 )
                 for node in ast.walk(ast.parse(python_file.read()))
-                if isinstance(node, ast.ClassDef)
-                and not node.name.startswith("_")
+                if isinstance(node, ast.ClassDef) and not node.name.startswith("_")
             )
     return class_refs

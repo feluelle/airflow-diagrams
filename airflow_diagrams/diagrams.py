@@ -62,7 +62,7 @@ class _DiagramItem:
 
     _id: str
 
-    def get_label(self, label_wrap: Optional[str]) -> str:    # dead: disable
+    def get_label(self, label_wrap: Optional[str]) -> str:  # dead: disable
         """
         Get the label of the item rendered.
 
