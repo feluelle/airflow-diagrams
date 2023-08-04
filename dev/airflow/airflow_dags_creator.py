@@ -40,9 +40,7 @@ def _generate_airflow_tasks(class_refs: list[ClassRef]):
             if u < v
         ],
     )
-    tasks_with_downstream_tasks = to_dict_of_lists(dag)
-
-    return tasks_with_downstream_tasks
+    return to_dict_of_lists(dag)
 
 
 if __name__ == "__main__":

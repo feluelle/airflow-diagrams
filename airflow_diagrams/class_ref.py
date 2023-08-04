@@ -157,13 +157,13 @@ def retrieve_class_refs(directory: str) -> list[ClassRef]:
         with fs.open(path) as python_file:
             module_path = f'{directory.rsplit("/", 1)[-1]}.{path.removeprefix("/").removesuffix(".py").replace("/", ".")}'
 
-            for node in ast.walk(ast.parse(python_file.read())):
-                if isinstance(node, ast.ClassDef) and not node.name.startswith("_"):
-                    class_refs.append(
-                        ClassRef(
-                            module_path=module_path,
-                            class_name=node.name,
-                        ),
-                    )
-
+            class_refs.extend(
+                ClassRef(
+                    module_path=module_path,
+                    class_name=node.name,
+                )
+                for node in ast.walk(ast.parse(python_file.read()))
+                if isinstance(node, ast.ClassDef)
+                and not node.name.startswith("_")
+            )
     return class_refs

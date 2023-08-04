@@ -62,16 +62,14 @@ class _DiagramItem:
 
     _id: str
 
-    def get_label(self, label_wrap: Optional[str]) -> str:  # dead: disable
+    def get_label(self, label_wrap: Optional[str]) -> str:    # dead: disable
         """
         Get the label of the item rendered.
 
         :params label_wrap: Specify either a number for label width or a separator to indicate when to wrap a label.
         :returns: the label.
         """
-        if label_wrap:
-            return wrap_str(self._id, label_wrap)
-        return self._id
+        return wrap_str(self._id, label_wrap) if label_wrap else self._id
 
     def get_variable(self) -> str:  # dead: disable
         """

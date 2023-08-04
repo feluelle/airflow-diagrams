@@ -263,11 +263,7 @@ def generate(  # dead: disable
     if verbose:
         _enable_debugging()
 
-    if mapping_file:
-        mappings = load_mappings(mapping_file)
-    else:
-        mappings = {}
-
+    mappings = load_mappings(mapping_file) if mapping_file else {}
     if from_file:
         airflow_info = _load(from_file)
     else:

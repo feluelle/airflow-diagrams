@@ -40,9 +40,7 @@ class AirflowDag:
 
         :returns: True if the dag_id is the same, if not False.
         """
-        if isinstance(__o, AirflowDag):
-            return self.dag_id == __o.dag_id
-        return False
+        return self.dag_id == __o.dag_id if isinstance(__o, AirflowDag) else False
 
     def get_tasks(self) -> list[AirflowTask]:
         """
