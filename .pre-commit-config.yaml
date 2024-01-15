@@ -91,7 +91,7 @@ repos:
       - id: isort
         args: ["--profile", "black"]
   - repo: https://github.com/crate-ci/typos
-    rev: v1.17.0
+    rev: v1.17.1
     hooks:
       - id: typos
         exclude: \.svg$
