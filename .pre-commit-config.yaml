@@ -60,7 +60,7 @@ repos:
       - id: dead
         args: ["--exclude", "examples/"] # global exclude does not work
   - repo: https://github.com/psf/black
-    rev: 23.12.1
+    rev: 24.1.1
     hooks:
       - id: black
   - repo: https://github.com/PyCQA/flake8
@@ -73,7 +73,7 @@ repos:
           - flake8-builtins
           - flake8-pytest-style
   - repo: https://github.com/PyCQA/bandit
-    rev: 1.7.6
+    rev: 1.7.7
     hooks:
       - id: bandit
         args: ["-c", ".bandit"]
@@ -91,7 +91,7 @@ repos:
       - id: isort
         args: ["--profile", "black"]
   - repo: https://github.com/crate-ci/typos
-    rev: v1.17.1
+    rev: v1.17.2
     hooks:
       - id: typos
         exclude: \.svg$
