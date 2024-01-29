@@ -1,4 +1,5 @@
 """This module provides the airflow-diagrams CLI."""
+
 import logging
 import os
 import re

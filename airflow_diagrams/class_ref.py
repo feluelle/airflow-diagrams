@@ -72,9 +72,9 @@ class ClassRefMatcher:
             ClassRefMatchObject(
                 class_ref=choice,
                 text=self._generate_text(
-                    class_ref_str=choice_cleanup(str(choice))
-                    if choice_cleanup
-                    else str(choice),
+                    class_ref_str=(
+                        choice_cleanup(str(choice)) if choice_cleanup else str(choice)
+                    ),
                 ),
             )
             for choice in choices
@@ -99,9 +99,9 @@ class ClassRefMatcher:
         _query = ClassRefMatchObject(
             class_ref=query,
             text=self._generate_text(
-                class_ref_str=query_cleanup(str(query))
-                if query_cleanup
-                else str(query),
+                class_ref_str=(
+                    query_cleanup(str(query)) if query_cleanup else str(query)
+                ),
             ),
         )
         logging.debug("Query: %s", _query)

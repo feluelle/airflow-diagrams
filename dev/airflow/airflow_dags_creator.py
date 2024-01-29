@@ -1,4 +1,5 @@
 """Creates random fake Airflow DAGs as yaml file."""
+
 import argparse
 import random
 
