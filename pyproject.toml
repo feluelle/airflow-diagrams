@@ -37,3 +37,19 @@ build-backend = "poetry.core.masonry.api"
 
 [tool.coverage.run]
 omit = ["airflow_diagrams/__main__.py"]
+
+[tool.ruff]
+target-version = "py39"
+
+[tool.ruff.lint]
+select = ["E4", "E7", "E9", "F", "B", "S", "UP", "PGH", "D", "I", "A", "PT"]
+ignore = ["D100", "D107"]
+
+[tool.ruff.per-file-ignores]
+"dev/*" = ["D"]
+"tests/*" = ["S101", "D"]
+"airflow_diagrams/cli.py" = ["B008", "D"]
+"airflow_diagrams/__main__.py" = ["D"]
+
+[tool.ruff.pydocstyle]
+convention = "pep257"

@@ -33,73 +33,24 @@ repos:
           - types-requests
           - types-PyYAML
           - types-toml
-  - repo: https://github.com/pre-commit/pygrep-hooks
-    rev: v1.10.0
-    hooks:
-      - id: python-check-blanket-noqa
-      - id: python-check-blanket-type-ignore
-      - id: python-check-mock-methods
-      - id: python-no-eval
-      - id: python-no-log-warn
-      - id: python-use-type-annotations
-  - repo: https://github.com/asottile/add-trailing-comma
-    rev: v3.1.0
-    hooks:
-      - id: add-trailing-comma
-  - repo: https://github.com/asottile/pyupgrade
-    rev: v3.15.0
-    hooks:
-      - id: pyupgrade
-  - repo: https://github.com/asottile/yesqa
-    rev: v1.5.0
-    hooks:
-      - id: yesqa
   - repo: https://github.com/asottile/dead
     rev: v1.5.2
     hooks:
       - id: dead
         args: ["--exclude", "examples/"] # global exclude does not work
-  - repo: https://github.com/psf/black
-    rev: 23.12.1
+  - repo: https://github.com/astral-sh/ruff-pre-commit
+    rev: v0.1.15
     hooks:
-      - id: black
-  - repo: https://github.com/PyCQA/flake8
-    rev: 7.0.0
-    hooks:
-      - id: flake8
-        args: ["--max-line-length", "88", "--extend-ignore", "E203,E501,B008"]
-        additional_dependencies:
-          - flake8-bugbear
-          - flake8-builtins
-          - flake8-pytest-style
-  - repo: https://github.com/PyCQA/bandit
-    rev: 1.7.6
-    hooks:
-      - id: bandit
-        args: ["-c", ".bandit"]
-  - repo: https://github.com/PyCQA/pydocstyle
-    rev: 6.3.0
-    hooks:
-      - id: pydocstyle
-        args: ["--convention", "pep257", "--add-ignore", "D100,D107"]
-        additional_dependencies:
-          - toml
-        exclude: airflow_diagrams/cli.py|airflow_diagrams/__main__.py|dev/|tests/
-  - repo: https://github.com/pycqa/isort
-    rev: 5.13.2
-    hooks:
-      - id: isort
-        args: ["--profile", "black"]
+      - id: ruff
+        args:
+        - --fix
+        - --unsafe-fixes
+      - id: ruff-format
   - repo: https://github.com/crate-ci/typos
-    rev: v1.17.1
+    rev: v1.17.2
     hooks:
       - id: typos
         exclude: \.svg$
-  - repo: https://github.com/pycqa/autoflake
-    rev: v2.2.1
-    hooks:
-      - id: autoflake
-        args: ["--remove-all-unused-imports", "--in-place"]
   - repo: local
     hooks:
       - id: pytest

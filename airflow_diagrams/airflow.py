@@ -1,5 +1,6 @@
+from collections.abc import Generator
 from dataclasses import dataclass
-from typing import Generator, Optional
+from typing import Optional
 
 from airflow_client.client.api.dag_api import DAGApi
 from airflow_client.client.api_client import ApiClient, Configuration

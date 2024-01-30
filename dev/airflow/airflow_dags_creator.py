@@ -1,4 +1,5 @@
 """Creates random fake Airflow DAGs as yaml file."""
+
 import argparse
 import random
 
@@ -34,7 +35,7 @@ def _generate_airflow_tasks(class_refs: list[ClassRef]):
             (
                 str(class_refs[u]),
                 str(class_refs[v]),
-                {"weight": random.randint(-10, 10)},  # nosec
+                {"weight": random.randint(-10, 10)},  # noqa: S311
             )
             for u, v in graph.edges()
             if u < v
@@ -75,7 +76,7 @@ if __name__ == "__main__":
                     group_name=None,
                 )
                 for key, value in _generate_airflow_tasks(
-                    random.choices(class_refs, k=20),  # nosec
+                    random.choices(class_refs, k=20),  # noqa: S311
                 ).items()
             ],
         )

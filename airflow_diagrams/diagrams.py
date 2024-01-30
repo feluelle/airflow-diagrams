@@ -20,7 +20,7 @@ def to_var(string: str) -> str:
     :params string: The string to convert.
     :returns: a valid python variable name.
     """
-    return f"_{md5(string.encode()).hexdigest()}"  # nosec
+    return f"_{md5(string.encode()).hexdigest()}"  # noqa: S324
 
 
 def wrap_str(string: str, indicator: str) -> str:
