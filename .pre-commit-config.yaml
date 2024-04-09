@@ -12,7 +12,7 @@ repos:
     hooks:
       - id: check-hooks-apply
   - repo: https://github.com/pre-commit/pre-commit-hooks
-    rev: v4.5.0
+    rev: v4.6.0
     hooks:
       - id: check-ast
       - id: check-builtin-literals
@@ -47,7 +47,7 @@ repos:
         - --unsafe-fixes
       - id: ruff-format
   - repo: https://github.com/crate-ci/typos
-    rev: v1.20.0
+    rev: v1.20.4
     hooks:
       - id: typos
         exclude: \.svg$
