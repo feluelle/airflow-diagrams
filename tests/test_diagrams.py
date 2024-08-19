@@ -14,7 +14,7 @@ from airflow_diagrams.diagrams import (
 )
 
 
-@pytest.fixture()
+@pytest.fixture
 def airflow_task():
     return AirflowTask(
         class_ref=ClassRef(
@@ -27,7 +27,7 @@ def airflow_task():
     )
 
 
-@pytest.fixture()
+@pytest.fixture
 def airflow_dag(mocker):
     return AirflowDag(dag_id="foo", dag_api=mocker.ANY)
 

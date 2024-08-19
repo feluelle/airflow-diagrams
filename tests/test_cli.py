@@ -29,7 +29,7 @@ def strip_white_space(*strings) -> str:
     return "".join(strings).replace(" ", "").replace("\t", "").replace("\n", "")
 
 
-@pytest.fixture()
+@pytest.fixture
 def _mock_dag(airflow_api_tree):
     airflow_api_tree.dag_api.get_dags.return_value = dict(
         dags=[

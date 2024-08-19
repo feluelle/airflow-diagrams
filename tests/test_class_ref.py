@@ -6,7 +6,7 @@ import pytest
 from airflow_diagrams.class_ref import ClassRef, ClassRefMatcher, retrieve_class_refs
 
 
-@pytest.fixture()
+@pytest.fixture
 def class_ref():
     return ClassRef(
         module_path="module.operators.path",
@@ -14,7 +14,7 @@ def class_ref():
     )
 
 
-@pytest.fixture()
+@pytest.fixture
 def class_ref_mapped():
     return ClassRef(
         module_path="test.custom.module.operators.path",
@@ -22,7 +22,7 @@ def class_ref_mapped():
     )
 
 
-@pytest.fixture()
+@pytest.fixture
 def class_ref_matcher(class_ref):
     return ClassRefMatcher(
         choices=[class_ref],
@@ -32,7 +32,7 @@ def class_ref_matcher(class_ref):
     )
 
 
-@pytest.fixture()
+@pytest.fixture
 def class_ref_matcher_with_mappings(class_ref, class_ref_mapped):
     return ClassRefMatcher(
         choices=[class_ref],
@@ -43,7 +43,7 @@ def class_ref_matcher_with_mappings(class_ref, class_ref_mapped):
     )
 
 
-@pytest.fixture()
+@pytest.fixture
 def match_kwargs(class_ref):
     return dict(
         query=class_ref,
