@@ -12,7 +12,7 @@ repos:
     hooks:
       - id: check-hooks-apply
   - repo: https://github.com/pre-commit/pre-commit-hooks
-    rev: v4.6.0
+    rev: v5.0.0
     hooks:
       - id: check-ast
       - id: check-builtin-literals
@@ -39,7 +39,7 @@ repos:
       - id: dead
         args: ["--exclude", "examples/"] # global exclude does not work
   - repo: https://github.com/astral-sh/ruff-pre-commit
-    rev: v0.6.8
+    rev: v0.6.9
     hooks:
       - id: ruff
         args:
@@ -47,7 +47,7 @@ repos:
         - --unsafe-fixes
       - id: ruff-format
   - repo: https://github.com/crate-ci/typos
-    rev: v1.24.6
+    rev: v1.26.0
     hooks:
       - id: typos
         exclude: \.svg$
