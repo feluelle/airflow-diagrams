@@ -39,7 +39,7 @@ repos:
       - id: dead
         args: ["--exclude", "examples/"] # global exclude does not work
   - repo: https://github.com/astral-sh/ruff-pre-commit
-    rev: v0.7.2
+    rev: v0.7.3
     hooks:
       - id: ruff
         args:
@@ -47,7 +47,7 @@ repos:
         - --unsafe-fixes
       - id: ruff-format
   - repo: https://github.com/crate-ci/typos
-    rev: v1.27.0
+    rev: typos-dict-v0.11.35
     hooks:
       - id: typos
         exclude: \.svg$
