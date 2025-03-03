@@ -155,7 +155,7 @@ def retrieve_class_refs(directory: str) -> list[ClassRef]:
     fs = open_fs(directory)
     for path in fs.walk.files(filter=["*.py"], exclude=["__init__.py"]):
         with fs.open(path) as python_file:
-            module_path = f'{directory.rsplit("/", 1)[-1]}.{path.removeprefix("/").removesuffix(".py").replace("/", ".")}'
+            module_path = f"{directory.rsplit('/', 1)[-1]}.{path.removeprefix('/').removesuffix('.py').replace('/', '.')}"
 
             for node in ast.walk(ast.parse(python_file.read())):
                 if isinstance(node, ast.ClassDef) and not node.name.startswith("_"):
