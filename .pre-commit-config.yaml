@@ -26,7 +26,7 @@ repos:
         files: airflow_diagrams/abbreviations.yml|examples/mapping.yml
       - id: trailing-whitespace
   - repo: https://github.com/pre-commit/mirrors-mypy
-    rev: v1.14.0
+    rev: v1.15.0
     hooks:
       - id: mypy
         additional_dependencies:
@@ -34,12 +34,12 @@ repos:
           - types-PyYAML
           - types-toml
   - repo: https://github.com/asottile/dead
-    rev: v1.5.2
+    rev: v2.1.0
     hooks:
       - id: dead
         args: ["--exclude", "examples/"] # global exclude does not work
   - repo: https://github.com/astral-sh/ruff-pre-commit
-    rev: v0.8.4
+    rev: v0.9.10
     hooks:
       - id: ruff
         args:
@@ -47,7 +47,7 @@ repos:
         - --unsafe-fixes
       - id: ruff-format
   - repo: https://github.com/crate-ci/typos
-    rev: v1.28.4
+    rev: v1.30.2
     hooks:
       - id: typos
         exclude: \.svg$
