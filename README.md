@@ -34,7 +34,36 @@ Then just call it like this:
 
 ![usage](assets/images/usage.png)
 
-_Examples of generated diagrams can be found in the [examples](examples) directory._
+## 📸 Examples
+
+You can try the CLI without a running Airflow instance by using the bundled DAG metadata in [`examples/airflow_dags.yml`](examples/airflow_dags.yml):
+
+```console
+airflow-diagrams generate -f examples/airflow_dags.yml -o examples/
+```
+
+Each `<dag-id>_diagrams.py` file is a standalone [diagrams](https://github.com/mingrammer/diagrams) script. Render output as PNG with Graphviz installed, for example:
+
+```console
+cd examples
+python dbt_diagrams.py
+python airbyte_diagrams.py
+python mails_to_postgres_diagrams.py
+```
+
+Below are the diagrams produced from those scripts (also checked into [`examples/`](examples/)).
+
+**dbt** (single Kubernetes pod task):
+
+![dbt example diagram](examples/dbt.png)
+
+**airbyte** (trigger task with a downstream sensor):
+
+![airbyte example diagram](examples/airbyte.png)
+
+**mails_to_postgres** (IMAP to S3 transfer):
+
+![mails_to_postgres example diagram](examples/mails_to_postgres.png)
 
 ## 🤔 How it Works
 
