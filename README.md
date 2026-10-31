@@ -42,7 +42,7 @@ You can try the CLI without a running Airflow instance by using the bundled DAG 
 airflow-diagrams generate -f examples/airflow_dags.yml -o examples/
 ```
 
-Each `<dag-id>_diagrams.py` file is a standalone [diagrams](https://github.com/mingrammer/diagrams) script. Render PNGs with Graphviz installed, for example:
+Each `<dag-id>_diagrams.py` file is a standalone [diagrams](https://github.com/mingrammer/diagrams) script. Render output as PNG with Graphviz installed, for example:
 
 ```console
 cd examples
