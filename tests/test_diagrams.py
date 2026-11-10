@@ -50,6 +50,11 @@ def test_wrap_str__indicator_separator():
     assert wrap_str("foobarfoobar", "foo") == "\\nbar\\nbar"
 
 
+def test_wrap_str__indicator_zero_width():
+    """Test wrapping a string with a zero width returns it unchanged"""
+    assert wrap_str("foobarfoobar", "0") == "foobarfoobar"
+
+
 def test_diagram_node(airflow_task):
     """Test diagram node initialisation"""
     class_name = "DiagramsBar"

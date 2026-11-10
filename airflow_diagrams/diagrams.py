@@ -32,6 +32,8 @@ def wrap_str(string: str, indicator: str) -> str:
     :returns: the wrapped string.
     """
     if indicator.isdigit():
+        if int(indicator) <= 0:
+            return string
         return "\\n".join(wrap(string, int(indicator), break_on_hyphens=False))
     return "\\n".join(string.split(indicator))
 
